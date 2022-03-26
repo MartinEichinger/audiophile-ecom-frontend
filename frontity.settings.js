@@ -18,7 +18,7 @@ const settings = {
 
       state: {
         source: {
-          url: "http://localhost/audiophile-ecom-backend",
+          url: "http://audiophile.edmadd.eu/",
 
           homepage: "/home",
 
