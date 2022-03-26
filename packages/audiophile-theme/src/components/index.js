@@ -32,10 +32,10 @@ const Root = ({ state }) => {
       <Head>
         <title>{state.frontity.title}</title>
         <meta name="description" content={state.frontity.description} />
-        <meta
+        {/* <meta
           http-equiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
-        />
+        /> */}
         <html lang="en" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
