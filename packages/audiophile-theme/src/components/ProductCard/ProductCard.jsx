@@ -143,7 +143,7 @@ const ProdCardItemBig = styled.div`
       "prodcard isBig: ",
       mediaQuery,
       mediaQuery.isLg,
-      mediaQuery.isLg === false ? "700px" : "500px"
+      mediaQuery.isLg === false ? "700px" : "520px"
     )}
 
   .crd {
