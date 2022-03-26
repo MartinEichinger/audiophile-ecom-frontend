@@ -17,11 +17,19 @@
   },
   "prettier": {},
   "dependencies": {
-    "frontity": "^1.17.2",
+    "@fortawesome/fontawesome-free": "^6.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.0",
+    "@fortawesome/free-regular-svg-icons": "^6.1.0",
+    "@fortawesome/free-solid-svg-icons": "^6.1.0",
+    "@fortawesome/react-fontawesome": "^0.1.18",
     "@frontity/core": "^1.15.1",
-    "@frontity/wp-source": "^1.11.7",
-    "@frontity/tiny-router": "^1.4.4",
     "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme"
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.4.4",
+    "@frontity/wp-source": "^1.11.7",
+    "audiophile-theme": "file:packages/audiophile-theme",
+    "dayjs": "^1.10.8",
+    "frontity": "^1.17.2",
+    "react-responsive": "^9.0.0-beta.6"
   }
 }
