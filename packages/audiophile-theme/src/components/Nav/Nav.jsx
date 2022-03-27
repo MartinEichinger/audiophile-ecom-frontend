@@ -68,6 +68,15 @@ const NavBar = styled.div`
     }
   }
 
+  .nav-items .nav {
+    height: 28px;
+  }
+
+  .nav-items .nav .nav-link {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
   .hamburger img {
     width: 15px;
     height: 15px;

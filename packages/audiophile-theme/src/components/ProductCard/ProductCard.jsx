@@ -22,40 +22,14 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
           textRight={textRight}
           mediaQuery={mediaQuery}
         >
-          <div
-            className={
-              !bigImg && textRight
-                ? "crd d-flex justify-content-center align-items-center flex-row"
-                : !bigImg
-                ? "crd d-flex justify-content-center align-items-center flex-row-reverse"
-                : "crd d-flex justify-content-center align-items-center flex-column flex-lg-row"
-            }
-          >
+          <div className="crd d-flex justify-content-center align-items-center flex-column flex-lg-row">
             <div className="col_1">
-              <div
-                className={
-                  bigImg && mediaQuery.isLg
-                    ? "pict d-flex justify-content-center align-items-end"
-                    : "pict d-flex justify-content-center align-items-center"
-                }
-              >
+              <div className="pict d-flex justify-content-center">
                 {fullSize ? null : <img src={img_src} />}
               </div>
             </div>
-            <div
-              className={
-                bigImg && !mediaQuery.isLg
-                  ? "col_2 d-flex justify-content-center align-items-start"
-                  : "col_2 d-flex justify-content-center align-items-center"
-              }
-            >
-              <div
-                className={
-                  bigImg && mediaQuery.isLg
-                    ? "text d-flex flex-column align-items-start"
-                    : "text d-flex flex-column justify-content-start align-items-center"
-                }
-              >
+            <div className="col_2 d-flex justify-content-center">
+              <div className="text d-flex flex-column">
                 {bigImg ? (
                   <h1>{entries[entry.id].acf.heading}</h1>
                 ) : (
@@ -144,55 +118,83 @@ const ProdCardItemBig = styled.div`
   }
 
   .crd {
-    height: ${({ mediaQuery }) =>
-      mediaQuery.isLg === false ? "720px" : "560px"};
+    height: 560px;
     background-color: ${({ state }) => state.theme.brown};
     background-image: ${({ img_src, fullSize }) =>
       fullSize ? "url(" + img_src + ")" : "url(" + Circle + ")"};
     background-repeat: no-repeat;
-    background-position: ${({ mediaQuery }) =>
-      mediaQuery.isLg === true ? "-90% 15%;" : "50% 125%;"};
+    background-position: -90% 15%;
     border-radius: 8px;
     border: none;
+
+    @media only screen and (max-width: 991px) {
+      height: 720px;
+      background-position: 50% 125%;
+    }
   }
 
   .crd .col_1 {
     width: 50%;
-    height: ${({ mediaQuery }) => (!mediaQuery.isLg ? `50%` : `inherit`)};
+    height: inherit;
     border-radius: 8px;
     overflow: hidden;
     ${({ textRight }) =>
       textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
+
+    @media only screen and (max-width: 991px) {
+      height: 50%;
+    }
   }
 
   .crd .col_1 .pict {
-    height: ${({ mediaQuery }) => (mediaQuery.isLg ? `inherit` : `100%`)};
+    height: inherit;
     overflow: hidden;
+    align-items: end;
+
+    @media only screen and (max-width: 991px) {
+      height: 100%;
+      align-items: center;
+    }
   }
 
   .crd .col_2 {
     width: 50%;
     border-radius: 8px;
     overflow: hidden;
-    height: ${({ mediaQuery }) => (mediaQuery.isLg ? `inherit` : `50%`)};
+    height: inherit;
     ${({ textRight }) =>
       !textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
+    align-items: center;
+
+    @media only screen and (max-width: 991px) {
+      height: 50%;
+      align-items: start;
+    }
   }
 
   .crd .col_1 img {
-    height: ${({ mediaQuery }) => (mediaQuery.isLg ? `448px` : "65%")};
-    margin-bottom: ${({ mediaQuery }) => (mediaQuery.isLg ? `-7px` : "0px")};
-    margin-left: ${({ mediaQuery }) => (mediaQuery.isLg ? `100px` : "0px")};
+    height: 448px;
+    margin-bottom: -7px;
+    margin-left: 100px;
+
+    @media only screen and (max-width: 991px) {
+      height: 65%;
+      margin-bottom: 0px;
+      margin-left: 0px;
+    }
   }
 
   .crd .col_2 .text {
     width: 350px;
+    align-items: start;
 
     @media only screen and (max-width: 1439px) {
       width: calc(14.88095vw + 136px);
     }
 
     @media only screen and (max-width: 991px) {
+      align-items: center;
+      justify-content: start;
       text-align: center;
     }
   }
@@ -229,9 +231,7 @@ const ProdCardItemMedium = styled.div`
     background-position: ${({ bigImg }) => (bigImg ? `-90% 15%` : "50% 50%")};
     ${({ bigImg }) => (bigImg ? null : "background-size: cover")};
     border-radius: 8px;
-    ${({ bigImg }) => !bigImg && "height: 320px"};
-    ${({ bigImg, mediaQuery }) =>
-      bigImg && `height: ${mediaQuery.isLg === true ? "560px" : "720px"}`};
+    height: 320px;
     border: none;
   }
 

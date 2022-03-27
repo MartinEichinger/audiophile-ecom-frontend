@@ -50,11 +50,7 @@ const Root = ({ state }) => {
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
           crossorigin="anonymous"
         />
-        <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-          crossorigin="anonymous"
-        ></script>
+
         <link
           href="//use.fontawesome.com/releases/v6.1.0/css/fontawesome.css"
           rel="stylesheet"
@@ -67,10 +63,6 @@ const Root = ({ state }) => {
           href="//use.fontawesome.com/releases/v6.1.0/css/solid.css"
           rel="stylesheet"
         />
-        <script
-          src="https://kit.fontawesome.com/cea30e219f.js"
-          crossorigin="anonymous"
-        ></script>
       </Head>
 
       <Global styles={globalStyles} />
@@ -86,6 +78,16 @@ const Root = ({ state }) => {
       </main>
 
       <Footer />
+
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://kit.fontawesome.com/cea30e219f.js"
+        crossorigin="anonymous"
+      ></script>
     </>
   );
 };
