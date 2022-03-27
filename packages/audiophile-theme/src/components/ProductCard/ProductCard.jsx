@@ -25,7 +25,7 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
           <div className="crd d-flex justify-content-center align-items-center flex-column flex-lg-row">
             <div className="col_1">
               <div className="pict d-flex justify-content-center">
-                {fullSize ? null : <img src={img_src} />}
+                {fullSize ? null : <img src={img_src} alt="Product Images" />}
               </div>
             </div>
             <div className="col_2 d-flex justify-content-center">

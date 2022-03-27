@@ -9,7 +9,7 @@ const Card = ({ state, img_src, h6_cont, subtitle_cont, i }) => {
         className="card d-flex flex-column justify-content-center align-items-center"
         key={i}
       >
-        <img src={img_src} />
+        <img src={img_src} alt="Navigation Items" />
         <h6>{h6_cont}</h6>
         <subtitle>
           {subtitle_cont}
