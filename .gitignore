@@ -58,3 +58,6 @@ macOS .DS_Store files
 build
 .vercel
 ~$calculations.xlsx
+packages/audiophile-theme/src/components/index.js
+~$timeschedule.xlsx
+timeschedule.xlsx
