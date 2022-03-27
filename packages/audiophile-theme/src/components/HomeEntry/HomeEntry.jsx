@@ -40,8 +40,12 @@ const Background = styled.div`
   background-color: ${({ state }) => state.theme.lightBlack};
   background-position: 50% 100%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: inherit;
   border-radius: 0px 0px 8px 8px;
+
+  @media only screen and (max-width: 1439px) {
+    background-size: cover;
+  }
 
   .body {
     max-width: ${({ state }) => state.theme.maxWidth};
