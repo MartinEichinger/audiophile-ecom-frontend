@@ -138,13 +138,10 @@ export default ProductCard;
 // STYLING
 const ProdCardItemBig = styled.div`
   margin-bottom: 48px;
-  ${({ mediaQuery }) =>
-    console.log(
-      "prodcard isBig: ",
-      mediaQuery,
-      mediaQuery.isLg,
-      mediaQuery.isLg === false ? "700px" : "520px"
-    )}
+
+  @media only screen and (max-width: 991px) {
+    margin-bottom: 32px;
+  }
 
   .crd {
     height: ${({ mediaQuery }) =>
@@ -153,7 +150,8 @@ const ProdCardItemBig = styled.div`
     background-image: ${({ img_src, fullSize }) =>
       fullSize ? "url(" + img_src + ")" : "url(" + Circle + ")"};
     background-repeat: no-repeat;
-    background-position: -90% 15%;
+    background-position: ${({ mediaQuery }) =>
+      mediaQuery.isLg === true ? "-90% 15%;" : "50% 125%;"};
     border-radius: 8px;
     border: none;
   }
@@ -217,7 +215,10 @@ const ProdCardItemBig = styled.div`
 
 const ProdCardItemMedium = styled.div`
   margin-bottom: 48px;
-  ${({ mediaQuery }) => console.log("prodcard: ", mediaQuery, mediaQuery.isLg)}
+
+  @media only screen and (max-width: 991px) {
+    margin-bottom: 32px;
+  }
 
   .crd {
     background-color: ${({ state, bigImg }) =>

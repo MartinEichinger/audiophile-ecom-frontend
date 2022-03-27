@@ -32,7 +32,7 @@ const Footer = ({ state, actions }) => {
     <FooterBar state={state}>
       <div className="body d-flex flex-column">
         <div className="nav-items d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between">
-          <div>
+          <div className="nav-img">
             <a href="/">
               <img src={Logo} alt="Audiophile best speakers" />
             </a>
@@ -55,7 +55,7 @@ const Footer = ({ state, actions }) => {
 
         <div className="text d-flex flex-column flex-lg-row justify-content-start justify-content-lg-between align-items-end">
           <p>{entry?.acf.footer_text}</p>
-          <div className="logos">
+          <div className="logos d-none d-lg-flex flex-row">
             <a href="/">
               <img src={Facebook} alt="Audiophile best speakers" />
               <img src={FacebookHover} alt="Audiophile best speakers" />
@@ -71,8 +71,22 @@ const Footer = ({ state, actions }) => {
           </div>
         </div>
 
-        <div className="copyright">
+        <div className="copyright d-flex flex-row justify-content-between">
           <p>{entry?.acf.footer_copyright}</p>
+          <div className="logos d-flex d-lg-none flex-row">
+            <a href="/">
+              <img src={Facebook} alt="Audiophile best speakers" />
+              <img src={FacebookHover} alt="Audiophile best speakers" />
+            </a>
+            <a href="/">
+              <img src={Twitter} alt="Audiophile best speakers" />
+              <img src={TwitterHover} alt="Audiophile best speakers" />
+            </a>
+            <a href="/">
+              <img src={Instagram} alt="Audiophile best speakers" />
+              <img src={InstagramHover} alt="Audiophile best speakers" />
+            </a>
+          </div>
         </div>
       </div>
     </FooterBar>
@@ -125,33 +139,44 @@ const FooterBar = styled.div`
     }
   }
 
-  .text {
-    margin-top: 36px;
+  .nav-items .nav-img,
+  .nav-items .nav {
+    margin-bottom: 36px;
   }
 
-  .text .logos a {
+  .text .logos a,
+  .copyright .logos a {
     margin-right: 16px;
     display: inline-block;
   }
 
-  .text .logos a img:last-child {
+  .text .logos a img:last-child,
+  .copyright .logos a img:last-child {
     display: none;
   }
 
-  .text .logos a:last-of-type {
+  .text .logos a:last-of-type,
+  .copyright .logos a:last-of-type {
     margin-right: 0px;
   }
 
-  .text .logos a:hover img:last-child {
+  .text .logos a:hover img:last-child,
+  .copyright .logos a:hover img:last-child {
     display: inline-block;
   }
 
-  .text .logos a:hover img:first-child {
+  .text .logos a:hover img:first-child,
+  .copyright .logos a:hover img:first-child {
     display: none;
   }
 
   .copyright {
     margin-top: 56px;
+    margin-bottom: 48px;
+  }
+
+  .text p {
+    margin-bottom: 0px;
   }
 
   .text p,
@@ -165,24 +190,3 @@ const FooterBar = styled.div`
     }
   }
 `;
-
-/* .hover-logo {
-  display: inline-block;
-  height: 24px;
-
-  img:last-child {
-    display: none;
-  }
-
-  &:hover {
-    cursor: url(./img/pointer.png), pointer;
-
-    img:last-child {
-      display: inline-block;
-    }
-    img:first-child {
-      display: none;
-    }
-  }
-}
- */
