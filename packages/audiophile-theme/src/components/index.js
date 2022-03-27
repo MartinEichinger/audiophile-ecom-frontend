@@ -13,9 +13,11 @@ import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
 
 const Root = ({ state }) => {
+  const debug = false;
+
   // 1. GET
   const data = state.source.get("/");
-  console.log("index.js/data:", data, data.id);
+  if (debug) console.log("index.js/data:", data, data.id);
 
   // MEDIA QUERY
   const mediaQuery = {

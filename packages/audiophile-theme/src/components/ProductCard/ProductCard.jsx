@@ -2,7 +2,7 @@ import { styled } from "frontity";
 import Circle from "./pattern-circles.svg";
 
 const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   const bigImg = entries[entry.id].acf.big_medium_small[0] === "Big";
   const fullSize = entries[entry.id].acf.fullsize_img[0] === "Fullsize?";

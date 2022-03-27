@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 import ProductCard from "../ProductCard/ProductCard";
 
 const HomeBestof = ({ state, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
 
