@@ -34,10 +34,6 @@ const Root = ({ state }) => {
       <Head>
         <title>{state.frontity.title}</title>
         <meta name="description" content={state.frontity.description} />
-        {/* <meta
-          http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        /> */}
         <html lang="en" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,10 +43,8 @@ const Root = ({ state }) => {
           rel="stylesheet"
         />
         <link
-          rel="preload"
+          rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-          as="style"
-          onload="this.onload=null;this.rel='stylesheet'"
         />
 
         <link
@@ -89,8 +83,7 @@ const Root = ({ state }) => {
       ></script>
       <script
         src="https://kit.fontawesome.com/cea30e219f.js"
-        crossorigin="anonymous"
-        async
+        crossOrigin="anonymous"
       ></script>
     </>
   );

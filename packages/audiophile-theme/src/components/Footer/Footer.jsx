@@ -165,8 +165,8 @@ const FooterBar = styled.div`
     display: inline-block;
   }
 
-  .text .logos a:hover img:first-child,
-  .copyright .logos a:hover img:first-child {
+  .text .logos a:hover img:first-of-type,
+  .copyright .logos a:hover img:first-of-type {
     display: none;
   }
 
