@@ -57,7 +57,7 @@ const Bestof = styled.div`
   margin: 0 auto 168px;
 
   @media only screen and (max-width: 1439px) {
-    margin-bottom: calc(10.11905vw + 22px - 48px);
+    margin-bottom: calc(10.11905vw + 22px);
   }
 
   .body {

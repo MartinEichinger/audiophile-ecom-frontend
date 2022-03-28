@@ -100,11 +100,11 @@ const About = styled.div`
   }
 
   .img img {
-    width: 445px;
+    width: 540px;
     border-radius: 8px;
 
     @media only screen and (max-width: 1439px) {
-      width: calc(14.1369vw + 241px);
+      width: calc(35.71429vw + 26px);
     }
 
     @media only screen and (max-width: 991px) {

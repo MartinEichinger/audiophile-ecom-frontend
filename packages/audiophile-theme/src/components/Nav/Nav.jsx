@@ -98,7 +98,11 @@ const NavBar = styled.div`
     }
   }
 
-  li {
+  .nav {
+    margin-right: 125px;
+  }
+
+  .nav li {
     color: ${({ state }) => state.theme.white};
   }
 `;
