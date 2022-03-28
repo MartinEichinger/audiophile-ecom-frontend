@@ -54,10 +54,10 @@ const getImg = (img) => {
 // STYLING
 const Bestof = styled.div`
   max-width: 1440px;
-  margin: 0 auto 168px;
+  margin: 0 auto 152px;
 
   @media only screen and (max-width: 1439px) {
-    margin-bottom: calc(10.11905vw + 22px);
+    margin-bottom: calc(10.11905vw + 22px - 16px);
   }
 
   .body {

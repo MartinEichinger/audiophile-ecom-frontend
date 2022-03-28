@@ -56,7 +56,7 @@ const About = styled.div`
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
-      margin-bottom: calc(15.47619vw - 63px);
+      margin-bottom: calc(15.47619vw - 23px);
     }
   }
 

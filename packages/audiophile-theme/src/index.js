@@ -23,10 +23,6 @@ export default {
     theme: {
       beforeSSR: async ({ actions, state, libraries }) => {
         await actions.source.fetch("/product-bestof/");
-        //const productBestof = await libraries.source.api.get({
-        //  endpoint: "product-bestof",
-        //});
-        //await libraries.source.populate({ productBestof, state });
         await actions.source.fetch("/home-links/");
       },
     },
