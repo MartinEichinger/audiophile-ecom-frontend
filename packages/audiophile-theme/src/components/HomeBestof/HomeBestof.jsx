@@ -25,7 +25,9 @@ const HomeBestof = ({ state, mediaQuery }) => {
           const img_src = getImg(
             mediaQuery.isLg
               ? images[entries[entry.id].acf.img_desktop]
-              : images[entries[entry.id].acf.img_tablet]
+              : mediaQuery.isSm
+              ? images[entries[entry.id].acf.img_tablet]
+              : images[entries[entry.id].acf.img_mobile]
           );
 
           return (
@@ -66,6 +68,11 @@ const Bestof = styled.div`
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
+    }
+
+    @media only screen and (max-width: 682px) {
+      padding-left: 24px;
+      padding-right: 24px;
     }
   }
 `;

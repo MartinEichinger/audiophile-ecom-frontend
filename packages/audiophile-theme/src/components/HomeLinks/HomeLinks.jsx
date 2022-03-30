@@ -20,7 +20,7 @@ const HomeLinks = ({ state }) => {
 
   return (
     <Links state={state}>
-      <div className="body d-flex flex-row">
+      <div className="body d-flex flex-column flex-sm-row">
         {Object.values(data.items).map((entry, i) => {
           const img_src = getImg(images[entries[entry.id].acf.img]);
 

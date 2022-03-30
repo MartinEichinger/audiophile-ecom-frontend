@@ -109,6 +109,11 @@ const globalStyles = css`
     letter-spacing: 2px;
     text-transform: uppercase;
     margin: 0px;
+
+    @media only screen and (max-width: 767px) {
+      font-size: calc(5.089059vw + 17px);
+      line-height: calc(4.580153vw + 23px);
+    }
   }
 
   h2 {

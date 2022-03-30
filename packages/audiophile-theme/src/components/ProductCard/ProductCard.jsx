@@ -57,45 +57,24 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
         >
           <div
             className={
-              !bigImg && textRight
-                ? "crd d-flex justify-content-center align-items-center flex-row"
-                : !bigImg
+              textRight
+                ? fullSize
+                  ? "crd d-flex justify-content-center align-items-center flex-row"
+                  : "crd d-flex justify-content-center align-items-center flex-column flex-sm-row"
+                : fullSize
                 ? "crd d-flex justify-content-center align-items-center flex-row-reverse"
-                : "crd d-flex justify-content-center align-items-center flex-column flex-lg-row"
+                : "crd d-flex justify-content-center align-items-center flex-column-reverse flex-sm-row-reverse"
             }
           >
             <div className="col_1">
-              <div
-                className={
-                  bigImg && mediaQuery.isLg
-                    ? "pict d-flex justify-content-center align-items-end"
-                    : "pict d-flex justify-content-center align-items-center"
-                }
-              >
+              <div className="pict d-flex justify-content-center align-items-center">
                 {fullSize ? null : <img src={img_src} />}
               </div>
             </div>
-            <div
-              className={
-                bigImg && !mediaQuery.isLg
-                  ? "col_2 d-flex justify-content-center align-items-start"
-                  : "col_2 d-flex justify-content-center align-items-center"
-              }
-            >
-              <div
-                className={
-                  bigImg && mediaQuery.isLg
-                    ? "text d-flex flex-column align-items-start"
-                    : "text d-flex flex-column justify-content-start align-items-center"
-                }
-              >
-                {bigImg ? (
-                  <h1>{entries[entry.id].acf.heading}</h1>
-                ) : (
-                  <h4>{entries[entry.id].acf.heading}</h4>
-                )}
-                {bigImg ? <p>{entries[entry.id].acf.body}</p> : null}
-                <button className={bigImg ? "full" : "empty"}>
+            <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
+              <div className="text d-flex flex-column justify-content-start align-items-start">
+                <h4>{entries[entry.id].acf.heading}</h4>
+                <button className="empty">
                   {entries[entry.id].acf.button}
                 </button>
               </div>
@@ -144,6 +123,10 @@ const ProdCardItemBig = styled.div`
     @media only screen and (max-width: 991px) {
       height: 50%;
     }
+
+    @media only screen and (max-width: 575px) {
+      width: auto;
+    }
   }
 
   .crd .col_1 .pict {
@@ -169,6 +152,10 @@ const ProdCardItemBig = styled.div`
     @media only screen and (max-width: 991px) {
       height: 50%;
       align-items: start;
+      width: 100%;
+      padding: 0 24px;
+      margin-left: 0px;
+      margin-right: 0px;
     }
   }
 
@@ -189,13 +176,17 @@ const ProdCardItemBig = styled.div`
     align-items: start;
 
     @media only screen and (max-width: 1439px) {
-      width: calc(14.88095vw + 136px);
+      //width: calc(14.88095vw + 136px);
     }
 
     @media only screen and (max-width: 991px) {
       align-items: center;
       justify-content: start;
       text-align: center;
+    }
+
+    @media only screen and (max-width: 575px) {
+      width: auto;
     }
   }
 
@@ -223,61 +214,74 @@ const ProdCardItemMedium = styled.div`
   }
 
   .crd {
-    background-color: ${({ state, bigImg }) =>
-      bigImg ? state.theme.brown : null};
     background-image: ${({ img_src, fullSize }) =>
       fullSize ? "url(" + img_src + ")" : "url(" + Circle + ")"};
     background-repeat: no-repeat;
-    background-position: ${({ bigImg }) => (bigImg ? `-90% 15%` : "50% 50%")};
-    ${({ bigImg }) => (bigImg ? null : "background-size: cover")};
+    background-position: 50% 50%;
+    background-size: cover;
     border-radius: 8px;
     height: 320px;
     border: none;
+
+    @media only screen and (max-width: 575px) {
+      ${({ fullSize }) => !fullSize && "height: auto;"}
+    }
   }
 
   .crd .col_1 {
     width: 50%;
-    height: ${({ mediaQuery, bigImg }) =>
-      bigImg && !mediaQuery.isLg ? `50%` : `inherit`};
-    border: ${({ fullSize, bigImg, state }) =>
-      !fullSize && !bigImg ? `1px solid ${state.theme.grey}` : null};
+    height: inherit;
+    border: ${({ fullSize, state }) =>
+      !fullSize ? `1px solid ${state.theme.grey}` : null};
     border-radius: 8px;
     overflow: hidden;
     ${({ textRight }) =>
       textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
+
+    ${({ fullSize }) =>
+      !fullSize &&
+      `@media only screen and (max-width: 575px) {
+      width: 100%;
+      height: 200px;
+      margin-right: 0px;
+      margin-bottom: 24px;
+    }`}
   }
 
   .crd .col_1 .pict {
-    height: ${({ mediaQuery, bigImg }) =>
-      bigImg && !mediaQuery.isLg ? `100%` : `inherit`};
+    height: inherit;
     overflow: hidden;
   }
 
   .crd .col_2 {
     width: 50%;
-    border: ${({ fullSize, bigImg, state }) =>
-      !fullSize && !bigImg ? `1px solid ${state.theme.lightGrey}` : null};
+    border: ${({ fullSize, state }) =>
+      !fullSize ? `1px solid ${state.theme.lightGrey}` : null};
     border-radius: 8px;
     overflow: hidden;
-    height: ${({ mediaQuery, bigImg }) =>
-      bigImg && !mediaQuery.isLg ? `50%` : `inherit`};
+    height: inherit;
     ${({ textRight }) =>
       !textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
-    ${({ fullSize, bigImg, state }) =>
-      !fullSize && !bigImg
-        ? `background-color: ${state.theme.lightGrey}`
-        : null};
+    ${({ fullSize, state }) =>
+      !fullSize ? `background-color: ${state.theme.lightGrey}` : null};
+
+    @media only screen and (max-width: 575px) {
+      ${({ fullSize }) => fullSize && "margin-left: 24px;"}
+      ${({ fullSize }) => !fullSize && "padding-left: 24px;"}
+      ${({ fullSize }) => fullSize && "width: 100%;"} 
+      ${({ fullSize }) => fullSize && "text-align: left;"}
+      ${({ fullSize }) => !fullSize && "width: 100%;"}
+      ${({ fullSize }) => !fullSize && "height: 200px;"}
+      ${({ fullSize }) => !fullSize && "margin-left: 0px;"}
+    }
   }
 
   .crd .col_1 img {
-    height: ${({ bigImg, mediaQuery }) =>
-      bigImg ? (mediaQuery.isLg ? `448px` : "65%") : "inherit"};
-    ${({ bigImg }) => (bigImg ? null : "width: 100%")};
-    ${({ bigImg }) => (bigImg ? null : "object-fit: cover")};
-    margin-bottom: ${({ bigImg, mediaQuery }) =>
-      bigImg ? (mediaQuery.isLg ? `-7px` : "0px") : "0px"};
-    margin-left: ${({ bigImg, mediaQuery }) =>
-      bigImg ? (mediaQuery.isLg ? `100px` : "0px") : "0px"};
+    height: inherit;
+    width: 100%;
+    object-fit: cover;
+    margin-bottom: 0px;
+    margin-left: 0px;
   }
 
   .crd .col_2 .text {
@@ -290,6 +294,11 @@ const ProdCardItemMedium = styled.div`
     @media only screen and (max-width: 991px) {
       text-align: center;
     }
+
+    @media only screen and (max-width: 575px) {
+      ${({ fullSize }) => fullSize && "width: auto;"}
+      width: auto;
+    }
   }
 
   .crd .col_2 h1 {
@@ -299,6 +308,10 @@ const ProdCardItemMedium = styled.div`
 
   .crd .col_2 h4 {
     margin-bottom: 32px;
+
+    @media only screen and (max-width: 575px) {
+      ${({ fullSize }) => fullSize && "text-align: left;"}
+    }
   }
 
   .crd .col_2 p {

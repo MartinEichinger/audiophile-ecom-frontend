@@ -2,7 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const HomeEntry = ({ state, id, entry }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. Fetch done in Home
   // 2. GET
@@ -65,6 +65,10 @@ const Background = styled.div`
     @media only screen and (max-width: 991px) {
       margin: 0 auto;
     }
+
+    @media only screen and (max-width: 767px) {
+      width: inherit;
+    }
   }
 
   overline {
@@ -76,6 +80,10 @@ const Background = styled.div`
     margin-top: 24px;
     margin-bottom: 24px;
     color: ${({ state }) => state.theme.white};
+
+    @media only screen and (max-width: 767px) {
+      text-align: center;
+    }
   }
 
   p {

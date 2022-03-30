@@ -37,9 +37,12 @@ const CrdItem = styled.div`
       width: calc(18.89881vw + 78px);
       margin-right: calc(2.97619vw - 13px);
     }
-  }
 
-  .card:last-of-type {
+    @media only screen and (max-width: 575px) {
+      height: 165px;
+      width: auto;
+      margin: 0 24px 68px;
+    }
   }
 
   .card img {
@@ -48,7 +51,13 @@ const CrdItem = styled.div`
 
     @media only screen and (max-width: 1439px) {
       height: calc(11.16071vw + 54px);
+      min-height: 140px;
       margin-top: calc(-1 / 2 * (11.16071vw + 54px));
+    }
+
+    @media only screen and (max-width: 575px) {
+      height: 140px;
+      margin-top: -70px;
     }
   }
 

@@ -66,6 +66,11 @@ const NavBar = styled.div`
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
     }
+
+    @media only screen and (max-width: 682px) {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
   }
 
   .nav-items .nav {
@@ -95,6 +100,11 @@ const NavBar = styled.div`
     @media only screen and (max-width: 1439px) {
       left: calc(18.60119vw - 103px);
       width: calc(100vw - 2 * (18.60119vw - 103px));
+    }
+
+    @media only screen and (max-width: 575px) {
+      left: 0px;
+      width: calc(100vw - 4px);
     }
   }
 

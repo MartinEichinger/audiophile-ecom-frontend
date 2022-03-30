@@ -31,13 +31,13 @@ const Footer = ({ state, actions }) => {
   return (
     <FooterBar state={state}>
       <div className="body d-flex flex-column">
-        <div className="nav-items d-flex flex-column flex-lg-row align-items-start align-items-lg-center justify-content-between">
+        <div className="nav-items d-flex flex-column flex-lg-row align-items-center align-items-sm-start align-items-lg-center justify-content-between">
           <div className="nav-img">
             <a href="/">
               <img src={Logo} alt="Audiophile best speakers" />
             </a>
           </div>
-          <ul className="nav d-none d-sm-flex justify-content-end flex-row">
+          <ul className="nav d-flex justify-content-end flex-column flex-sm-row">
             <li className="nav-link">
               <Link link="/">Home</Link>
             </li>
@@ -71,7 +71,7 @@ const Footer = ({ state, actions }) => {
           </div>
         </div>
 
-        <div className="copyright d-flex flex-row justify-content-between">
+        <div className="copyright d-flex flex-column flex-sm-row justify-content-between align-items-center align-items-sm-start">
           <p>{entry?.acf.footer_copyright}</p>
           <div className="logos d-flex d-lg-none flex-row">
             <a href="/">
@@ -103,7 +103,7 @@ const getData = (data) => {
 // STYLING
 
 const FooterBar = styled.div`
-  background-color: ${({ state }) => state.theme.lightBlack};
+  background-color: ${({ state }) => state.theme.darkBlack};
 
   .body {
     max-width: ${({ state }) => state.theme.maxWidth};
@@ -114,6 +114,11 @@ const FooterBar = styled.div`
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
+    }
+
+    @media only screen and (max-width: 682px) {
+      padding-left: 24px;
+      padding-right: 24px;
     }
   }
 
@@ -128,6 +133,21 @@ const FooterBar = styled.div`
   @media only screen and (max-width: 991px) {
     li:first-of-type {
       padding-left: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 575px) {
+    li {
+      text-align: center;
+      padding: 8px 16px;
+    }
+
+    li:first-of-type {
+      padding-left: 16px;
+    }
+
+    li:last-of-type {
+      padding-right: 16px;
     }
   }
 
@@ -187,6 +207,10 @@ const FooterBar = styled.div`
 
     @media only screen and (max-width: 991px) {
       width: 100%;
+    }
+
+    @media only screen and (max-width: 575px) {
+      text-align: center;
     }
   }
 `;

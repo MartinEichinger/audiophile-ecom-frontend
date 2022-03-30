@@ -8,7 +8,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeBestof from "../HomeBestof/HomeBestof";
 
 const Home = ({ state, actions, libraries, mediaQuery }) => {
-  const debug = false;
+  const debug = true;
 
   // MEDIA DATA
   const [mediaData, setData] = useState({
@@ -29,19 +29,22 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
   // 3. GET ENTITIES
   const entry = state.source.page[data.id];
 
-  if (debug) console.log("home.js/entries: ", entry);
+  // Responsive Image
+  var entry_img;
+
+  if (mediaQuery.isLG) {
+    entry_img = entry?.acf.home_entry_img_desktop;
+  } else if (mediaQuery.isSm) {
+    entry_img = entry?.acf.home_entry_img_tablet;
+  } else if (mediaQuery.isXS) {
+    entry_img = entry?.acf.home_entry_img_mobile;
+  }
+
+  if (debug) console.log("home.js/entries: ", entry, entry_img, mediaQuery);
 
   return (
     <>
-      <HomeEntry
-        id={
-          mediaQuery.isLg
-            ? entry?.acf.home_entry_img_desktop
-            : entry?.acf.home_entry_img_tablet
-        }
-        entry={entry}
-        mediaQuery={mediaQuery}
-      />
+      <HomeEntry id={entry_img} entry={entry} mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeBestof mediaQuery={mediaQuery} />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
