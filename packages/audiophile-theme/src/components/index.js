@@ -122,6 +122,11 @@ const globalStyles = css`
     line-height: 44px;
     letter-spacing: 1.43px;
     text-transform: uppercase;
+
+    @media only screen and (max-width: 767px) {
+      font-size: calc(3.053435vw + 16.5px);
+      line-height: auto;
+    }
   }
 
   h3 {

@@ -28,7 +28,9 @@ const HomeAbout = ({ state, id, entry, mediaQuery }) => {
               images[
                 mediaQuery.isLg
                   ? entry.acf.home_about_img_desktop
-                  : entry.acf.home_about_img_tablet
+                  : mediaQuery.isSm
+                  ? entry.acf.home_about_img_tablet
+                  : entry.acf.home_about_img_mobile
               ]
             )}
             alt="About Audiophile"
@@ -57,6 +59,11 @@ const About = styled.div`
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
       margin-bottom: calc(15.47619vw - 23px);
+    }
+
+    @media only screen and (max-width: 682px) {
+      padding-left: 24px;
+      padding-right: 24px;
     }
   }
 

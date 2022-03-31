@@ -96,6 +96,10 @@ const ProdCardItemBig = styled.div`
     margin-bottom: 32px;
   }
 
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 24px;
+  }
+
   .crd {
     height: 560px;
     background-color: ${({ state }) => state.theme.brown};
@@ -109,6 +113,12 @@ const ProdCardItemBig = styled.div`
     @media only screen and (max-width: 991px) {
       height: 720px;
       background-position: 50% 125%;
+    }
+
+    @media only screen and (max-width: 575px) {
+      height: 600px;
+      background-position: 50% -225%;
+      background-size: 170%;
     }
   }
 
@@ -193,6 +203,11 @@ const ProdCardItemBig = styled.div`
   .crd .col_2 h1 {
     color: ${({ state }) => state.theme.white};
     margin-bottom: 24px;
+
+    @media only screen and (max-width: 575px) {
+      width: 200px;
+      margin-bottom: 15px;
+    }
   }
 
   .crd .col_2 h4 {
@@ -203,6 +218,10 @@ const ProdCardItemBig = styled.div`
     color: ${({ state }) => state.theme.white};
     opacity: 0.75;
     margin-bottom: 40px;
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 24px;
+    }
   }
 `;
 
@@ -211,6 +230,10 @@ const ProdCardItemMedium = styled.div`
 
   @media only screen and (max-width: 991px) {
     margin-bottom: 32px;
+  }
+
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 24px;
   }
 
   .crd {
@@ -238,14 +261,15 @@ const ProdCardItemMedium = styled.div`
     ${({ textRight }) =>
       textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
 
-    ${({ fullSize }) =>
-      !fullSize &&
-      `@media only screen and (max-width: 575px) {
-      width: 100%;
+    @media only screen and (max-width: 575px) {
+      ${({ fullSize }) =>
+        !fullSize &&
+        `width: 100%;
       height: 200px;
       margin-right: 0px;
-      margin-bottom: 24px;
-    }`}
+      margin-bottom: 24px;`}
+      ${({ fullSize }) => fullSize && "width: 10%;"}
+    }
   }
 
   .crd .col_1 .pict {

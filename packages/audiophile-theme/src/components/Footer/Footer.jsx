@@ -127,7 +127,7 @@ const FooterBar = styled.div`
     background: ${({ state }) => state.theme.brown};
     position: absolute;
     top: 0;
-    left: 165px;
+    left: calc(18.60119vw - 103px);
     height: 4px;
     width: calc(101px);
   }

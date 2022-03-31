@@ -8,7 +8,7 @@ const HomeEntry = ({ state, id, entry }) => {
   // 2. GET
   const data = state.source;
 
-  const img_url = state.source?.attachment[id]?.guid.rendered;
+  const img_url = state.source?.attachment[id]?.source_url; //guid.rendered;
 
   if (debug)
     console.log(
