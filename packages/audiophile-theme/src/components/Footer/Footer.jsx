@@ -161,7 +161,7 @@ const FooterBar = styled.div`
 
   .nav-items .nav-img,
   .nav-items .nav {
-    margin-bottom: 36px;
+    margin-bottom: 30px;
   }
 
   .text .logos a,
