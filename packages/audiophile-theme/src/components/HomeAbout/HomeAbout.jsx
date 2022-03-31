@@ -77,11 +77,10 @@ const About = styled.div`
 
   .text h2 {
     margin-top: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 
     @media only screen and (max-width: 991px) {
       text-align: center;
-      margin-bottom: 32px;
     }
   }
 
