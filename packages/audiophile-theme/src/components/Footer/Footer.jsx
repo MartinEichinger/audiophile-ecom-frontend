@@ -122,6 +122,16 @@ const FooterBar = styled.div`
     }
   }
 
+  .body:before {
+    content: "";
+    background: ${({ state }) => state.theme.brown};
+    position: absolute;
+    top: 0;
+    left: 165px;
+    height: 4px;
+    width: calc(101px);
+  }
+
   li {
     color: ${({ state }) => state.theme.white};
   }
