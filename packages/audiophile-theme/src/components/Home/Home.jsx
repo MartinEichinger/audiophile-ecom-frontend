@@ -32,7 +32,7 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
   // Responsive Image
   var entry_img;
 
-  if (mediaQuery.isLG) {
+  if (mediaQuery.isLg) {
     entry_img = entry?.acf.home_entry_img_desktop;
   } else if (mediaQuery.isSm) {
     entry_img = entry?.acf.home_entry_img_tablet;
