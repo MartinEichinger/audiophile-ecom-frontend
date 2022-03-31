@@ -195,15 +195,12 @@ const FooterBar = styled.div`
     margin-bottom: 48px;
   }
 
-  .text p {
-    margin-bottom: 0px;
-  }
-
   .text p,
   .copyright p {
     color: ${({ state }) => state.theme.white};
     width: 540px;
     opacity: 0.5;
+    margin-bottom: 0px;
 
     @media only screen and (max-width: 991px) {
       width: 100%;
