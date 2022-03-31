@@ -152,7 +152,7 @@ const FooterBar = styled.div`
   }
 
   .nav-items {
-    margin-top: 75px;
+    margin-top: 72px;
 
     @media only screen and (max-width: 1439px) {
       margin-top: calc(2.232143vw + 43px);
