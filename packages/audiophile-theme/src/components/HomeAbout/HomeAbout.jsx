@@ -61,7 +61,7 @@ const About = styled.div`
   }
 
   .text {
-    width: 398px;
+    width: 445px;
 
     @media only screen and (max-width: 1439px) {
       width: 100%;
@@ -87,7 +87,7 @@ const About = styled.div`
   .text p {
     margin-bottom: 24px;
     opacity: 0.75;
-    width: 349px;
+    width: 445px;
 
     @media only screen and (max-width: 1439px) {
       width: 100%;
