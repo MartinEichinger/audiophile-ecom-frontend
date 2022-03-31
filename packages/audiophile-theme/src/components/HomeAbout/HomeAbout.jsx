@@ -86,7 +86,7 @@ const About = styled.div`
   }
 
   .text p {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     opacity: 0.75;
     width: 349px;
 
