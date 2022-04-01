@@ -103,6 +103,10 @@ const About = styled.div`
     @media only screen and (max-width: 991px) {
       text-align: center;
     }
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 85px;
+    }
   }
 
   .img img {
@@ -116,6 +120,10 @@ const About = styled.div`
     @media only screen and (max-width: 991px) {
       margin-bottom: 38px;
       width: 100%;
+    }
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 16px;
     }
   }
 `;

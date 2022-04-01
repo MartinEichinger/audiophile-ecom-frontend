@@ -86,6 +86,10 @@ const NavBar = styled.div`
     width: 15px;
     height: 15px;
     margin-right: 42px;
+
+    @media only screen and (max-width: 575px) {
+      margin-right: calc((100vw - 228px) / 2);
+    }
   }
 
   .nav-items:after {

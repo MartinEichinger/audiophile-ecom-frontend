@@ -130,6 +130,10 @@ const FooterBar = styled.div`
     left: calc(18.60119vw - 103px);
     height: 4px;
     width: calc(101px);
+
+    @media only screen and (max-width: 575px) {
+      left: calc((100vw - 101px) / 2);
+    }
   }
 
   li {
@@ -172,6 +176,10 @@ const FooterBar = styled.div`
   .nav-items .nav-img,
   .nav-items .nav {
     margin-bottom: 30px;
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 48px;
+    }
   }
 
   .text .logos a,
@@ -203,6 +211,16 @@ const FooterBar = styled.div`
   .copyright {
     margin-top: 56px;
     margin-bottom: 48px;
+
+    @media only screen and (max-width: 575px) {
+      margin-top: 0px;
+    }
+  }
+
+  .copyright p {
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 48px;
+    }
   }
 
   .text p,
@@ -218,6 +236,7 @@ const FooterBar = styled.div`
 
     @media only screen and (max-width: 575px) {
       text-align: center;
+      margin-bottom: 48px;
     }
   }
 `;
