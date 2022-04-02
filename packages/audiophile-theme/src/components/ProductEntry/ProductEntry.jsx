@@ -38,6 +38,11 @@ const Background = styled.div`
     margin: 0px auto 160px;
     height: 332px;
     padding-top: 92px;
+
+    @media only screen and (max-width: 575px) {
+      height: 195px;
+      margin-bottom: 64px;
+    }
   }
 
   h2 {

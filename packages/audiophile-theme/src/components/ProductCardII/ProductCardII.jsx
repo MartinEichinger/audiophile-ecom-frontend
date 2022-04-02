@@ -50,8 +50,8 @@ const ProductCardII = ({ state, mediaQuery }) => {
               <div
                 className={
                   textRight
-                    ? "crd d-flex justify-content-center align-items-center flex-column flex-sm-row"
-                    : "crd d-flex justify-content-center align-items-center flex-column-reverse flex-sm-row-reverse"
+                    ? "crd d-flex justify-content-center align-items-center flex-column flex-lg-row"
+                    : "crd d-flex justify-content-center align-items-center flex-column flex-lg-row-reverse"
                 }
               >
                 <div className="col_1">
@@ -60,7 +60,7 @@ const ProductCardII = ({ state, mediaQuery }) => {
                   </div>
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
-                  <div className="text d-flex flex-column justify-content-start align-items-start">
+                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
                     <overline>{products[entry.id].acf?.subheading}</overline>
                     <h2>{products[entry.id].acf.heading}</h2>
                     <p>{products[entry.id].acf.body}</p>
@@ -89,17 +89,21 @@ const getImg = (img) => {
 // STYLING
 const ProductCards = styled.div`
   margin-bottom: -120px;
+
+  @media only screen and (max-width: 991px) {
+    margin-bottom: -90px;
+  }
 `;
 
 const ProdCardItemII = styled.div`
   margin-bottom: 160px;
 
   @media only screen and (max-width: 991px) {
-    margin-bottom: 32px;
+    margin-bottom: 120px;
   }
 
   @media only screen and (max-width: 575px) {
-    margin-bottom: 24px;
+    //margin-bottom: 24px;
   }
 
   .crd {
@@ -113,7 +117,13 @@ const ProdCardItemII = styled.div`
       width: 100vw;
     }
 
+    @media only screen and (max-width: 991px) {
+      width: calc(100vw - 78px);
+      height: auto;
+    }
+
     @media only screen and (max-width: 575px) {
+      width: calc(100vw - 48px);
       height: auto;
     }
   }
@@ -126,9 +136,17 @@ const ProdCardItemII = styled.div`
     ${({ textRight }) =>
       textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
 
+    @media only screen and (max-width: 991px) {
+      width: calc(100vw - 78px);
+      height: 100%;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 52px;
+    }
+
     @media only screen and (max-width: 575px) {
-      width: 100%;
-      height: 200px;
+      width: calc(100vw - 48px);
+      height: 100%;
       margin-right: 0px;
       margin-bottom: 24px;
     }
@@ -137,7 +155,16 @@ const ProdCardItemII = styled.div`
   .crd .col_1 .pict,
   .crd .col_1 .pict img {
     height: inherit;
+    width: 100%;
     overflow: hidden;
+
+    @media only screen and (max-width: 991px) {
+      width: calc(100vw - 78px);
+    }
+
+    @media only screen and (max-width: 575px) {
+      width: calc(100vw - 48px);
+    }
   }
 
   .crd .col_2 {
@@ -147,10 +174,16 @@ const ProdCardItemII = styled.div`
     ${({ textRight }) =>
       !textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
 
+    @media only screen and (max-width: 991px) {
+      width: calc(100vw - 78px);
+      height: 100%;
+      margin: 0px;
+    }
+
     @media only screen and (max-width: 575px) {
-      padding-left: 24px;
-      width: 100%;
-      height: 200px;
+      //padding-left: 24px;
+      width: calc(100vw - 48px);
+      height: 100%;
       margin-left: 0px;
     }
   }
@@ -164,6 +197,7 @@ const ProdCardItemII = styled.div`
 
     @media only screen and (max-width: 991px) {
       text-align: center;
+      width: 572px;
     }
 
     @media only screen and (max-width: 575px) {
@@ -178,10 +212,19 @@ const ProdCardItemII = styled.div`
 
   .crd .col_2 h2 {
     margin-bottom: 24px;
+
+    @media only screen and (max-width: 991px) {
+      width: 75%;
+      margin-bottom: 32px;
+    }
   }
 
   .crd .col_2 p {
     margin-bottom: 40px;
     opacity: 0.5;
+
+    @media only screen and (max-width: 991px) {
+      margin-bottom: 24px;
+    }
   }
 `;
