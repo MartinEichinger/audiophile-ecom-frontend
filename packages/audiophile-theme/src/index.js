@@ -22,9 +22,14 @@ export default {
   },
   actions: {
     theme: {
-      beforeSSR: async ({ actions, state, libraries }) => {
+      beforeSSR: async ({ actions }) => {
         await actions.source.fetch("/product-bestof/");
+        await actions.source.fetch("/products/");
         await actions.source.fetch("/home-links/");
+        await actions.source.fetch("/about/");
+        await actions.source.fetch("/speakers/");
+        await actions.source.fetch("/headphones/");
+        await actions.source.fetch("/earphones/");
       },
     },
   },

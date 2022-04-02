@@ -8,7 +8,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeBestof from "../HomeBestof/HomeBestof";
 
 const Home = ({ state, actions, libraries, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // MEDIA DATA
   const [mediaData, setData] = useState({
@@ -47,7 +47,7 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
       <HomeEntry id={entry_img} entry={entry} mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeBestof mediaQuery={mediaQuery} />
-      <HomeAbout entry={entry} mediaQuery={mediaQuery} />
+      <HomeAbout mediaQuery={mediaQuery} />
     </>
   );
 };

@@ -1,36 +1,39 @@
 import React from "react";
 import { connect, styled } from "frontity";
 
-const HomeAbout = ({ state, id, entry, mediaQuery }) => {
-  const debug = false;
+const HomeAbout = ({ state, id, mediaQuery }) => {
+  const debug = true;
 
-  // 1. Fetch done in Home
+  // 1. GET
+  const data = state.source.get("/about/");
 
-  // 2. GET
-  const data = state.source;
+  // 2. GET ENTITIES
+  const entry = state.source.page[data.id];
 
   const images = state.source.attachment;
 
   // LOGGING
-  if (debug) console.log("home-about/data: ", data);
-  if (debug) console.log("home-about/images: ", images);
+  if (debug) console.log("about/data: ", data);
+  if (debug) console.log("about/source: ", state.source);
+  if (debug) console.log("about/entry: ", entry);
+  if (debug) console.log("about/images: ", images);
 
   return (
     <About state={state}>
       <div className="body d-flex flex-column-reverse flex-lg-row justify-content-between align-items-center">
         <div className="text d-flex flex-column">
-          <h2>{entry.acf.home_about_h2}</h2>
-          <p>{entry.acf.home_about_body}</p>
+          <h2>{entry?.acf.about_h2}</h2>
+          <p>{entry?.acf.about_body}</p>
         </div>
         <div className="img">
           <img
             src={getImg(
               images[
                 mediaQuery.isLg
-                  ? entry.acf.home_about_img_desktop
+                  ? entry?.acf.about_img_desktop
                   : mediaQuery.isSm
-                  ? entry.acf.home_about_img_tablet
-                  : entry.acf.home_about_img_mobile
+                  ? entry?.acf.about_img_tablet
+                  : entry?.acf.about_img_mobile
               ]
             )}
             alt="About Audiophile"

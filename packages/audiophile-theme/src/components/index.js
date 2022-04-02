@@ -10,13 +10,14 @@ import Pointer from "./pointer.png";
 
 import Nav from "./Nav/Nav";
 import Home from "./Home/Home";
+import Products from "./Products/Products";
 import Footer from "./Footer/Footer";
 
 const Root = ({ state }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. GET
-  const data = state.source.get("/");
+  const data = state.source.get(state.router.link);
   if (debug) console.log("index.js/data:", data, data.id);
 
   // MEDIA QUERY
@@ -68,8 +69,15 @@ const Root = ({ state }) => {
       <main>
         <Switch>
           <Home when={data.link === "/"} mediaQuery={mediaQuery} />
-          <div when={data.link === "/headphones/"}>Headphones</div>
-          <div when={data.link === "/speakers/"}>Speakers</div>
+          <Products when={data.link === "/headphones/"} mediaQuery={mediaQuery}>
+            Headphones
+          </Products>
+          <Products when={data.link === "/speakers/"} mediaQuery={mediaQuery}>
+            Speakers
+          </Products>
+          <Products when={data.link === "/earphones/"} mediaQuery={mediaQuery}>
+            Earphones
+          </Products>
         </Switch>
       </main>
 
@@ -94,7 +102,7 @@ export default connect(Root);
 const globalStyles = css`
   body {
     font-family: "Manrope", sans-serif;
-    margin: 2px;
+    margin: 0px;
   }
 
   main {
@@ -185,7 +193,7 @@ const globalStyles = css`
   a:visited,
   a:focus,
   .nav-link {
-    color: inherit;
+    //color: inherit;
     text-decoration: none;
     cursor: url(${Pointer}), pointer;
   }

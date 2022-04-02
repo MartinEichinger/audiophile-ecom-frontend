@@ -38,16 +38,38 @@ const Footer = ({ state, actions }) => {
             </a>
           </div>
           <ul className="nav d-flex justify-content-end flex-column flex-sm-row">
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/" ? "nav-link active" : "nav-link"
+              }
+            >
               <Link link="/">Home</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/headphones/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/headphones">Headphones</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/speakers/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/speakers">Speakers</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/earphones/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/earphones">Earphones</Link>
             </li>
           </ul>
@@ -136,8 +158,16 @@ const FooterBar = styled.div`
     }
   }
 
-  li {
+  .nav-link a {
     color: ${({ state }) => state.theme.white};
+  }
+
+  .nav-link a:hover {
+    color: ${({ state }) => state.theme.lightBrown};
+  }
+
+  .nav .nav-link.active a {
+    color: ${({ state }) => state.theme.brown};
   }
 
   li:last-of-type {

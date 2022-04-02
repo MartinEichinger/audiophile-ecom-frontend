@@ -7,9 +7,14 @@ import Kart from "./icon-cart.svg";
 import Hamburger from "./icon-hamburger.svg";
 
 const Nav = ({ state }) => {
+  const debug = true;
+
   useEffect(() => {
     //console.log("useEffect: ", state);
   }, []);
+
+  if (debug) console.log("Nav: ", state.router.link, state.router.link === "/");
+
   return (
     <React.Fragment>
       <NavBar state={state}>
@@ -26,16 +31,38 @@ const Nav = ({ state }) => {
             </a>
           </div>
           <ul className="nav d-none d-lg-flex justify-content-end flex-row">
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/" ? "nav-link active" : "nav-link"
+              }
+            >
               <Link link="/">Home</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/headphones/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/headphones">Headphones</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/speakers/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/speakers">Speakers</Link>
             </li>
-            <li className="nav-link">
+            <li
+              className={
+                state.router.link === "/earphones/"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
+            >
               <Link link="/earphones">Earphones</Link>
             </li>
           </ul>
@@ -54,7 +81,10 @@ export default connect(Nav);
 
 const NavBar = styled.div`
   background-color: ${({ state }) => state.theme.lightBlack};
-  border-radius: 8px 8px 0px 0px;
+  //border-radius: 8px 8px 0px 0px;
+  position: fixed;
+  width: calc(100vw);
+  z-index: 1000;
 
   .nav-items {
     max-width: ${({ state }) => state.theme.maxWidth};
@@ -80,6 +110,10 @@ const NavBar = styled.div`
   .nav-items .nav .nav-link {
     padding-top: 0px;
     padding-bottom: 0px;
+  }
+
+  .nav-items .nav .nav-link.active a {
+    color: ${({ state }) => state.theme.brown};
   }
 
   .hamburger img {
@@ -116,7 +150,12 @@ const NavBar = styled.div`
     margin-right: 125px;
   }
 
-  .nav li {
+  .nav li,
+  .nav li a {
     color: ${({ state }) => state.theme.white};
+  }
+
+  .nav li a:hover {
+    color: ${({ state }) => state.theme.lightBrown};
   }
 `;

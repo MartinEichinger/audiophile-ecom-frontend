@@ -2,7 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const HomeEntry = ({ state, id, entry }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done in Home
   // 2. GET
@@ -22,10 +22,10 @@ const HomeEntry = ({ state, id, entry }) => {
     <Background img_url={img_url} state={state}>
       <div className="body">
         <div className="text d-flex flex-column align-items-center align-items-lg-start">
-          <overline>{entry.acf.home_entry_overline}</overline>
-          <h1>{entry.acf.home_entry_h1}</h1>
-          <p>{entry.acf.home_entry_body}</p>
-          <button className="default">{entry.acf.home_entry_button}</button>
+          <overline>{entry?.acf.home_entry_overline}</overline>
+          <h1>{entry?.acf.home_entry_h1}</h1>
+          <p>{entry?.acf.home_entry_body}</p>
+          <button className="default">{entry?.acf.home_entry_button}</button>
         </div>
       </div>
     </Background>
@@ -50,7 +50,7 @@ const Background = styled.div`
   .body {
     max-width: ${({ state }) => state.theme.maxWidth};
     margin: 0 auto;
-    padding: 0px 165px;
+    padding: 92px 165px 0px;
 
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);

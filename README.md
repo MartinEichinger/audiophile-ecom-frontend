@@ -40,7 +40,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [www.frontendmentor.io/MartinEichinger](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx/hub/responsive-ecommerce-website-with-react-and-wordpress-BJJ_X1RG9)
+- Solution URL: [www.frontendmentor.io/MartinEichinger](https://www.frontendmentor.io/solutions/responsive-ecommerce-website-with-react-and-wordpress-BJJ_X1RG9)
 - Live Site URL: [www.audiophile-ecom-frontend.vercel.app](https://audiophile-ecom-frontend.vercel.app/)
 
 ## My process
@@ -50,13 +50,12 @@ Users should be able to:
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
-- Mobile-first workflow
+- Bootstrap
+- Responsive design
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
+- [Frontity](https://frontity.org/) - React / WordPress framework
 - [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [Wordpress] (https://wordpress.org/) - Headless CMS
 
 ### What I learned
 
