@@ -1,7 +1,7 @@
 import { connect, styled } from "frontity";
 import Card from "../Card/Card";
 
-const HomeLinks = ({ state }) => {
+const HomeLinks = ({ state, className }) => {
   const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
@@ -19,7 +19,7 @@ const HomeLinks = ({ state }) => {
   if (debug) console.log("home-links/images: ", images);
 
   return (
-    <Links state={state}>
+    <Links state={state} className={className}>
       <div className="body d-flex flex-column flex-sm-row">
         {Object.values(data.items).map((entry, i) => {
           const img_src = getImg(images[entries[entry.id].acf.img]);

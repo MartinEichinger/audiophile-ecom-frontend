@@ -103,6 +103,13 @@ export default connect(Nav);
 // STYLING
 const NavLinks = styled(HomeLinks)`
   background: white;
+  padding-bottom: 68px;
+  border-radius: 0 0 8px 8px;
+  width: 100vw;
+
+  .body {
+    padding-top: 108px;
+  }
 `;
 
 // animation slide-in-top
