@@ -31,6 +31,20 @@ export default {
         await actions.source.fetch("/headphones/");
         await actions.source.fetch("/earphones/");
       },
+
+      beforeCSR: () => {
+        import("webfontloader").then((WebFontLoader) => {
+          WebFontLoader.load({
+            google: {
+              families: [
+                "Poppins:100,200,400,600:latin-ext",
+                "Merriweather:400,700:latin-ext",
+                "Manrope:200,300,400,500,600,700,800&display=swap",
+              ],
+            },
+          });
+        });
+      },
     },
   },
 };

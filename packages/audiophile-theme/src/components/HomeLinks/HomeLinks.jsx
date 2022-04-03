@@ -51,6 +51,7 @@ const getImg = (img) => {
 const Links = styled.div`
   max-width: 1440px;
   margin: 0 auto 168px;
+  background-color: rgba(0, 0, 0, 0);
 
   @media only screen and (max-width: 1439px) {
     margin-bottom: calc(10.11905vw + 22px);

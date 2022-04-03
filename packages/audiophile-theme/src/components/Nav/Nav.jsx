@@ -1,29 +1,41 @@
-import React, { useEffect } from "react";
-import { connect, styled } from "frontity";
+import React, { useState } from "react";
+import { connect, styled, keyframes } from "frontity";
 import Link from "@frontity/components/link";
 
 import Logo from "./logo.svg";
 import Kart from "./icon-cart.svg";
 import Hamburger from "./icon-hamburger.svg";
 
+import HomeLinks from "../HomeLinks/HomeLinks";
+
 const Nav = ({ state }) => {
   const debug = true;
 
-  useEffect(() => {
-    //console.log("useEffect: ", state);
-  }, []);
+  const [visible, setVisible] = useState(2);
 
   if (debug) console.log("Nav: ", state.router.link, state.router.link === "/");
 
   return (
-    <React.Fragment>
+    <>
       <NavBar state={state}>
         <div className="nav-items d-flex flex-row align-items-center justify-content-between">
           <div className="d-flex flex-row align-items-center">
-            <a className="hamburger d-flex d-lg-none" href="/">
+            <a
+              className="hamburger d-flex d-lg-none"
+              onClick={() =>
+                visible === 0 || visible === 2 ? setVisible(1) : setVisible(0)
+              }
+            >
               <img
                 src={Hamburger}
                 alt="Mobile navigation for Audiophile best speakers"
+                className={
+                  visible === 0
+                    ? "rotate-270-ccw"
+                    : visible === 1
+                    ? "rotate-270-cw"
+                    : "collapsed"
+                }
               />
             </a>
             <a href="/">
@@ -70,27 +82,86 @@ const Nav = ({ state }) => {
             <img src={Kart} alt="Put into cart" />
           </div>
         </div>
+        <div
+          className={
+            visible === 0
+              ? "nav-menu d-flex d-lg-none flex-column align-items-center slide-out-top"
+              : visible === 1
+              ? "nav-menu d-flex d-lg-none flex-column align-items-center slide-in-top"
+              : "nav-menu d-flex d-lg-none flex-column align-items-center invisible"
+          }
+        >
+          <NavLinks />
+        </div>
       </NavBar>
-    </React.Fragment>
+    </>
   );
 };
 
 export default connect(Nav);
 
 // STYLING
+const NavLinks = styled(HomeLinks)`
+  background: white;
+`;
+
+// animation slide-in-top
+const slide_in_top = keyframes`
+    from {
+      transform: translateY(-1000px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+`;
+
+// animation slide-out-top
+const slide_out_top = keyframes`
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(-1000px);
+      opacity: 0;
+    }
+`;
+
+// animation rotate-270-cw
+const rotate_270_cw = keyframes`
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(270deg);
+    }
+`;
+
+// animation rotate-270-ccw
+const rotate_270_ccw = keyframes`
+    from {
+      transform: rotate(-270deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+`;
 
 const NavBar = styled.div`
-  background-color: ${({ state }) => state.theme.lightBlack};
+  //background-color: ${({ state }) => state.theme.lightBlack};
   //border-radius: 8px 8px 0px 0px;
   position: fixed;
   width: calc(100vw);
-  z-index: 1000;
 
   .nav-items {
+    background-color: ${({ state }) => state.theme.lightBlack};
     max-width: ${({ state }) => state.theme.maxWidth};
     margin: 0 auto;
     padding: 32px 165px;
     position: relative;
+    z-index: 1000;
 
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);
@@ -157,5 +228,34 @@ const NavBar = styled.div`
 
   .nav li a:hover {
     color: ${({ state }) => state.theme.lightBrown};
+  }
+
+  .nav-menu.invisible {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+
+  .slide-in-top {
+    -webkit-animation: ${slide_in_top} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+    animation: ${slide_in_top} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .slide-out-top {
+    -webkit-animation: ${slide_out_top} 0.5s
+      cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+    animation: ${slide_out_top} 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  }
+
+  .rotate-270-cw {
+    -webkit-animation: ${rotate_270_cw} 0.4s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: ${rotate_270_cw} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .rotate-270-ccw {
+    -webkit-animation: ${rotate_270_ccw} 0.4s
+      cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: ${rotate_270_ccw} 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
 `;
