@@ -8,7 +8,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import ProductCardII from "../ProductCardII/ProductCardII";
 
 const Products = ({ state, actions, libraries, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // MEDIA DATA
   const [mediaData, setData] = useState({

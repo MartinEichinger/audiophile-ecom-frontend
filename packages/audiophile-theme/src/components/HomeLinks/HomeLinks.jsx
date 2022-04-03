@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 import Card from "../Card/Card";
 
 const HomeLinks = ({ state, className }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
 
@@ -32,6 +32,7 @@ const HomeLinks = ({ state, className }) => {
               subtitle_cont={entries[entry.id].acf.subtitle}
               i={i}
               key={i}
+              link={"/" + entries[entry.id].slug}
             />
           );
         })}

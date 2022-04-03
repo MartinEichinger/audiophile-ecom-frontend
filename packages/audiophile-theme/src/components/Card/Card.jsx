@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 
 import Pointer from "../pointer.png";
 
-const Card = ({ state, img_src, h6_cont, subtitle_cont, i }) => {
+const Card = ({ state, img_src, h6_cont, subtitle_cont, i, link }) => {
   return (
     <CrdItem state={state}>
       <div
@@ -12,8 +12,10 @@ const Card = ({ state, img_src, h6_cont, subtitle_cont, i }) => {
         <img src={img_src} alt="Navigation Items" />
         <h6>{h6_cont}</h6>
         <subtitle>
-          {subtitle_cont}
-          <i className="fa-solid fa-angle-right"></i>
+          <a href={link}>
+            {subtitle_cont}
+            <i className="fa-solid fa-angle-right"></i>
+          </a>
         </subtitle>
       </div>
     </CrdItem>
@@ -70,11 +72,11 @@ const CrdItem = styled.div`
     }
   }
 
-  .card subtitle {
+  .card subtitle a {
     opacity: 0.5;
+    color: ${({ state }) => state.theme.black};
   }
-
-  .card:hover subtitle {
+  .card:hover subtitle a {
     color: ${({ state }) => state.theme.brown};
   }
 

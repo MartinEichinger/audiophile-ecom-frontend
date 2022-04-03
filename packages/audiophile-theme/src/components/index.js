@@ -106,8 +106,8 @@ const globalStyles = css`
   }
 
   main {
-    /* max-width: 1440px;
-    margin: 0 auto; */
+    position: relative;
+    z-index: 1;
   }
 
   h1 {

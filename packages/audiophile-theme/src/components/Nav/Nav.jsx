@@ -90,6 +90,7 @@ const Nav = ({ state }) => {
               ? "nav-menu d-flex d-lg-none flex-column align-items-center slide-in-top"
               : "nav-menu d-flex d-lg-none flex-column align-items-center invisible"
           }
+          onClick={() => setVisible(0)}
         >
           <NavLinks />
         </div>
@@ -160,6 +161,7 @@ const NavBar = styled.div`
   //background-color: ${({ state }) => state.theme.lightBlack};
   //border-radius: 8px 8px 0px 0px;
   position: fixed;
+  z-index: 100;
   width: calc(100vw);
 
   .nav-items {
@@ -168,7 +170,7 @@ const NavBar = styled.div`
     margin: 0 auto;
     padding: 32px 165px;
     position: relative;
-    z-index: 1000;
+    z-index: 100;
 
     @media only screen and (max-width: 1439px) {
       padding-left: calc(18.60119vw - 103px);
