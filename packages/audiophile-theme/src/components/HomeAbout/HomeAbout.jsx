@@ -2,7 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const HomeAbout = ({ state, id, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. GET
   const data = state.source.get("/about/");

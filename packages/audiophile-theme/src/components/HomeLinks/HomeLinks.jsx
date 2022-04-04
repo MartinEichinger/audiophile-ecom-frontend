@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 import Card from "../Card/Card";
 
 const HomeLinks = ({ state, className }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
 

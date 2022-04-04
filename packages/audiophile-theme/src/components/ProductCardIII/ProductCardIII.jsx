@@ -1,8 +1,7 @@
 import { connect, styled } from "frontity";
-import Circle from "./pattern-circles.svg";
 
-const ProductCardII = ({ state, mediaQuery }) => {
-  const debug = false;
+const ProductCardIII = ({ state, mediaQuery }) => {
+  const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
@@ -13,9 +12,12 @@ const ProductCardII = ({ state, mediaQuery }) => {
   const products = state.source["products"];
   const links = state.source["home-links"];
 
+  const entry = { id: 10 };
+  const textRight = true;
+
   if (debug)
     console.log(
-      "ProductCardII: ",
+      "ProductCardIII: ",
       data,
       images,
       products,
@@ -26,34 +28,27 @@ const ProductCardII = ({ state, mediaQuery }) => {
 
   return (
     <ProductCards state={state}>
-      {Object.values(data.items).map((entry, i) => {
-        const img_src = getImg(
-          mediaQuery.isLg
-            ? images[products[entry.id].acf.img_desktop]
-            : mediaQuery.isSm
-            ? images[products[entry.id].acf.img_tablet]
-            : images[products[entry.id].acf.img_mobile]
-        );
-        var textRight = i % 2 === 0;
-        if (
-          "/" + links[products[entry.id].acf.category[0]].slug + "/" ===
-          state.router.link
-        ) {
+      {Object.values(products).map((entry, i) => {
+        if (state.router.link.includes(entry.slug)) {
+          const img_src = getImg(
+            mediaQuery.isLg
+              ? images[products[entry.id].acf.img_desktop]
+              : mediaQuery.isSm
+              ? images[products[entry.id].acf.img_tablet]
+              : images[products[entry.id].acf.img_mobile]
+          );
+
+          console.log("Prod: ", state.router.link, entry.slug);
+
           return (
-            <ProdCardItemII
+            <ProdCardItemIII
               state={state}
               products={products[entry.id]}
-              img_src={img_src}
               textRight={textRight}
               mediaQuery={mediaQuery}
+              key={i}
             >
-              <div
-                className={
-                  textRight
-                    ? "crd d-flex justify-content-center align-items-center flex-column flex-lg-row"
-                    : "crd d-flex justify-content-center align-items-center flex-column flex-lg-row-reverse"
-                }
-              >
+              <div className="crd d-flex justify-content-center align-items-center flex-column flex-lg-row">
                 <div className="col_1">
                   <div className="pict d-flex justify-content-center align-items-center">
                     <img src={img_src} />
@@ -61,18 +56,15 @@ const ProductCardII = ({ state, mediaQuery }) => {
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                    <overline>{products[entry.id].acf?.subheading}</overline>
+                    <overline>{products[entry.id].acf.subheading}</overline>
                     <h2>{products[entry.id].acf.heading}</h2>
                     <p>{products[entry.id].acf.body}</p>
-                    <button className="default">
-                      <a href={"product/" + products[entry.id].slug}>
-                        {products[entry.id].acf.button}
-                      </a>
-                    </button>
+                    <h6>{products[entry.id].acf.price}</h6>
+                    <button className="default">Add to cart</button>
                   </div>
                 </div>
               </div>
-            </ProdCardItemII>
+            </ProdCardItemIII>
           );
         }
       })}
@@ -80,7 +72,7 @@ const ProductCardII = ({ state, mediaQuery }) => {
   );
 };
 
-export default connect(ProductCardII);
+export default connect(ProductCardIII);
 
 // METHODS
 const getImg = (img) => {
@@ -90,14 +82,15 @@ const getImg = (img) => {
 
 // STYLING
 const ProductCards = styled.div`
-  margin-bottom: -120px;
+  padding-top: 200px;
+  margin-bottom: 0px;
 
   @media only screen and (max-width: 991px) {
-    margin-bottom: -90px;
+    margin-bottom: 0px;
   }
 `;
 
-const ProdCardItemII = styled.div`
+const ProdCardItemIII = styled.div`
   margin-bottom: 160px;
 
   @media only screen and (max-width: 991px) {

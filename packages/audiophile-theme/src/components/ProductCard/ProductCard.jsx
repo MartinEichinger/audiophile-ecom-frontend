@@ -2,13 +2,14 @@ import { styled } from "frontity";
 import Circle from "./pattern-circles.svg";
 
 const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
-  const debug = false;
+  const debug = true;
 
   const bigImg = entries[entry.id].acf.big_medium_small[0] === "Big";
   const fullSize = entries[entry.id].acf.fullsize_img[0] === "Fullsize?";
   const textRight = entries[entry.id].acf.text_position[0] === "Right?";
 
-  if (debug) console.log("ProductCard: ", bigImg, mediaQuery);
+  if (debug)
+    console.log("ProductCard: ", bigImg, mediaQuery, entries[entry.id]);
   return (
     <>
       {bigImg && (
@@ -37,7 +38,9 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
                 )}
                 {bigImg ? <p>{entries[entry.id].acf.body}</p> : null}
                 <button className={bigImg ? "full" : "empty"}>
-                  {entries[entry.id].acf.button}
+                  <a href={"product/" + entries[entry.id].slug}>
+                    {entries[entry.id].acf.button}
+                  </a>
                 </button>
               </div>
             </div>
@@ -75,7 +78,9 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
               <div className="text d-flex flex-column justify-content-start align-items-start">
                 <h4>{entries[entry.id].acf.heading}</h4>
                 <button className="empty">
-                  {entries[entry.id].acf.button}
+                  <a href={"product/" + entries[entry.id].slug}>
+                    {entries[entry.id].acf.button}
+                  </a>
                 </button>
               </div>
             </div>

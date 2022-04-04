@@ -11,6 +11,7 @@ import Pointer from "./pointer.png";
 import Nav from "./Nav/Nav";
 import Home from "./Home/Home";
 import Products from "./Products/Products";
+import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
 const Root = ({ state }) => {
@@ -78,6 +79,11 @@ const Root = ({ state }) => {
           <Products when={data.link === "/earphones/"} mediaQuery={mediaQuery}>
             Earphones
           </Products>
+          <ProductDetail
+            when={data.link.includes("product")}
+            link={data.link}
+            mediaQuery={mediaQuery}
+          />
         </Switch>
       </main>
 
@@ -86,7 +92,7 @@ const Root = ({ state }) => {
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
         async
       ></script>
       <script
@@ -220,6 +226,10 @@ const globalStyles = css`
     padding: 15px 20px;
     cursor: url(${Pointer}), pointer;
     text-align: center;
+
+    a {
+      color: white;
+    }
   }
 
   button.default:hover {
@@ -239,11 +249,19 @@ const globalStyles = css`
     padding: 15px 20px;
     cursor: url(${Pointer}), pointer;
     text-align: center;
+
+    a {
+      color: black;
+    }
   }
 
   button.empty:hover {
     background-color: rgba(0, 0, 0, 1);
     color: rgba(255, 255, 255, 1);
+
+    a {
+      color: rgba(255, 255, 255, 1);
+    }
   }
 
   button.full {
@@ -258,6 +276,10 @@ const globalStyles = css`
     color: white;
     padding: 15px 28px;
     cursor: url(${Pointer}), pointer;
+
+    a {
+      color: white;
+    }
   }
 
   button.full:hover {
