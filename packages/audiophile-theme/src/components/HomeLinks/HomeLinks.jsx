@@ -1,22 +1,17 @@
+import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import Card from "../Card/Card";
 
-const HomeLinks = ({ state, className }) => {
-  const debug = false;
+const HomeLinks = ({ state, actions, className }) => {
+  const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
-
   // 2. GET
   const data = state.source.get("/home-links/");
-
   const images = state.source.attachment;
-
   const entries = state.source["home-links"];
 
-  // LOGGING
-  if (debug) console.log("home-links/data: ", data);
-  if (debug) console.log("home-links/entries: ", entries);
-  if (debug) console.log("home-links/images: ", images);
+  if (debug) console.log("HomeLinks / before render");
 
   return (
     <Links state={state} className={className}>

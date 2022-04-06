@@ -1,5 +1,5 @@
 import { connect, styled } from "frontity";
-import Circle from "./pattern-circles.svg";
+import Link from "@frontity/components/link";
 
 const ProductCardII = ({ state, mediaQuery }) => {
   const debug = false;
@@ -65,9 +65,9 @@ const ProductCardII = ({ state, mediaQuery }) => {
                     <h2>{products[entry.id].acf.heading}</h2>
                     <p>{products[entry.id].acf.body}</p>
                     <button className="default">
-                      <a href={"product/" + products[entry.id].slug}>
+                      <Link link={"product/" + products[entry.id].slug}>
                         {products[entry.id].acf.button}
-                      </a>
+                      </Link>
                     </button>
                   </div>
                 </div>

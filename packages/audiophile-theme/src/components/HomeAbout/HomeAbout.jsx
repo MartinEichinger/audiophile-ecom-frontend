@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 
-const HomeAbout = ({ state, id, mediaQuery }) => {
-  const debug = false;
+const HomeAbout = ({ state, actions, mediaQuery }) => {
+  const debug = true;
 
-  // 1. GET
+  // 1. Fetch done with beforeSSR / in Home
+  useEffect(() => {
+    actions.source.fetch("/about/");
+    if (debug) console.log("HomeAbout/useEffect: ", state.source);
+  }, []);
+
+  // 2. GET
   const data = state.source.get("/about/");
 
-  // 2. GET ENTITIES
+  // 3. GET ENTITIES
   const entry = state.source.page[data.id];
-
   const images = state.source.attachment;
 
-  // LOGGING
-  if (debug) console.log("about/data: ", data);
-  if (debug) console.log("about/source: ", state.source);
-  if (debug) console.log("about/entry: ", entry);
-  if (debug) console.log("about/images: ", images);
+  if (debug) console.log("HomeAbout / before render");
 
   return (
     <About state={state}>

@@ -8,7 +8,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import HomeBestof from "../HomeBestof/HomeBestof";
 
 const Home = ({ state, actions, libraries, mediaQuery }) => {
-  const debug = false;
+  const debug = true;
 
   // MEDIA DATA
   const [mediaData, setData] = useState({
@@ -20,7 +20,7 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
   useEffect(() => {
     actions.source.fetch("/");
     getMedia(libraries, state, setData);
-    if (debug) console.log("home.js/useEffect: ", data);
+    if (debug) console.log("Home/useEffect: ", state.source);
   }, []);
 
   // 2. GET
@@ -40,8 +40,6 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
     entry_img = entry?.acf.home_entry_img_mobile;
   }
 
-  if (debug) console.log("home.js/entries: ", entry, entry_img, mediaQuery);
-
   return (
     <>
       <HomeEntry id={entry_img} entry={entry} mediaQuery={mediaQuery} />
@@ -53,11 +51,14 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
 };
 
 export default connect(Home);
-
 const getMedia = async (libraries, state, setData) => {
   // Get other images
   const response = await libraries.source.api.get({
     endpoint: `media/?per_page=100`,
+    //endpoint: "media",
+    //params: {
+    //  parent: id,
+    //},
   });
 
   const entitiesAdded = await libraries.source.populate({ response, state });

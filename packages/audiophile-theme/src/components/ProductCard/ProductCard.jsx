@@ -1,5 +1,6 @@
 import { styled } from "frontity";
 import Circle from "./pattern-circles.svg";
+import Link from "@frontity/components/link";
 
 const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
   const debug = true;
@@ -8,8 +9,6 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
   const fullSize = entries[entry.id].acf.fullsize_img[0] === "Fullsize?";
   const textRight = entries[entry.id].acf.text_position[0] === "Right?";
 
-  if (debug)
-    console.log("ProductCard: ", bigImg, mediaQuery, entries[entry.id]);
   return (
     <>
       {bigImg && (
@@ -38,9 +37,9 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
                 )}
                 {bigImg ? <p>{entries[entry.id].acf.body}</p> : null}
                 <button className={bigImg ? "full" : "empty"}>
-                  <a href={"product/" + entries[entry.id].slug}>
+                  <Link link={"product/" + entries[entry.id].slug}>
                     {entries[entry.id].acf.button}
-                  </a>
+                  </Link>
                 </button>
               </div>
             </div>

@@ -1,22 +1,16 @@
-import React from "react";
-import { connect, styled } from "frontity";
+import React, { useState, useEffect } from "react";
+import { connect, styled, libraries } from "frontity";
 
 const HomeEntry = ({ state, id, entry }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. Fetch done in Home
   // 2. GET
-  const data = state.source;
+  //const data = state.source;
 
   const img_url = state.source?.attachment[id]?.source_url; //guid.rendered;
 
-  if (debug)
-    console.log(
-      "HomeEntry/data: ",
-      id,
-      state.source,
-      state.source.attachment[id]
-    );
+  if (debug) console.log("HomeEntry/before render: ", id, state.source);
 
   return (
     <Background img_url={img_url} state={state}>

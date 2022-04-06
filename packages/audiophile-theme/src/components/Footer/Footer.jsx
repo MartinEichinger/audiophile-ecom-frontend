@@ -16,7 +16,7 @@ const Footer = ({ state, actions }) => {
   // 1. Fetch
   useEffect(() => {
     actions.source.fetch("/footer");
-    if (debug) console.log("footer/useEffect: ", data);
+    if (debug) console.log("Footer/useEffect: ", data);
   }, []);
 
   // 2. GET
@@ -28,14 +28,15 @@ const Footer = ({ state, actions }) => {
   if (debug) console.log("footer/entries: ", entry);
 
   const footer_text = getData(entry?.acf.footer_text);
+
   return (
     <FooterBar state={state}>
       <div className="body d-flex flex-column">
         <div className="nav-items d-flex flex-column flex-lg-row align-items-center align-items-sm-start align-items-lg-center justify-content-between">
           <div className="nav-img">
-            <a href="/">
+            <Link link="/">
               <img src={Logo} alt="Audiophile best speakers" />
-            </a>
+            </Link>
           </div>
           <ul className="nav d-flex justify-content-end flex-column flex-sm-row">
             <li

@@ -1,22 +1,17 @@
+import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import ProductCard from "../ProductCard/ProductCard";
 
-const HomeBestof = ({ state, mediaQuery }) => {
+const HomeBestof = ({ state, actions, mediaQuery }) => {
   const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
-
   // 2. GET
   const data = state.source.get("/product-bestof/");
-
   const images = state.source.attachment;
+  const entries = state?.source["product-bestof"];
 
-  const entries = state.source["product-bestof"];
-
-  // LOGGING
-  if (debug) console.log("home-bestof/data: ", data);
-  if (debug) console.log("home-bestof/entries: ", entries);
-  if (debug) console.log("home-bestof/images: ", images);
+  if (debug) console.log("HomeBestof / before render", entries);
 
   return (
     <Bestof state={state}>

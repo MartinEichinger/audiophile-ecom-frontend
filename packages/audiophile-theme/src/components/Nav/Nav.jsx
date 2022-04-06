@@ -13,7 +13,7 @@ const Nav = ({ state }) => {
 
   const [visible, setVisible] = useState(2);
 
-  if (debug) console.log("Nav: ", state.router.link, state.router.link === "/");
+  if (debug) console.log("Nav/before render", state.router.link);
 
   return (
     <>
@@ -38,9 +38,9 @@ const Nav = ({ state }) => {
                 }
               />
             </a>
-            <a href="/">
+            <Link link="/">
               <img src={Logo} alt="Audiophile best speakers" />
-            </a>
+            </Link>
           </div>
           <ul className="nav d-none d-lg-flex justify-content-end flex-row">
             <li

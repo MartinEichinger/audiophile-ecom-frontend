@@ -14,14 +14,24 @@ import Products from "./Products/Products";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
-const Root = ({ state }) => {
+const Root = ({ state, actions }) => {
   const debug = true;
 
-  // 1. GET
-  const data = state.source.get(state.router.link);
-  if (debug) console.log("index.js/data:", data, data.id);
+  // 1. Fetch
+  useEffect(() => {
+    actions.source.fetch("/");
+    actions.source.fetch("/speakers/");
+    actions.source.fetch("/headphones/");
+    actions.source.fetch("/earphones/");
+    //actions.source.fetch("/products/");
+    if (debug) console.log("index/useEffect: ", state.source);
+  }, []);
 
-  // MEDIA QUERY
+  // 2. GET
+  const data = state.source.get(state.router.link);
+  if (debug) console.log("index.js/before render:", data);
+
+  // 3. MEDIA QUERY
   const mediaQuery = {
     isXXL: useMediaQuery({ query: "(min-width: 1440px)" }),
     isXL: useMediaQuery({ query: "(min-width: 1280px)" }),

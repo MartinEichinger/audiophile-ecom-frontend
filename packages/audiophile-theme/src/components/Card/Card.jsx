@@ -1,23 +1,24 @@
 import { connect, styled } from "frontity";
+import Link from "@frontity/components/link";
 
 import Pointer from "../pointer.png";
 
 const Card = ({ state, img_src, h6_cont, subtitle_cont, i, link }) => {
   return (
     <CrdItem state={state}>
-      <div
-        className="card d-flex flex-column justify-content-center align-items-center"
-        key={i}
-      >
-        <img src={img_src} alt="Navigation Items" />
-        <h6>{h6_cont}</h6>
-        <subtitle>
-          <a href={link}>
+      <Link link={link}>
+        <div
+          className="card d-flex flex-column justify-content-center align-items-center"
+          key={i}
+        >
+          <img src={img_src} alt="Navigation Items" />
+          <h6>{h6_cont}</h6>
+          <subtitle>
             {subtitle_cont}
             <i className="fa-solid fa-angle-right"></i>
-          </a>
-        </subtitle>
-      </div>
+          </subtitle>
+        </div>
+      </Link>
     </CrdItem>
   );
 };
@@ -66,17 +67,18 @@ const CrdItem = styled.div`
   .card h6 {
     margin-top: -25px;
     margin-bottom: 15px;
+    color: ${({ state }) => state.theme.black};
 
     @media only screen and (max-width: 1439px) {
       margin-top: calc(7px - 2.23214vw);
     }
   }
 
-  .card subtitle a {
+  .card subtitle {
     opacity: 0.5;
     color: ${({ state }) => state.theme.black};
   }
-  .card:hover subtitle a {
+  .card:hover subtitle {
     color: ${({ state }) => state.theme.brown};
   }
 
