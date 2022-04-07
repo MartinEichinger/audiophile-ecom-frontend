@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { useMediaQuery } from "react-responsive";
 
-import { Global, Head, css, connect } from "frontity";
+import { Global, Head, css, connect, styled } from "frontity";
 import { loadable } from "frontity";
 
 import Switch from "@frontity/components/switch";
@@ -12,10 +12,10 @@ import Pointer from "./pointer.png";
 import Nav from "./Nav/Nav";
 import Home from "./Home/Home";
 
-const Products = loadable(() => import("./Products/Products"));
-//import Products from "./Products/Products";
-const ProductDetail = loadable(() => import("./ProductDetail/ProductDetail"));
-//import ProductDetail from "./ProductDetail/ProductDetail";
+//const Products = loadable(() => import("./Products/Products"));
+import Products from "./Products/Products";
+//const ProductDetail = loadable(() => import("./ProductDetail/ProductDetail"));
+import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
 const Root = ({ state, actions }) => {
@@ -57,11 +57,11 @@ const Root = ({ state, actions }) => {
         <link
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
           rel="stylesheet"
-        /> */}
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        />
+        /> */}
 
         <link
           href="//use.fontawesome.com/releases/v6.1.0/css/fontawesome.css"
@@ -79,29 +79,36 @@ const Root = ({ state, actions }) => {
 
       <Global styles={globalStyles} />
 
-      <Nav />
+      <MyBody>
+        <Nav />
 
-      <main>
-        <Switch>
-          <Home when={data.link === "/"} mediaQuery={mediaQuery} />
-          <Products when={data.link === "/headphones/"} mediaQuery={mediaQuery}>
-            Headphones
-          </Products>
-          <Products when={data.link === "/speakers/"} mediaQuery={mediaQuery}>
-            Speakers
-          </Products>
-          <Products when={data.link === "/earphones/"} mediaQuery={mediaQuery}>
-            Earphones
-          </Products>
-          <ProductDetail
-            when={data.link.includes("product")}
-            link={data.link}
-            mediaQuery={mediaQuery}
-          />
-        </Switch>
-      </main>
-
-      <Footer />
+        <main>
+          <Switch>
+            <Home when={data.link === "/"} mediaQuery={mediaQuery} />
+            <Products
+              when={data.link === "/headphones/"}
+              mediaQuery={mediaQuery}
+            >
+              Headphones
+            </Products>
+            <Products when={data.link === "/speakers/"} mediaQuery={mediaQuery}>
+              Speakers
+            </Products>
+            <Products
+              when={data.link === "/earphones/"}
+              mediaQuery={mediaQuery}
+            >
+              Earphones
+            </Products>
+            <ProductDetail
+              when={data.link.includes("product")}
+              link={data.link}
+              mediaQuery={mediaQuery}
+            />
+          </Switch>
+        </main>
+        <Footer />
+      </MyBody>
 
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -118,6 +125,185 @@ const Root = ({ state, actions }) => {
 };
 
 export default connect(Root);
+
+const MyBody = styled.div`
+  *,
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+
+  img,
+  svg {
+    vertical-align: middle;
+  }
+
+  button {
+    border-radius: 0;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  button,
+  select {
+    text-transform: none;
+  }
+
+  [type="button"],
+  [type="reset"],
+  [type="submit"],
+  button {
+    -webkit-appearance: button;
+  }
+
+  [type="button"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #0d6efd;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out;
+  }
+
+  .nav-link:focus,
+  .nav-link:hover {
+    color: #0a58ca;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+
+  .d-flex {
+    display: flex !important;
+  }
+
+  .d-none {
+    display: none !important;
+  }
+
+  .flex-row {
+    flex-direction: row !important;
+  }
+
+  .flex-column {
+    flex-direction: column !important;
+  }
+
+  .flex-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+
+  .flex-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+
+  .justify-content-start {
+    justify-content: flex-start !important;
+  }
+
+  .justify-content-end {
+    justify-content: flex-end !important;
+  }
+
+  .justify-content-center {
+    justify-content: center !important;
+  }
+
+  .justify-content-between {
+    justify-content: space-between !important;
+  }
+
+  .align-items-start {
+    align-items: flex-start !important;
+  }
+
+  .align-items-end {
+    align-items: flex-end !important;
+  }
+
+  .align-items-center {
+    align-items: center !important;
+  }
+
+  .invisible {
+    visibility: hidden !important;
+  }
+
+  .flex-sm-row {
+    flex-direction: row !important;
+  }
+
+  .justify-content-sm-center {
+    justify-content: center !important;
+  }
+
+  .align-items-sm-start {
+    align-items: flex-start !important;
+  }
+
+  .d-lg-flex {
+    display: flex !important;
+  }
+
+  .d-lg-none {
+    display: none !important;
+  }
+
+  .flex-lg-row {
+    flex-direction: row !important;
+  }
+
+  .justify-content-lg-between {
+    justify-content: space-between !important;
+  }
+
+  .align-items-lg-start {
+    align-items: flex-start !important;
+  }
+
+  .align-items-lg-center {
+    align-items: center !important;
+  }
+`;
 
 const globalStyles = css`
   body {
