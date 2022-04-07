@@ -292,6 +292,10 @@ const MyBody = styled.div`
     flex-direction: row !important;
   }
 
+  .flex-lg-row-reverse {
+    flex-direction: row-reverse !important;
+  }
+
   .justify-content-lg-between {
     justify-content: space-between !important;
   }
