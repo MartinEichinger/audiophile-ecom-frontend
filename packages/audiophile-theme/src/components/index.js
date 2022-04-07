@@ -57,11 +57,11 @@ const Root = ({ state, actions }) => {
         <link
           href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
           rel="stylesheet"
-        />
+        /> */}
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        /> */}
+        />
 
         <link
           href="//use.fontawesome.com/releases/v6.1.0/css/fontawesome.css"
@@ -79,36 +79,28 @@ const Root = ({ state, actions }) => {
 
       <Global styles={globalStyles} />
 
-      <MyBody>
-        <Nav />
+      <Nav />
 
-        <main>
-          <Switch>
-            <Home when={data.link === "/"} mediaQuery={mediaQuery} />
-            <Products
-              when={data.link === "/headphones/"}
-              mediaQuery={mediaQuery}
-            >
-              Headphones
-            </Products>
-            <Products when={data.link === "/speakers/"} mediaQuery={mediaQuery}>
-              Speakers
-            </Products>
-            <Products
-              when={data.link === "/earphones/"}
-              mediaQuery={mediaQuery}
-            >
-              Earphones
-            </Products>
-            <ProductDetail
-              when={data.link.includes("product")}
-              link={data.link}
-              mediaQuery={mediaQuery}
-            />
-          </Switch>
-        </main>
-        <Footer />
-      </MyBody>
+      <main>
+        <Switch>
+          <Home when={data.link === "/"} mediaQuery={mediaQuery} />
+          <Products when={data.link === "/headphones/"} mediaQuery={mediaQuery}>
+            Headphones
+          </Products>
+          <Products when={data.link === "/speakers/"} mediaQuery={mediaQuery}>
+            Speakers
+          </Products>
+          <Products when={data.link === "/earphones/"} mediaQuery={mediaQuery}>
+            Earphones
+          </Products>
+          <ProductDetail
+            when={data.link.includes("product")}
+            link={data.link}
+            mediaQuery={mediaQuery}
+          />
+        </Switch>
+      </main>
+      <Footer />
 
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

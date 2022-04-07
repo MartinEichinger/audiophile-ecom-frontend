@@ -36,11 +36,11 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
                   <h4>{entries[entry.id].acf.heading}</h4>
                 )}
                 {bigImg ? <p>{entries[entry.id].acf.body}</p> : null}
-                <button className={bigImg ? "full" : "empty"}>
-                  <Link link={"product/" + entries[entry.id].slug}>
+                <Link link={"product/" + entries[entry.id].slug}>
+                  <button className={bigImg ? "full" : "empty"}>
                     {entries[entry.id].acf.button}
-                  </Link>
-                </button>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -76,11 +76,11 @@ const ProductCard = ({ state, img_src, entries, entry, mediaQuery }) => {
             <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
               <div className="text d-flex flex-column justify-content-start align-items-start">
                 <h4>{entries[entry.id].acf.heading}</h4>
-                <button className="empty">
-                  <a href={"product/" + entries[entry.id].slug}>
+                <Link link={"product/" + entries[entry.id].slug}>
+                  <button className="empty">
                     {entries[entry.id].acf.button}
-                  </a>
-                </button>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

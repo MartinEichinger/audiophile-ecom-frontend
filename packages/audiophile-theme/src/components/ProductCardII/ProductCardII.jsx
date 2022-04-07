@@ -64,11 +64,11 @@ const ProductCardII = ({ state, mediaQuery }) => {
                     <overline>{products[entry.id].acf?.subheading}</overline>
                     <h2>{products[entry.id].acf.heading}</h2>
                     <p>{products[entry.id].acf.body}</p>
-                    <button className="default">
-                      <Link link={"product/" + products[entry.id].slug}>
+                    <Link link={"product/" + products[entry.id].slug}>
+                      <button className="default">
                         {products[entry.id].acf.button}
-                      </Link>
-                    </button>
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
