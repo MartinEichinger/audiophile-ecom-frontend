@@ -3,15 +3,19 @@ import React, { useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 
 import { Global, Head, css, connect } from "frontity";
-import Link from "@frontity/components/link";
+import { loadable } from "frontity";
+
 import Switch from "@frontity/components/switch";
 
 import Pointer from "./pointer.png";
 
 import Nav from "./Nav/Nav";
 import Home from "./Home/Home";
-import Products from "./Products/Products";
-import ProductDetail from "./ProductDetail/ProductDetail";
+
+const Products = loadable(() => import("./Products/Products"));
+//import Products from "./Products/Products";
+const ProductDetail = loadable(() => import("./ProductDetail/ProductDetail"));
+//import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
 const Root = ({ state, actions }) => {
