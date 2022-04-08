@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useEffect } from "react";
 import { connect } from "frontity";
-
-import ProductEntry from "../ProductEntry/ProductEntry";
 import HomeLinks from "../HomeLinks/HomeLinks";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import ProductCardIII from "../ProductCardIII/ProductCardIII";
+import ProductCardText from "../ProductCardText/ProductCardText";
 
 const ProductDetail = ({ state, actions, libraries, mediaQuery, link }) => {
   const debug = false;
@@ -27,6 +25,7 @@ const ProductDetail = ({ state, actions, libraries, mediaQuery, link }) => {
   return (
     <>
       <ProductCardIII mediaQuery={mediaQuery} />
+      <ProductCardText mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>

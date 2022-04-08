@@ -22,15 +22,15 @@ export default {
   },
   actions: {
     theme: {
-      beforeSSR: async ({ actions }) => {
-        //await actions.source.fetch("/");
+      beforeSSR: async ({ actions, libraries, state }) => {
+        const response = await libraries.source.api.get({
+          endpoint: `media/?per_page=100`,
+        });
+        await libraries.source.populate({ response, state });
+
         await actions.source.fetch("/product-bestof/");
         await actions.source.fetch("/products/");
         await actions.source.fetch("/home-links/");
-        //await actions.source.fetch("/about/");
-        //await actions.source.fetch("/speakers/");
-        //await actions.source.fetch("/headphones/");
-        //await actions.source.fetch("/earphones/");
       },
 
       beforeCSR: () => {

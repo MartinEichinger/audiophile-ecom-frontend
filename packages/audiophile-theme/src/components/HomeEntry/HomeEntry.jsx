@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, styled, libraries } from "frontity";
+import Link from "@frontity/components/link";
 
 const HomeEntry = ({ state, id, entry }) => {
   const debug = true;
@@ -19,7 +20,9 @@ const HomeEntry = ({ state, id, entry }) => {
           <overline>{entry?.acf.home_entry_overline}</overline>
           <h1>{entry?.acf.home_entry_h1}</h1>
           <p>{entry?.acf.home_entry_body}</p>
-          <button className="default">{entry?.acf.home_entry_button}</button>
+          <Link link={"/product/xx99-mark-iiheadphones/"}>
+            <button className="default">{entry?.acf.home_entry_button}</button>
+          </Link>
         </div>
       </div>
     </Background>

@@ -1,81 +1,43 @@
 import { connect, styled } from "frontity";
-import NumberFormat from "react-number-format";
 
-const ProductCardIII = ({ state, mediaQuery }) => {
+const ProductCardText = ({ state, mediaQuery }) => {
   const debug = true;
-
+  console.log("txt: ", state);
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
   const data = state.source.get("/products/");
-
-  const images = state.source.attachment;
-
   const products = state.source["products"];
-  const links = state.source["home-links"];
-
-  const entry = { id: 10 };
   const textRight = true;
-
-  if (debug)
-    console.log(
-      "ProductCardIII: ",
-      data,
-      images,
-      products,
-      mediaQuery,
-      state.router.link,
-      links
-    );
 
   return (
     <ProductCards state={state}>
       {Object.values(products).map((entry, i) => {
+        console.log("txt: ", entry);
+
         if (state.router.link.includes(entry.slug)) {
-          const img_src = getImg(
-            mediaQuery.isLg
-              ? images[products[entry.id].acf.img_desktop]
-              : mediaQuery.isSm
-              ? images[products[entry.id].acf.img_tablet]
-              : images[products[entry.id].acf.img_mobile]
-          );
-
-          console.log("Prod: ", state.router.link, entry.slug);
-
           return (
-            <ProdCardItemIII
+            <ProdCardItemText
               state={state}
               products={products[entry.id]}
               textRight={textRight}
               mediaQuery={mediaQuery}
               key={i}
             >
-              <div className="back">
-                <a href="javascript:history.back();">Go Back</a>
-              </div>
               <div className="crd d-flex justify-content-center align-items-center flex-column flex-lg-row">
                 <div className="col_1">
-                  <div className="pict d-flex justify-content-center align-items-center">
-                    <img src={img_src} />
+                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                    <h3>Features</h3>
+                    <p>{products[entry.id].acf.body}</p>
                   </div>
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                    <overline>{products[entry.id].acf.subheading}</overline>
-                    <h2>{products[entry.id].acf.heading}</h2>
+                    <h3>In the box</h3>
                     <p>{products[entry.id].acf.body}</p>
-                    <h6>
-                      <NumberFormat
-                        value={products[entry.id].acf.price}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"$"}
-                      />
-                    </h6>
-                    <button className="default">Add to cart</button>
                   </div>
                 </div>
               </div>
-            </ProdCardItemIII>
+            </ProdCardItemText>
           );
         }
       })}
@@ -83,13 +45,7 @@ const ProductCardIII = ({ state, mediaQuery }) => {
   );
 };
 
-export default connect(ProductCardIII);
-
-// METHODS
-const getImg = (img) => {
-  if (!img) return null;
-  return img.source_url;
-};
+export default connect(ProductCardText);
 
 // STYLING
 const ProductCards = styled.div`
@@ -101,7 +57,7 @@ const ProductCards = styled.div`
   }
 `;
 
-const ProdCardItemIII = styled.div`
+const ProdCardItemText = styled.div`
   margin-bottom: 160px;
 
   @media only screen and (max-width: 991px) {

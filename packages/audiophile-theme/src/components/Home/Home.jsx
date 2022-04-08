@@ -19,8 +19,9 @@ const Home = ({ state, actions, libraries, mediaQuery }) => {
   // 1. Fetch
   useEffect(() => {
     actions.source.fetch("/");
-    getMedia(libraries, state, setData);
-    if (debug) console.log("Home/useEffect: ", state.source);
+    //getMedia(libraries, state, setData);
+    if (debug)
+      console.log("Home/useEffect: ", state.source, state.source["data"]);
   }, []);
 
   // 2. GET
@@ -62,6 +63,10 @@ const getMedia = async (libraries, state, setData) => {
   });
 
   const entitiesAdded = await libraries.source.populate({ response, state });
+
+  const status = { imgIsLoaded: true };
+
+  await libraries.source.populate({ status, state });
 
   await setData({
     isReady: true,

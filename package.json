@@ -30,6 +30,7 @@
     "audiophile-theme": "file:packages/audiophile-theme",
     "dayjs": "^1.10.8",
     "frontity": "^1.17.2",
+    "react-number-format": "^4.9.1",
     "react-responsive": "^9.0.0-beta.6",
     "webfontloader": "^1.6.28"
   }
