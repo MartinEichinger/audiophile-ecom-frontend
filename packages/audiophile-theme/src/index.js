@@ -1,4 +1,5 @@
 import Root from "./components";
+import link from "@frontity/html2react/processors/link";
 
 export default {
   name: "audiophile-theme",
@@ -42,6 +43,11 @@ export default {
           });
         });
       },
+    },
+  },
+  libraries: {
+    html2react: {
+      processors: [link],
     },
   },
 };

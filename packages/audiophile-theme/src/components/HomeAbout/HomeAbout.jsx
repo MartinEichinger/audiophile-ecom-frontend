@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 
-const HomeAbout = ({ state, actions, mediaQuery }) => {
-  const debug = true;
+const HomeAbout = ({ state, actions, libraries, mediaQuery }) => {
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   useEffect(() => {
@@ -17,14 +17,19 @@ const HomeAbout = ({ state, actions, mediaQuery }) => {
   const entry = state.source.page[data.id];
   const images = state.source.attachment;
 
-  if (debug) console.log("HomeAbout / before render");
+  const Html2React = libraries.html2react.Component;
+
+  if (debug) console.log("HomeAbout / before render", entry?.acf.about_body);
 
   return (
     <About state={state}>
       <div className="body d-flex flex-column-reverse flex-lg-row justify-content-between align-items-center">
         <div className="text d-flex flex-column">
-          <h2>{entry?.acf.about_h2}</h2>
-          <p>{entry?.acf.about_body}</p>
+          {entry?.acf && <Html2React html={entry?.acf.about_h2} />}
+          <p>
+            {entry?.acf.about_body}
+            {/* <Html2React html={entry?.acf.about_body} /> */}
+          </p>
         </div>
         <div className="img">
           <img
@@ -93,6 +98,13 @@ const About = styled.div`
     @media only screen and (max-width: 991px) {
       text-align: center;
     }
+  }
+
+  .text h2 code {
+    color: ${({ state }) => state.theme.brown};
+    font-size: inherit;
+    font-family: inherit;
+    word-wrap: inherit;
   }
 
   .text p {

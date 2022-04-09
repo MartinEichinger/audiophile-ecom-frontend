@@ -166,12 +166,12 @@ const rotate_270_ccw = keyframes`
 `;
 
 const NavBar = styled.div`
-  //background-color: ${({ state }) => state.theme.lightBlack};
+  background-color: ${({ state }) => state.theme.lightBlack};
   //border-radius: 8px 8px 0px 0px;
   position: fixed;
   z-index: 100;
   width: calc(100vw);
-  height: 90px;
+  height: 92px;
 
   .nav-items {
     background-color: ${({ state }) => state.theme.lightBlack};

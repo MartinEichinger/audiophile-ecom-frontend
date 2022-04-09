@@ -4,8 +4,9 @@ import HomeLinks from "../HomeLinks/HomeLinks";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import ProductCardIII from "../ProductCardIII/ProductCardIII";
 import ProductCardText from "../ProductCardText/ProductCardText";
+import ProductCardImg from "../ProductCardImg/ProductCardImg";
 
-const ProductDetail = ({ state, actions, libraries, mediaQuery, link }) => {
+const ProductDetail = ({ state, actions, mediaQuery, link }) => {
   const debug = false;
 
   // 1. Fetch
@@ -26,6 +27,7 @@ const ProductDetail = ({ state, actions, libraries, mediaQuery, link }) => {
     <>
       <ProductCardIII mediaQuery={mediaQuery} />
       <ProductCardText mediaQuery={mediaQuery} />
+      <ProductCardImg mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>
