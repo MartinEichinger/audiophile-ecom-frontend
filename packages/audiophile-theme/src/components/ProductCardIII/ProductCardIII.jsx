@@ -1,5 +1,6 @@
 import { connect, styled } from "frontity";
 import NumberFormat from "react-number-format";
+import Counter from "../Counter/Counter";
 
 const ProductCardIII = ({ state, mediaQuery }) => {
   const debug = true;
@@ -71,7 +72,10 @@ const ProductCardIII = ({ state, mediaQuery }) => {
                         prefix={"$"}
                       />
                     </h6>
-                    <button className="default">Add to cart</button>
+                    <div className="d-flex flex-row">
+                      <CounterI />
+                      <button className="default">Add to cart</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,6 +96,10 @@ const getImg = (img) => {
 };
 
 // STYLING
+const CounterI = styled(Counter)`
+  margin-right: 16px;
+`;
+
 const ProductCards = styled.div`
   padding-top: 200px;
   margin-bottom: 0px;
@@ -242,5 +250,9 @@ const ProdCardItemIII = styled.div`
     @media only screen and (max-width: 991px) {
       margin-bottom: 24px;
     }
+  }
+
+  .crd .col_2 h6 {
+    margin-bottom: 45px;
   }
 `;

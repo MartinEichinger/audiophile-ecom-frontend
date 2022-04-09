@@ -46,6 +46,7 @@ const ProductCardII = ({ state, mediaQuery }) => {
               img_src={img_src}
               textRight={textRight}
               mediaQuery={mediaQuery}
+              key={i}
             >
               <div
                 className={

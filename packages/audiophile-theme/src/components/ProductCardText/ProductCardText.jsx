@@ -131,6 +131,10 @@ const ProdCardItemText = styled.div`
     margin-bottom: 32px;
   }
 
+  .crd .col_1 p {
+    opacity: 0.5;
+  }
+
   .crd .col_2 {
     width: 40%;
     height: inherit;
@@ -162,10 +166,15 @@ const ProdCardItemText = styled.div`
 
   .crd .col_2 li {
     margin-bottom: 8px;
+    color: ${({ state }) => state.theme.grey};
   }
 
   .crd .col_2 li code {
     margin-right: 24px;
     color: ${({ state }) => state.theme.brown};
+    text-transform: none;
+    font-size: inherit;
+    font-family: inherit;
+    word-wrap: inherit;
   }
 `;

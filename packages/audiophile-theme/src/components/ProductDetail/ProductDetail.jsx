@@ -5,6 +5,7 @@ import HomeAbout from "../HomeAbout/HomeAbout";
 import ProductCardIII from "../ProductCardIII/ProductCardIII";
 import ProductCardText from "../ProductCardText/ProductCardText";
 import ProductCardImg from "../ProductCardImg/ProductCardImg";
+import ProductLinks from "../ProductLinks/ProductLinks";
 
 const ProductDetail = ({ state, actions, mediaQuery, link }) => {
   const debug = false;
@@ -28,6 +29,7 @@ const ProductDetail = ({ state, actions, mediaQuery, link }) => {
       <ProductCardIII mediaQuery={mediaQuery} />
       <ProductCardText mediaQuery={mediaQuery} />
       <ProductCardImg mediaQuery={mediaQuery} />
+      <ProductLinks mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>

@@ -3,20 +3,32 @@ import Link from "@frontity/components/link";
 
 import Pointer from "../pointer.png";
 
-const Card = ({ state, img_src, h6_cont, subtitle_cont, i, link }) => {
+const Card = ({
+  state,
+  img_src,
+  h6_cont,
+  subtitle_cont,
+  i,
+  link,
+  className,
+  button,
+}) => {
   return (
-    <CrdItem state={state}>
+    <CrdItem state={state} className={className}>
       <Link link={link}>
-        <div
-          className="card d-flex flex-column justify-content-center align-items-center"
-          key={i}
-        >
+        <div className="card d-flex flex-column align-items-center" key={i}>
           <img src={img_src} alt="Navigation Items" />
           <h6>{h6_cont}</h6>
-          <subtitle>
-            {subtitle_cont}
-            <i className="fa-solid fa-angle-right"></i>
-          </subtitle>
+          {button ? (
+            <Link link={link}>
+              <button className="default">{subtitle_cont}</button>
+            </Link>
+          ) : (
+            <subtitle>
+              {subtitle_cont}
+              <i className="fa-solid fa-angle-right"></i>
+            </subtitle>
+          )}
         </div>
       </Link>
     </CrdItem>
@@ -34,6 +46,7 @@ const CrdItem = styled.div`
     height: 204px;
     margin-right: 30px;
     cursor: url(${Pointer}), pointer;
+    justify-content: center;
 
     @media only screen and (max-width: 1439px) {
       height: calc(5.803571vw + 120px);

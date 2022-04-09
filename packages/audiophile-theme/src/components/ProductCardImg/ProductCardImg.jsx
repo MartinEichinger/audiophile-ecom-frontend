@@ -60,7 +60,7 @@ const getImg = (img) => {
 
 // STYLING
 const ProductCardImgs = styled.div`
-  margin-bottom: 0px;
+  margin-bottom: calc(160px - 32px);
 
   @media only screen and (max-width: 991px) {
     margin-bottom: 0px;
@@ -68,7 +68,7 @@ const ProductCardImgs = styled.div`
 `;
 
 const ProdCardItemImg = styled.div`
-  margin-bottom: 160px;
+  //margin-bottom: 160px;
 
   @media only screen and (max-width: 991px) {
     margin-bottom: 120px;
