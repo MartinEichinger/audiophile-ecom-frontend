@@ -14,9 +14,6 @@ const ProductCardIII = ({ state, mediaQuery }) => {
   const products = state.source["products"];
   const links = state.source["home-links"];
 
-  const entry = { id: 10 };
-  const textRight = true;
-
   if (debug)
     console.log(
       "ProductCardIII: ",
@@ -32,12 +29,14 @@ const ProductCardIII = ({ state, mediaQuery }) => {
     <ProductCards state={state}>
       {Object.values(products).map((entry, i) => {
         if (state.router.link.includes(entry.slug)) {
-          const img_src = getImg(
-            mediaQuery.isLg
-              ? images[products[entry.id].acf.img_desktop]
-              : mediaQuery.isSm
-              ? images[products[entry.id].acf.img_tablet]
-              : images[products[entry.id].acf.img_mobile]
+          const img_src_desktop = getImg(
+            images[products[entry.id].acf.img_prod_desktop]
+          );
+          const img_src_tablet = getImg(
+            images[products[entry.id].acf.img_prod_tablet]
+          );
+          const img_src_mobile = getImg(
+            images[products[entry.id].acf.img_prod_mobile]
           );
 
           console.log("Prod: ", state.router.link, entry.slug);
@@ -46,21 +45,23 @@ const ProductCardIII = ({ state, mediaQuery }) => {
             <ProdCardItemIII
               state={state}
               products={products[entry.id]}
-              textRight={textRight}
               mediaQuery={mediaQuery}
               key={i}
             >
               <div className="back">
                 <a href="javascript:history.back();">Go Back</a>
               </div>
-              <div className="crd d-flex justify-content-center align-items-center flex-column flex-lg-row">
-                <div className="col_1">
-                  <div className="pict d-flex justify-content-center align-items-center">
-                    <img src={img_src} />
-                  </div>
+              <div className="crd d-flex justify-content-center align-items-center flex-column flex-sm-row">
+                <div className="col_1 d-flex align-items-center">
+                  <img src={img_src_desktop} className="d-none d-lg-block" />
+                  <img
+                    src={img_src_tablet}
+                    className="d-none d-sm-block d-lg-none"
+                  />
+                  <img src={img_src_mobile} className="d-block d-sm-none" />
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
-                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-start">
                     <overline>{products[entry.id].acf.subheading}</overline>
                     <h2>{products[entry.id].acf.heading}</h2>
                     <p>{products[entry.id].acf.body}</p>
@@ -105,7 +106,7 @@ const ProductCards = styled.div`
   margin-bottom: 0px;
 
   @media only screen and (max-width: 991px) {
-    margin-bottom: 0px;
+    padding-top: 122px;
   }
 `;
 
@@ -116,13 +117,25 @@ const ProdCardItemIII = styled.div`
     margin-bottom: 120px;
   }
 
-  @media only screen and (max-width: 575px) {
-    //margin-bottom: 24px;
-  }
-
   .back {
     width: 1110px;
     margin: 0 auto 56px;
+
+    @media only screen and (max-width: 1190px) {
+      width: calc(100vw - 80px);
+    }
+
+    @media only screen and (max-width: 991px) {
+      margin-bottom: 24px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
+    }
+
+    @media only screen and (max-width: 575px) {
+      width: calc(100vw - 48px);
+    }
   }
 
   .back a {
@@ -137,13 +150,16 @@ const ProdCardItemIII = styled.div`
     margin: 0 auto;
     border: none;
 
-    @media only screen and (max-width: 1110px) {
-      width: 100vw;
+    @media only screen and (max-width: 1190px) {
+      width: calc(100vw - 80px);
     }
 
     @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
       height: auto;
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
     }
 
     @media only screen and (max-width: 575px) {
@@ -157,37 +173,29 @@ const ProdCardItemIII = styled.div`
     height: inherit;
     border-radius: 8px;
     overflow: hidden;
-    ${({ textRight }) =>
-      textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
+    margin-right: 15px;
 
     @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-      height: 100%;
-      margin-left: 0px;
+      padding-right: 69px;
+      height: 480px;
       margin-right: 0px;
-      margin-bottom: 52px;
     }
 
     @media only screen and (max-width: 575px) {
       width: calc(100vw - 48px);
       height: 100%;
-      margin-right: 0px;
+      padding-right: 0px;
       margin-bottom: 24px;
     }
   }
 
-  .crd .col_1 .pict,
-  .crd .col_1 .pict img {
-    height: inherit;
+  .crd .col_1 img {
     width: 100%;
-    overflow: hidden;
+    object-fit: cover;
+    border-radius: 8px;
 
     @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-    }
-
-    @media only screen and (max-width: 575px) {
-      width: calc(100vw - 48px);
+      height: 480px;
     }
   }
 
@@ -195,20 +203,12 @@ const ProdCardItemIII = styled.div`
     width: 50%;
     overflow: hidden;
     height: inherit;
-    ${({ textRight }) =>
-      !textRight ? `margin-right: 15px;` : `margin-left: 15px;`}
-
-    @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-      height: 100%;
-      margin: 0px;
-    }
+    margin-right: 15px;
 
     @media only screen and (max-width: 575px) {
-      //padding-left: 24px;
       width: calc(100vw - 48px);
       height: 100%;
-      margin-left: 0px;
+      margin-right: 0px;
     }
   }
 
@@ -216,12 +216,12 @@ const ProdCardItemIII = styled.div`
     width: 445px;
 
     @media only screen and (max-width: 1439px) {
-      width: calc(14.88095vw + 136px);
+      //width: calc(14.88095vw + 136px);
     }
 
     @media only screen and (max-width: 991px) {
-      text-align: center;
-      width: 572px;
+      text-align: left;
+      width: 100%;
     }
 
     @media only screen and (max-width: 575px) {
@@ -238,7 +238,7 @@ const ProdCardItemIII = styled.div`
     margin-bottom: 24px;
 
     @media only screen and (max-width: 991px) {
-      width: 75%;
+      width: 100%;
       margin-bottom: 32px;
     }
   }
@@ -248,11 +248,16 @@ const ProdCardItemIII = styled.div`
     opacity: 0.5;
 
     @media only screen and (max-width: 991px) {
-      margin-bottom: 24px;
+      margin-bottom: 32px;
     }
   }
 
   .crd .col_2 h6 {
     margin-bottom: 45px;
+
+    @media only screen and (max-width: 991px) {
+      width: 100%;
+      margin-bottom: 32px;
+    }
   }
 `;

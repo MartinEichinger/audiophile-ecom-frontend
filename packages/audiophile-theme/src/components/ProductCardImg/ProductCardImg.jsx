@@ -24,7 +24,7 @@ const ProductCardImg = ({ state, mediaQuery }) => {
               mediaQuery={mediaQuery}
               key={i}
             >
-              <div className="crd d-flex flex-column flex-lg-row justify-content-center align-items-start">
+              <div className="crd d-flex flex-column flex-sm-row justify-content-center align-items-start">
                 <div className="col_1">
                   <img
                     src={getImg(images[products[entry.id].acf.img_small_i])}
@@ -74,23 +74,18 @@ const ProdCardItemImg = styled.div`
     margin-bottom: 120px;
   }
 
-  @media only screen and (max-width: 575px) {
-    //margin-bottom: 24px;
-  }
-
   .crd {
     border-radius: 8px;
     width: 1110px;
     margin: 0 auto;
     border: none;
 
-    @media only screen and (max-width: 1110px) {
-      width: 100vw;
+    @media only screen and (max-width: 1190px) {
+      width: calc(100vw - 80px);
     }
 
-    @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-      height: auto;
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
     }
 
     @media only screen and (max-width: 575px) {
@@ -105,11 +100,7 @@ const ProdCardItemImg = styled.div`
     margin-right: 30px;
 
     @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-      height: 100%;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-bottom: 52px;
+      margin-right: 18px;
     }
 
     @media only screen and (max-width: 575px) {
@@ -121,18 +112,21 @@ const ProdCardItemImg = styled.div`
   }
 
   .crd .col_1 img {
+    width: 100%;
     border-radius: 8px;
     margin-bottom: 32px;
+
+    @media only screen and (max-width: 991px) {
+      margin-bottom: 20px;
+    }
   }
 
   .crd .col_2 {
     width: 60%;
     height: inherit;
 
-    @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
-      height: 100%;
-      margin: 0px;
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
     }
 
     @media only screen and (max-width: 575px) {
@@ -144,6 +138,7 @@ const ProdCardItemImg = styled.div`
   }
 
   .crd .col_2 img {
+    width: 100%;
     border-radius: 8px;
     margin-bottom: 32px;
   }

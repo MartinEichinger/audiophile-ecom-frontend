@@ -7,7 +7,6 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
   // 2. GET
   const data = state.source.get("/products/");
   const products = state.source["products"];
-  const textRight = true;
 
   const Html2React = libraries.html2react.Component;
 
@@ -24,13 +23,12 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
             <ProdCardItemText
               state={state}
               products={products[entry.id]}
-              textRight={textRight}
               mediaQuery={mediaQuery}
               key={i}
             >
               <div className="crd d-flex flex-column flex-lg-row justify-content-center align-items-start">
                 <div className="col_1">
-                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-start">
                     <h3>Features</h3>
                     <p>
                       <Html2React html={products[entry.id].acf.features} />
@@ -38,7 +36,7 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
                   </div>
                 </div>
                 <div className="col_2">
-                  <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
+                  <div className="text d-flex flex-column flex-sm-row flex-lg-column justify-content-start align-items-start">
                     <h3>In the box</h3>
                     <Html2React html={products[entry.id].acf.in_the_box} />
                   </div>
@@ -70,39 +68,26 @@ const ProdCardItemText = styled.div`
     margin-bottom: 120px;
   }
 
-  @media only screen and (max-width: 575px) {
-    //margin-bottom: 24px;
-  }
-
-  .back {
-    width: 1110px;
-    margin: 0 auto 56px;
-  }
-
-  .back a {
-    color: ${({ state }) => state.theme.black};
-    opacity: 0.5;
-  }
-
   .crd {
     border-radius: 8px;
-    //height: 560px;
     width: 1110px;
     margin: 0 auto;
     border: none;
 
-    @media only screen and (max-width: 1110px) {
-      width: 100vw;
+    @media only screen and (max-width: 1190px) {
+      width: calc(100vw - 80px);
     }
 
     @media only screen and (max-width: 991px) {
-      width: calc(100vw - 78px);
       height: auto;
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
     }
 
     @media only screen and (max-width: 575px) {
       width: calc(100vw - 48px);
-      height: auto;
     }
   }
 
@@ -117,6 +102,10 @@ const ProdCardItemText = styled.div`
       margin-left: 0px;
       margin-right: 0px;
       margin-bottom: 52px;
+    }
+
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
     }
 
     @media only screen and (max-width: 575px) {
@@ -145,6 +134,10 @@ const ProdCardItemText = styled.div`
       margin: 0px;
     }
 
+    @media only screen and (max-width: 767px) {
+      width: calc(100vw - (16.66667vw - 48px));
+    }
+
     @media only screen and (max-width: 575px) {
       //padding-left: 24px;
       width: calc(100vw - 48px);
@@ -155,6 +148,10 @@ const ProdCardItemText = styled.div`
 
   .crd .col_2 h3 {
     margin-bottom: 32px;
+
+    @media only screen and (max-width: 991px) {
+      width: 50%;
+    }
   }
 
   .crd .col_2 ul,

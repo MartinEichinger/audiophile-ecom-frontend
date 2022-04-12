@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { connect, styled, libraries } from "frontity";
 import Link from "@frontity/components/link";
+import ImgDesktop from "./image-header-desktop.jpg";
+import ImgTablet from "./image-header-tablet.jpg";
+import ImgMobile from "./image-header-mobile.jpg";
 
-const HomeEntry = ({ state, id, entry }) => {
+const HomeEntry = ({ state, entry, mediaQuery }) => {
   const debug = true;
 
   // 1. Fetch done in Home
   // 2. GET
-  //const data = state.source;
+  const data = state.source.get("/");
 
-  const img_url = state.source?.attachment[id]?.source_url; //guid.rendered;
-
-  if (debug) console.log("HomeEntry/before render: ", id, state.source);
+  if (debug) console.log("HomeEntry/before render: ", state.source);
 
   return (
-    <Background img_url={img_url} state={state}>
+    <Background state={state}>
       <div className="body">
         <div className="text d-flex flex-column align-items-center align-items-lg-start">
           <overline>{entry?.acf.home_entry_overline}</overline>
@@ -31,9 +32,14 @@ const HomeEntry = ({ state, id, entry }) => {
 
 export default connect(HomeEntry);
 
+const getImg = (img) => {
+  if (!img) return null;
+  return img.source_url;
+};
+
 // STYLING
 const Background = styled.div`
-  background-image: url(${({ img_url }) => img_url});
+  background-image: url(${ImgDesktop});
   background-color: ${({ state }) => state.theme.lightBlack};
   background-position: 50% 100%;
   background-repeat: no-repeat;
@@ -42,6 +48,14 @@ const Background = styled.div`
 
   @media only screen and (max-width: 1439px) {
     background-size: cover;
+  }
+
+  @media only screen and (max-width: 991px) {
+    background-image: url(${ImgTablet});
+  }
+
+  @media only screen and (max-width: 575px) {
+    background-image: url(${ImgMobile});
   }
 
   .body {

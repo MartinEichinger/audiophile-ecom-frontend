@@ -50,8 +50,12 @@ const ProductLinks = ({ state, actions, className, mediaQuery }) => {
 
   return (
     <ProdLinks state={state} className={className}>
-      <h3>You may also like</h3>
-      <div className="body d-flex flex-column flex-sm-row">{randomCards()}</div>
+      <div className="prodlinks">
+        <h3>You may also like</h3>
+        <div className="body d-flex flex-column flex-sm-row">
+          {randomCards()}
+        </div>
+      </div>
     </ProdLinks>
   );
 };
@@ -75,6 +79,9 @@ const CardI = styled(Card)`
     padding-top: 10px;
     height: 300px;
     margin-bottom: 75px;
+    min-height: 300px;
+    width: 100%;
+    object-fit: contain;
   }
 
   .card h6 {
@@ -83,25 +90,26 @@ const CardI = styled(Card)`
 `;
 
 const ProdLinks = styled.div`
-  max-width: 1440px;
-  margin: 0 auto 168px;
-  background-color: rgba(0, 0, 0, 0);
+  .prodlinks {
+    max-width: 1440px;
+    margin: 0 auto 168px;
+    background-color: rgba(0, 0, 0, 0);
 
-  @media only screen and (max-width: 1439px) {
-    margin-bottom: calc(10.11905vw + 22px);
+    @media only screen and (max-width: 1439px) {
+      margin-bottom: calc(10.11905vw + 22px);
+    }
   }
 
-  h3 {
+  .prodlinks h3 {
     width: 100%;
     text-align: center;
     margin-bottom: 64px;
   }
 
-  .body {
+  .prodlinks .body {
     padding: 0px 165px 0px;
 
     @media only screen and (max-width: 1439px) {
-      padding-top: calc(7.738095vw + 89px);
       padding-left: calc(18.60119vw - 103px);
       padding-right: calc(18.60119vw - 103px);
     }

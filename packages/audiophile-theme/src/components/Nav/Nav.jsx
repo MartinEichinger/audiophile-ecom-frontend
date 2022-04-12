@@ -171,7 +171,7 @@ const NavBar = styled.div`
   position: fixed;
   z-index: 100;
   width: calc(100vw);
-  height: 92px;
+  height: 90px;
 
   .nav-items {
     background-color: ${({ state }) => state.theme.lightBlack};

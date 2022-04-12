@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { connect } from "frontity";
+import { connect, styled } from "frontity";
 import HomeLinks from "../HomeLinks/HomeLinks";
 import HomeAbout from "../HomeAbout/HomeAbout";
 import ProductCardIII from "../ProductCardIII/ProductCardIII";
@@ -30,10 +30,16 @@ const ProductDetail = ({ state, actions, mediaQuery, link }) => {
       <ProductCardText mediaQuery={mediaQuery} />
       <ProductCardImg mediaQuery={mediaQuery} />
       <ProductLinks mediaQuery={mediaQuery} />
-      <HomeLinks />
+      <HomeLinksI />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>
   );
 };
 
 export default connect(ProductDetail);
+
+const HomeLinksI = styled(HomeLinks)`
+  .body {
+    padding-top: 220px;
+  }
+`;
