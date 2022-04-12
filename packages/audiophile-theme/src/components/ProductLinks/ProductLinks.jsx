@@ -69,22 +69,32 @@ const getImg = (img) => {
 
 // STYLING
 const CardI = styled(Card)`
-  .card {
+  a .card {
     height: 320px;
     justify-content: start;
+
+    @media only screen and (max-width: 575px) {
+      height: 120px;
+      margin-bottom: 250px;
+    }
   }
 
-  .card img {
+  a .card img {
     margin-top: 0px;
     padding-top: 10px;
     height: 300px;
     margin-bottom: 75px;
-    min-height: 300px;
+    //min-height: 300px;
     width: 100%;
     object-fit: contain;
+
+    @media only screen and (max-width: 575px) {
+      height: 110px;
+      min-height: auto;
+    }
   }
 
-  .card h6 {
+  a .card h6 {
     margin-bottom: 32px;
   }
 `;
