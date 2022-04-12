@@ -55,7 +55,7 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [Frontity](https://frontity.org/) - React / WordPress framework
 - [Styled Components](https://styled-components.com/) - For styles
-- [Wordpress] (https://wordpress.org/) - Headless CMS
+- [Wordpress](https://wordpress.org/) - Headless CMS
 
 ### What I learned
 
