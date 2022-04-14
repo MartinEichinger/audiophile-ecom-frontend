@@ -21,12 +21,13 @@ const Products = ({ state, actions, libraries, mediaQuery }) => {
 
   // 3. GET ENTITIES
   const entry = state.source.page[data.id];
-  const products = state.source["products"];
+
+  if (debug) console.log("Products/before render: ", entry);
 
   return (
     <>
       <ProductEntry entry={entry} mediaQuery={mediaQuery} />
-      <ProductCardII products={products} mediaQuery={mediaQuery} />
+      <ProductCardII mediaQuery={mediaQuery} />
       <HomeLinks />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>

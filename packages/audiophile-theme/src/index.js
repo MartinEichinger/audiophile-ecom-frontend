@@ -1,5 +1,6 @@
 import Root from "./components";
 import link from "@frontity/html2react/processors/link";
+import { wooCommerceHandler } from "./handlers/woocommerce-handler";
 
 export default {
   name: "audiophile-theme",
@@ -30,7 +31,7 @@ export default {
         await libraries.source.populate({ response, state });
 
         await actions.source.fetch("/product-bestof/");
-        await actions.source.fetch("/products/");
+        await actions.source.fetch("/producto/");
         await actions.source.fetch("/home-links/");
       },
 
@@ -48,6 +49,9 @@ export default {
   libraries: {
     html2react: {
       processors: [link],
+    },
+    source: {
+      handlers: [wooCommerceHandler],
     },
   },
 };

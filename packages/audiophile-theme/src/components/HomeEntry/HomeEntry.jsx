@@ -6,7 +6,7 @@ import ImgTablet from "./image-header-tablet.jpg";
 import ImgMobile from "./image-header-mobile.jpg";
 
 const HomeEntry = ({ state, entry, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done in Home
   // 2. GET

@@ -1,12 +1,12 @@
 import { connect, styled } from "frontity";
 
 const ProductCardImg = ({ state, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
-  const data = state.source.get("/products/");
-  const products = state.source["products"];
+  const data = state.source.get("/producto/");
+  const products = data.productData;
   const images = state.source.attachment;
 
   if (debug) console.log("ProductCardText: ", products);
@@ -15,29 +15,35 @@ const ProductCardImg = ({ state, mediaQuery }) => {
     <ProductCardImgs state={state}>
       {Object.values(products).map((entry, i) => {
         if (state.router.link.includes(entry.slug)) {
-          if (debug) console.log("ProductCardImg: ", products[entry.id]);
+          if (debug) console.log("ProductCardImg: ", entry);
 
           return (
             <ProdCardItemImg
               state={state}
-              products={products[entry.id]}
+              products={entry}
               mediaQuery={mediaQuery}
               key={i}
             >
               <div className="crd d-flex flex-column flex-sm-row justify-content-center align-items-start">
                 <div className="col_1">
                   <img
-                    src={getImg(images[products[entry.id].acf.img_small_i])}
+                    src={getImg(
+                      images[getMetaData(entry.meta_data, "img_small_i")]
+                    )}
                     alt="Product Image"
                   />
                   <img
-                    src={getImg(images[products[entry.id].acf.img_small_ii])}
+                    src={getImg(
+                      images[getMetaData(entry.meta_data, "img_small_ii")]
+                    )}
                     alt="Product Image"
                   />
                 </div>
                 <div className="col_2">
                   <img
-                    src={getImg(images[products[entry.id].acf.img_big])}
+                    src={getImg(
+                      images[getMetaData(entry.meta_data, "img_big")]
+                    )}
                     alt="Product Image"
                   />
                 </div>
@@ -56,6 +62,18 @@ export default connect(ProductCardImg);
 const getImg = (img) => {
   if (!img) return null;
   return img.source_url;
+};
+
+const getMetaData = (obj, key) => {
+  var content = obj.filter((data) => {
+    var val = Object.values(data);
+    var val2 = val.includes(key);
+    if (val2) {
+      return Object.values(val);
+    }
+  });
+
+  return Object.values(content)[0].value;
 };
 
 // STYLING

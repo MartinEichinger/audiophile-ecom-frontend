@@ -1,12 +1,12 @@
 import { connect, styled } from "frontity";
 
 const ProductCardText = ({ state, libraries, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
-  const data = state.source.get("/products/");
-  const products = state.source["products"];
+  const data = state.source.get("/producto/");
+  const products = data.productData;
 
   const Html2React = libraries.html2react.Component;
 
@@ -16,13 +16,12 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
     <ProductCards state={state}>
       {Object.values(products).map((entry, i) => {
         if (state.router.link.includes(entry.slug)) {
-          if (debug)
-            console.log("ProductCardText: ", products[entry.id].acf.features);
+          if (debug) console.log("ProductCardText", entry);
 
           return (
             <ProdCardItemText
               state={state}
-              products={products[entry.id]}
+              products={entry}
               mediaQuery={mediaQuery}
               key={i}
             >
@@ -31,14 +30,18 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-start">
                     <h3>Features</h3>
                     <p>
-                      <Html2React html={products[entry.id].acf.features} />
+                      <Html2React
+                        html={getMetaData(entry.meta_data, "features")}
+                      />
                     </p>
                   </div>
                 </div>
                 <div className="col_2">
                   <div className="text d-flex flex-column flex-sm-row flex-lg-column justify-content-start align-items-start">
                     <h3>In the box</h3>
-                    <Html2React html={products[entry.id].acf.in_the_box} />
+                    <Html2React
+                      html={getMetaData(entry.meta_data, "in_the_box")}
+                    />
                   </div>
                 </div>
               </div>
@@ -51,6 +54,19 @@ const ProductCardText = ({ state, libraries, mediaQuery }) => {
 };
 
 export default connect(ProductCardText);
+
+// METHODS
+const getMetaData = (obj, key) => {
+  var content = obj.filter((data) => {
+    var val = Object.values(data);
+    var val2 = val.includes(key);
+    if (val2) {
+      return Object.values(val);
+    }
+  });
+
+  return Object.values(content)[0].value;
+};
 
 // STYLING
 const ProductCards = styled.div`

@@ -2,24 +2,12 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const ProductEntry = ({ state, id, entry }) => {
-  const debug = false;
+  const debug = true;
 
-  // 1. Fetch done in Home
-  // 2. GET
-  const data = state.source;
-
-  const img_url = state.source?.attachment[id]?.source_url; //guid.rendered;
-
-  if (debug)
-    console.log(
-      "Product/data: ",
-      id,
-      state.source,
-      state.source.attachment[id]
-    );
+  if (debug) console.log("Product/data: ", entry);
 
   return (
-    <Background img_url={img_url} state={state}>
+    <Background state={state}>
       <div className="body d-flex align-items-center justify-content-center">
         <h2>{entry.title.rendered}</h2>
       </div>

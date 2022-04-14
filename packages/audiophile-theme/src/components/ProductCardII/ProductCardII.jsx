@@ -2,15 +2,13 @@ import { connect, styled } from "frontity";
 import Link from "@frontity/components/link";
 
 const ProductCardII = ({ state, mediaQuery }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
-  const data = state.source.get("/products/");
-
+  const data = state.source.get("/producto/");
   const images = state.source.attachment;
-
-  const products = state.source["products"];
+  const products = data.productData;
   const links = state.source["home-links"];
 
   if (debug)
@@ -19,35 +17,31 @@ const ProductCardII = ({ state, mediaQuery }) => {
       data,
       images,
       products,
-      mediaQuery,
       state.router.link,
       links
     );
 
   return (
     <ProductCards state={state}>
-      {Object.values(data.items).map((entry, i) => {
-        const img_src = getImg(
-          mediaQuery.isLg
-            ? images[products[entry.id].acf.img_desktop]
-            : mediaQuery.isSm
-            ? images[products[entry.id].acf.img_tablet]
-            : images[products[entry.id].acf.img_mobile]
+      {Object.values(products).map((entry, i) => {
+        // IMG
+        const img_src_desktop = getImg(
+          images[getMetaData(entry.meta_data, "img_desktop")]
         );
+        const img_src_tablet = getImg(
+          images[getMetaData(entry.meta_data, "img_tablet")]
+        );
+        const img_src_mobile = getImg(
+          images[getMetaData(entry.meta_data, "img_mobile")]
+        );
+
+        // TextRight
         var textRight = i % 2 === 0;
-        if (
-          "/" + links[products[entry.id].acf.category[0]].slug + "/" ===
-          state.router.link
-        ) {
+
+        // Select By Category
+        if (`/${entry.categories[0].slug}/` === state.router.link) {
           return (
-            <ProdCardItemII
-              state={state}
-              products={products[entry.id]}
-              img_src={img_src}
-              textRight={textRight}
-              mediaQuery={mediaQuery}
-              key={i}
-            >
+            <ProdCardItemII state={state} textRight={textRight} key={i}>
               <div
                 className={
                   textRight
@@ -57,17 +51,24 @@ const ProductCardII = ({ state, mediaQuery }) => {
               >
                 <div className="col_1">
                   <div className="pict d-flex justify-content-center align-items-center">
-                    <img src={img_src} />
+                    <img src={img_src_desktop} className="d-none d-lg-block" />
+                    <img
+                      src={img_src_tablet}
+                      className="d-none d-sm-block d-lg-none"
+                    />
+                    <img src={img_src_mobile} className="d-block d-sm-none" />
                   </div>
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                    <overline>{products[entry.id].acf?.subheading}</overline>
-                    <h2>{products[entry.id].acf.heading}</h2>
-                    <p>{products[entry.id].acf.body}</p>
-                    <Link link={"product/" + products[entry.id].slug}>
+                    <overline>
+                      {getMetaData(entry.meta_data, "subheading")}
+                    </overline>
+                    <h2>{entry?.name}</h2>
+                    <p>{entry?.short_description}</p>
+                    <Link link={"product/" + entry?.slug}>
                       <button className="default">
-                        {products[entry.id].acf.button}
+                        {getMetaData(entry.meta_data, "button")}
                       </button>
                     </Link>
                   </div>
@@ -87,6 +88,18 @@ export default connect(ProductCardII);
 const getImg = (img) => {
   if (!img) return null;
   return img.source_url;
+};
+
+const getMetaData = (obj, key) => {
+  var content = obj.filter((data) => {
+    var val = Object.values(data);
+    var val2 = val.includes(key);
+    if (val2) {
+      return Object.values(val);
+    }
+  });
+
+  return Object.values(content)[0].value;
 };
 
 // STYLING

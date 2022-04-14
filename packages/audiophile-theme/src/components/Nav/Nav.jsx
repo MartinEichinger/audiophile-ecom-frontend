@@ -9,7 +9,7 @@ import Hamburger from "./icon-hamburger.svg";
 import HomeLinks from "../HomeLinks/HomeLinks";
 
 const Nav = ({ state }) => {
-  const debug = true;
+  const debug = false;
 
   const [visible, setVisible] = useState(2);
 

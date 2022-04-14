@@ -2,49 +2,41 @@ import { connect, styled } from "frontity";
 import NumberFormat from "react-number-format";
 import Counter from "../Counter/Counter";
 
-const ProductCardIII = ({ state, mediaQuery }) => {
+const ProductCardIII = ({ state, libraries, mediaQuery }) => {
   const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
-  const data = state.source.get("/products/");
-
+  const data = state.source.get("/producto/");
+  const products = data.productData;
   const images = state.source.attachment;
 
-  const products = state.source["products"];
-  const links = state.source["home-links"];
+  const Html2React = libraries.html2react.Component;
 
-  if (debug)
-    console.log(
-      "ProductCardIII: ",
-      data,
-      images,
-      products,
-      mediaQuery,
-      state.router.link,
-      links
-    );
+  if (debug) console.log("ProductCardIII: Data ", data);
+  if (debug) console.log("ProductCardIII: Product", products);
+  //if (debug) console.log("ProductCardIII: Products", products);
 
   return (
     <ProductCards state={state}>
       {Object.values(products).map((entry, i) => {
+        if (debug) console.log("ProductCardIII: entry ", entry);
         if (state.router.link.includes(entry.slug)) {
+          //var imgDesk = getMetaData(entry.meta_data, "img_prod_desktop");
           const img_src_desktop = getImg(
-            images[products[entry.id].acf.img_prod_desktop]
+            images[getMetaData(entry.meta_data, "img_prod_desktop")]
           );
           const img_src_tablet = getImg(
-            images[products[entry.id].acf.img_prod_tablet]
+            images[getMetaData(entry.meta_data, "img_prod_tablet")]
           );
           const img_src_mobile = getImg(
-            images[products[entry.id].acf.img_prod_mobile]
+            images[getMetaData(entry.meta_data, "img_prod_mobile")]
           );
-
-          console.log("Prod: ", state.router.link, entry.slug);
 
           return (
             <ProdCardItemIII
               state={state}
-              products={products[entry.id]}
+              products={entry}
               mediaQuery={mediaQuery}
               key={i}
             >
@@ -62,17 +54,14 @@ const ProductCardIII = ({ state, mediaQuery }) => {
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-start">
-                    <overline>{products[entry.id].acf.subheading}</overline>
-                    <h2>{products[entry.id].acf.heading}</h2>
-                    <p>{products[entry.id].acf.body}</p>
-                    <h6>
-                      <NumberFormat
-                        value={products[entry.id].acf.price}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"$"}
-                      />
-                    </h6>
+                    <overline>
+                      {getMetaData(entry.meta_data, "subheading")}
+                    </overline>
+                    <h2>{entry?.name}</h2>
+                    <p>
+                      <Html2React html={entry?.short_description} />
+                    </p>
+                    <h6>{entry.price}</h6>
                     <div className="d-flex flex-row">
                       <CounterI />
                       <button className="default">Add to cart</button>
@@ -94,6 +83,18 @@ export default connect(ProductCardIII);
 const getImg = (img) => {
   if (!img) return null;
   return img.source_url;
+};
+
+const getMetaData = (obj, key) => {
+  var content = obj.filter((data) => {
+    var val = Object.values(data);
+    var val2 = val.includes(key);
+    if (val2) {
+      return Object.values(val);
+    }
+  });
+
+  return Object.values(content)[0].value;
 };
 
 // STYLING

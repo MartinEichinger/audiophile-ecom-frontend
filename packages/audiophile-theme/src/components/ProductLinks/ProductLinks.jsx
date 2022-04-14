@@ -3,20 +3,24 @@ import { connect, styled } from "frontity";
 import Card from "../Card/Card";
 
 const ProductLinks = ({ state, actions, className, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
-  const data = state.source.get("/products/");
+  const data = state.source.get("/producto/");
   const images = state.source.attachment;
-  const products = state.source["products"];
+  const products = data.productData;
 
-  const prodListIDs = Object.values(data.items).map((entry) => {
-    return entry.id;
-  });
+  //var len = products.length;
+  const prodListIDs = [...Array(products.length)].map((u, i) => i);
 
   if (debug)
-    console.log("ProductLinks / before render", data, prodListIDs, products);
+    console.log(
+      "ProductLinks / before render",
+      data,
+      products,
+      products.length
+    );
 
   const randomCards = () => {
     var rows = [];
@@ -24,20 +28,21 @@ const ProductLinks = ({ state, actions, className, mediaQuery }) => {
     for (let i = 0; i < 3; i++) {
       var j = Math.floor(Math.random() * prodListIDs.length);
 
-      const img_src = getImg(images[products[prodListIDs[j]].acf.img_mobile]);
-      console.log("RandomCards", prodListIDs);
+      const img_src = getImg(
+        images[getMetaData(products[j].meta_data, "img_mobile")]
+      );
 
       rows.push(
         <CardI
           state={state}
           img_src={img_src}
-          h6_cont={products[prodListIDs[j]].acf.heading
+          h6_cont={products[j].name
             .replace("Earphones", "")
             .replace("Headphones", "")}
           subtitle_cont="see product"
           i={i}
           key={i}
-          link={"/product/" + products[prodListIDs[j]].slug}
+          link={"/product/" + products[j].slug}
           button="true"
         />
       );
@@ -65,6 +70,18 @@ export default connect(ProductLinks);
 const getImg = (img) => {
   if (!img) return null;
   return img.source_url;
+};
+
+const getMetaData = (obj, key) => {
+  var content = obj.filter((data) => {
+    var val = Object.values(data);
+    var val2 = val.includes(key);
+    if (val2) {
+      return Object.values(val);
+    }
+  });
+
+  return Object.values(content)[0].value;
 };
 
 // STYLING

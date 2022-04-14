@@ -33,11 +33,6 @@ const settings = {
               endpoint: "product-bestof",
               archive: "/product-bestof",
             },
-            {
-              type: "products",
-              endpoint: "products",
-              archive: "/products",
-            },
           ],
         },
       },
