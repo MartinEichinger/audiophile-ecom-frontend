@@ -474,4 +474,12 @@ const globalStyles = css`
   button.full:hover {
     background-color: rgba(76, 76, 76, 1);
   }
+
+  button.w-o {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: url(${Pointer}), pointer;
+  }
 `;

@@ -1,9 +1,13 @@
+import { useState } from "react";
 import { connect, styled } from "frontity";
 import NumberFormat from "react-number-format";
 import Counter from "../Counter/Counter";
+import { addToCart } from "../../actions/add-to-cart";
 
-const ProductCardIII = ({ state, libraries, mediaQuery }) => {
-  const debug = true;
+const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
+  const debug = false;
+
+  const [count, setCount] = useState(1);
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
@@ -63,8 +67,15 @@ const ProductCardIII = ({ state, libraries, mediaQuery }) => {
                     </p>
                     <h6>{entry.price}</h6>
                     <div className="d-flex flex-row">
-                      <CounterI />
-                      <button className="default">Add to cart</button>
+                      <CounterI count={count} setCount={setCount} />
+                      <button
+                        className="default"
+                        data-bs-toggle="modal"
+                        data-bs-target="#createPlanModal"
+                        onClick={() => actions.theme.addToCart(entry.id, count)}
+                      >
+                        Add to cart
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -2,6 +2,8 @@ import Root from "./components";
 import link from "@frontity/html2react/processors/link";
 import { wooCommerceHandler } from "./handlers/woocommerce-handler";
 
+import { addToCart } from "./actions/add-to-cart";
+
 export default {
   name: "audiophile-theme",
   roots: {
@@ -9,6 +11,10 @@ export default {
   },
   state: {
     theme: {
+      cart: {
+        items: [],
+      },
+
       brown: "rgba(216, 125, 74, 1)",
       lightBrown: "rgba(251, 175, 133, 1)",
       black: "rgba(0, 0, 0, 1)",
@@ -19,6 +25,7 @@ export default {
       grey: "rgba(151, 151, 151, 1)",
       lightGrey: "rgba(241, 241, 241, 1)",
       lighterGrey: "rgba(250, 250, 250, 1)",
+
       maxWidth: "1440px",
     },
   },
@@ -44,6 +51,7 @@ export default {
           });
         });
       },
+      addToCart,
     },
   },
   libraries: {

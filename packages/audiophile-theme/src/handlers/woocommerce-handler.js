@@ -1,8 +1,8 @@
-const CONSUMER_KEY = `ck_af892c216c195b5a061017ec7ba0d2663d87ba64`;
-const CONSUMER_SECRET = `cs_f1ef32caf0dd7799659545ab50d6c7021dfe3abd`;
+//const CONSUMER_KEY = `ck_af892c216c195b5a061017ec7ba0d2663d87ba64`;
+//const CONSUMER_SECRET = `cs_f1ef32caf0dd7799659545ab50d6c7021dfe3abd`;
 
-const WC_API_SERVER = `https://audiophile.edmadd.eu/wp-json/wc/v2`;
-const WC_URL_PRODUCTS = `${WC_API_SERVER}/products`;
+//const WC_API_SERVER = `https://audiophile.edmadd.eu/wp-json/wc/v2`;
+//const WC_URL_PRODUCTS = `${WC_API_SERVER}/products`;
 
 export const wooCommerceHandler = {
   name: "producto",

@@ -2,7 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const ProductEntry = ({ state, id, entry }) => {
-  const debug = true;
+  const debug = false;
 
   if (debug) console.log("Product/data: ", entry);
 

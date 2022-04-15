@@ -6,14 +6,22 @@ import Logo from "./logo.svg";
 import Kart from "./icon-cart.svg";
 import Hamburger from "./icon-hamburger.svg";
 
+import Modal from "../Modal/Modal";
 import HomeLinks from "../HomeLinks/HomeLinks";
 
-const Nav = ({ state }) => {
-  const debug = false;
+const Nav = ({ actions, state }) => {
+  const debug = true;
 
   const [visible, setVisible] = useState(2);
 
-  if (debug) console.log("Nav/before render", state.router.link);
+  // 1. Fetch done with beforeSSR / in Home
+  // 2. GET
+  const data = state.source.get("/producto/");
+  const products = data.productData;
+  const images = state.source.attachment;
+  const items = state.theme.cart.items;
+
+  if (debug) console.log("Nav/before render", products, items);
 
   return (
     <>
@@ -78,9 +86,14 @@ const Nav = ({ state }) => {
               <Link link="/earphones">Earphones</Link>
             </li>
           </ul>
-          <div>
+          <button
+            className="w-o"
+            data-bs-toggle="modal"
+            data-bs-target="#createPlanModal"
+          >
             <img src={Kart} alt="Put into cart" />
-          </div>
+          </button>
+          <div></div>
         </div>
         <div
           className={
@@ -95,6 +108,8 @@ const Nav = ({ state }) => {
           <NavLinks />
         </div>
       </NavBar>
+
+      <Modal />
     </>
   );
 };

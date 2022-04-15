@@ -2,7 +2,7 @@ import { connect, styled } from "frontity";
 import Link from "@frontity/components/link";
 
 const ProductCardII = ({ state, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET

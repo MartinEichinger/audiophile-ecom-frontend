@@ -2,16 +2,18 @@ import { connect, styled } from "frontity";
 import { useState } from "react";
 import Pointer from "../pointer.png";
 
-const Counter = ({ state, className }) => {
-  const [number, setNumber] = useState(1);
+const Counter = ({ state, className, count = 0, setCount }) => {
+  //const [number, setNumber] = useState(count);
 
   const setNum = (key) => {
     console.log("hier: ", key);
 
     if (key === "plus") {
-      setNumber(number + 1);
-    } else if (key === "minus" && number > 0) {
-      setNumber(number - 1);
+      //setNumber(number + 1);
+      setCount(count + 1);
+    } else if (key === "minus" && count > 0) {
+      //setNumber(number - 1);
+      setCount(count - 1);
     }
   };
 
@@ -25,7 +27,7 @@ const Counter = ({ state, className }) => {
       <subtitle onClick={() => setNum("minus")} className="grey">
         -
       </subtitle>
-      <subtitle>{number}</subtitle>
+      <subtitle>{count}</subtitle>
       <subtitle onClick={() => setNum("plus")} className="grey">
         +
       </subtitle>
