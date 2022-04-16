@@ -28,7 +28,7 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
 
   return (
     <CheckoutBody state={state}>
-      <div className="body-co d-flex flex-row">
+      <div className="body-co d-flex flex-column flex-sm-row">
         <CkCol1 state={state}>
           <h3>Checkout</h3>
           <p className="subtitle">Billing details</p>
@@ -218,6 +218,10 @@ const CkCol2 = styled.div`
   border-radius: 8px;
   width: 33%;
 
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
+
   .modal-body {
     padding: 32px 0px;
   }
@@ -227,9 +231,12 @@ const CkCol1 = styled.div`
   padding: 50px;
   width: 67%;
   margin-right: 30px;
-
   background-color: white;
   border-radius: 8px;
+
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
 
   h3,
   .subtitle {
