@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { connect, styled, keyframes } from "frontity";
+import React from "react";
+import { connect, styled } from "frontity";
 
-import Counter from "../Counter/Counter";
+import Link from "@frontity/components/link";
 import ModalEntry from "./ModalEntry";
 import NumberFormat from "react-number-format";
 
 const Modal = ({ actions, state }) => {
-  const debug = true;
+  const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
@@ -37,7 +37,7 @@ const Modal = ({ actions, state }) => {
                 <button className="w-o">Remove all</button>
               </div>
               <div className="modal-body form d-flex flex-column">
-                {items.map((item) => {
+                {items.map((item, i) => {
                   var entry = findData(products, item.productId);
                   let num = entry.sale_price
                     .replace("€", "")
@@ -46,7 +46,12 @@ const Modal = ({ actions, state }) => {
                   total += parseFloat(num) * item.quantity;
 
                   return (
-                    <ModalEntry item={item} entry={entry} images={images} />
+                    <ModalEntry
+                      item={item}
+                      entry={entry}
+                      images={images}
+                      key={i}
+                    />
                   );
                 })}
                 <div className="total d-flex flex-row justify-content-between">
@@ -62,7 +67,15 @@ const Modal = ({ actions, state }) => {
                   </h6>
                 </div>
                 <div className="but">
-                  <button className="default">Checkout</button>
+                  <Link link="checkout">
+                    <button
+                      className="default"
+                      data-dismiss="modal"
+                      data-bs-target="#createPlanModal"
+                    >
+                      Checkout
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -90,7 +103,6 @@ const findData = (obj, value) => {
     var keyz = Object.keys(data);
     var valz = Object.values(data);
     var val = keyz.findIndex((key) => {
-      console.log(key);
       return key === "id";
     });
     return valz[val] === value;
@@ -101,6 +113,10 @@ const findData = (obj, value) => {
 
 // STYLING
 const ModalBody = styled.div`
+  .modal-dialog {
+    margin: 100px auto;
+  }
+
   .modal-content {
     border-radius: 8px;
   }
@@ -115,17 +131,6 @@ const ModalBody = styled.div`
 
   .modal-body {
     padding: 16px 32px 32px;
-  }
-
-  .modal-body .entry {
-    margin-bottom: 24px;
-  }
-
-  .modal-body .image img {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
-    margin-right: 16px;
   }
 
   .modal-body .bold {
