@@ -10,7 +10,7 @@ import Modal from "../Modal/Modal";
 import HomeLinks from "../HomeLinks/HomeLinks";
 
 const Nav = ({ actions, state }) => {
-  const debug = true;
+  const debug = false;
 
   const [visible, setVisible] = useState(2);
 
@@ -186,7 +186,7 @@ const NavBar = styled.div`
   position: fixed;
   z-index: 100;
   width: calc(100vw);
-  height: 90px;
+  height: 96px;
 
   .nav-items {
     background-color: ${({ state }) => state.theme.lightBlack};

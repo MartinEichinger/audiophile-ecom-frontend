@@ -20,14 +20,12 @@ const Card = ({
           <img src={img_src} alt="Navigation Items" />
           <h6>{h6_cont}</h6>
           {button ? (
-            <Link link={link}>
-              <button className="default">{subtitle_cont}</button>
-            </Link>
+            <button className="default">{subtitle_cont}</button>
           ) : (
-            <subtitle>
+            <p className="subtitle">
               {subtitle_cont}
               <i className="fa-solid fa-angle-right"></i>
-            </subtitle>
+            </p>
           )}
         </div>
       </Link>
@@ -87,11 +85,11 @@ const CrdItem = styled.div`
     }
   }
 
-  .card subtitle {
+  .card .subtitle {
     opacity: 0.5;
     color: ${({ state }) => state.theme.black};
   }
-  .card:hover subtitle {
+  .card:hover .subtitle {
     color: ${({ state }) => state.theme.brown};
   }
 

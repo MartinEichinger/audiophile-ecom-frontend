@@ -11,10 +11,8 @@ import Pointer from "./pointer.png";
 
 import Nav from "./Nav/Nav";
 import Home from "./Home/Home";
-
-//const Products = loadable(() => import("./Products/Products"));
 import Products from "./Products/Products";
-//const ProductDetail = loadable(() => import("./ProductDetail/ProductDetail"));
+import Checkout from "./Checkout/Checkout";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import Footer from "./Footer/Footer";
 
@@ -91,6 +89,7 @@ const Root = ({ state, actions }) => {
             link={data.link}
             mediaQuery={mediaQuery}
           />
+          <Checkout when={data.link === "/checkout/"} mediaQuery={mediaQuery} />
         </Switch>
       </main>
       <Footer />
@@ -367,7 +366,7 @@ const globalStyles = css`
     line-height: 1.67;
   }
 
-  overline {
+  .overline {
     font-size: 14px;
     font-weight: 400;
     line-height: 25px;
@@ -375,13 +374,20 @@ const globalStyles = css`
     text-transform: uppercase;
   }
 
-  subtitle,
-  li {
+  .subtitle,
+  li,
+  label,
+  small {
     font-size: 13px;
     font-weight: bold;
     line-height: 25px;
     letter-spacing: 0.93px;
     text-transform: uppercase;
+  }
+
+  .subtitle {
+    margin: 0;
+    padding: 0;
   }
 
   a,
@@ -481,5 +487,17 @@ const globalStyles = css`
     border: none;
     background-color: rgba(0, 0, 0, 0);
     cursor: url(${Pointer}), pointer;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+  }
+
+  .brown {
+    color: rgba(216, 125, 74, 1);
+  }
+
+  .op50 {
+    opacity: 0.5;
   }
 `;

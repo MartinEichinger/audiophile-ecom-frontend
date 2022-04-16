@@ -16,6 +16,7 @@ export default {
       },
 
       brown: "rgba(216, 125, 74, 1)",
+      brown25: "rgba(216, 125, 74, 0.25)",
       lightBrown: "rgba(251, 175, 133, 1)",
       black: "rgba(0, 0, 0, 1)",
       darkBlack: "rgba(16,16,16,1)",
@@ -25,6 +26,7 @@ export default {
       grey: "rgba(151, 151, 151, 1)",
       lightGrey: "rgba(241, 241, 241, 1)",
       lighterGrey: "rgba(250, 250, 250, 1)",
+      warning: "#dc3545",
 
       maxWidth: "1440px",
     },

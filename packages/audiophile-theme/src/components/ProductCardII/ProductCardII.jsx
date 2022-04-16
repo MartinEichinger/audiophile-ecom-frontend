@@ -61,9 +61,9 @@ const ProductCardII = ({ state, mediaQuery }) => {
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-center align-items-lg-start">
-                    <overline>
+                    <p className="overline">
                       {getMetaData(entry.meta_data, "subheading")}
-                    </overline>
+                    </p>
                     <h2>{entry?.name}</h2>
                     <p>{entry?.short_description}</p>
                     <Link link={"product/" + entry?.slug}>
@@ -221,7 +221,7 @@ const ProdCardItemII = styled.div`
     }
   }
 
-  .crd .col_2 overline {
+  .crd .col_2 .overline {
     margin-bottom: 16px;
     color: ${({ state }) => state.theme.brown};
   }

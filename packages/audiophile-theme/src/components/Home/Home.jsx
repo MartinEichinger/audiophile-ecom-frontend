@@ -30,7 +30,7 @@ const Home = ({ state, actions, mediaQuery }) => {
   // 3. GET ENTITIES
   const entry = state.source.page[data.id];
 
-  console.log("Home / before render: ");
+  if (debug) console.log("Home / before render: ");
 
   return (
     <>

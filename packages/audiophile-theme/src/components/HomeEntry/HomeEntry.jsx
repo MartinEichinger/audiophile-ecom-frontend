@@ -18,10 +18,10 @@ const HomeEntry = ({ state, entry, mediaQuery }) => {
     <Background state={state}>
       <div className="body">
         <div className="text d-flex flex-column align-items-center align-items-lg-start">
-          <overline>{entry?.acf.home_entry_overline}</overline>
+          <p className="overline">{entry?.acf.home_entry_overline}</p>
           <h1>{entry?.acf.home_entry_h1}</h1>
           <p>{entry?.acf.home_entry_body}</p>
-          <Link link={"/product/xx99-mark-iiheadphones/"}>
+          <Link link={"/product/xx99-mark-ii-headphones/"}>
             <button className="default">{entry?.acf.home_entry_button}</button>
           </Link>
         </div>
@@ -82,7 +82,7 @@ const Background = styled.div`
     }
   }
 
-  overline {
+  .overline {
     color: ${({ state }) => state.theme.white};
     opacity: 0.5;
   }

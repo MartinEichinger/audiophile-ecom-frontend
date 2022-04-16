@@ -3,8 +3,16 @@ import { connect, styled, keyframes } from "frontity";
 
 import Counter from "../Counter/Counter";
 
-const ModalEntry = ({ actions, state, item, entry, images }) => {
-  const debug = true;
+const ModalEntry = ({
+  actions,
+  state,
+  item,
+  entry,
+  images,
+  className,
+  withCount = true,
+}) => {
+  const debug = false;
 
   //const [count, setCount] = useState(item.quantity);
   const count = item.quantity;
@@ -17,16 +25,24 @@ const ModalEntry = ({ actions, state, item, entry, images }) => {
   };
 
   return (
-    <div className="entry d-flex flex-row justify-content-between align-items-center">
-      <div className="image d-flex flex-row">
-        <img src={getImg(images[entry.images[0].id])} alt="" />
-        <div className="d-flex flex-column justify-content-center">
-          <p className="bold">{entry.name}</p>
-          <p className="bold">{entry.price}</p>
+    <ModalEntryBody className={className}>
+      <div className="entry d-flex flex-row justify-content-between align-items-center">
+        <div className="image d-flex flex-row">
+          <img src={getImg(images[entry.images[0].id])} alt="" />
+          <div className="d-flex flex-column justify-content-center">
+            <p className="bold">
+              {entry.name.replace("Earphones", "").replace("Headphones", "")}
+            </p>
+            <p className="bold">{entry.price}</p>
+          </div>
         </div>
+        {withCount ? (
+          <Counter count={item.quantity} setCount={updCart} />
+        ) : (
+          <p>{item.quantity}x</p>
+        )}
       </div>
-      <Counter count={item.quantity} setCount={updCart} />
-    </div>
+    </ModalEntryBody>
   );
 };
 
@@ -38,3 +54,26 @@ const getImg = (img) => {
   if (!img) return null;
   return img.source_url;
 };
+
+// STYLING
+
+const ModalEntryBody = styled.div`
+  .entry {
+    margin-bottom: 24px;
+  }
+
+  .entry .image img {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+    margin-right: 16px;
+  }
+
+  .entry .bold {
+    font-weight: 600;
+  }
+
+  .entry p {
+    margin-bottom: 0px;
+  }
+`;

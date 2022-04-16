@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect, styled } from "frontity";
 import NumberFormat from "react-number-format";
 import Counter from "../Counter/Counter";
-import { addToCart } from "../../actions/add-to-cart";
+import Link from "@frontity/components/link";
 
 const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
   const debug = false;
@@ -45,7 +45,7 @@ const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
               key={i}
             >
               <div className="back">
-                <a href="javascript:history.back();">Go Back</a>
+                <a onClick={() => history.back()}>Go Back</a>
               </div>
               <div className="crd d-flex justify-content-center align-items-center flex-column flex-sm-row">
                 <div className="col_1 d-flex align-items-center">
@@ -58,9 +58,9 @@ const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
                 </div>
                 <div className="col_2 d-flex justify-content-start justify-content-sm-center align-items-center">
                   <div className="text d-flex flex-column justify-content-center justify-content-lg-start align-items-start">
-                    <overline>
+                    <p className="overline">
                       {getMetaData(entry.meta_data, "subheading")}
-                    </overline>
+                    </p>
                     <h2>{entry?.name}</h2>
                     <p>
                       <Html2React html={entry?.short_description} />
@@ -241,7 +241,7 @@ const ProdCardItemIII = styled.div`
     }
   }
 
-  .crd .col_2 overline {
+  .crd .col_2 .overline {
     margin-bottom: 16px;
     color: ${({ state }) => state.theme.brown};
   }

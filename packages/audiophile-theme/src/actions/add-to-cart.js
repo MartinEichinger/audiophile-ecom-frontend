@@ -16,7 +16,7 @@ export const addToCart =
       state.theme.cart.items[productInCart].quantity = quantity + count;
     }
 
-    const productName = state.source.product[productId].title.rendered;
+    //const productName = state.source.product[productId].title.rendered;
 
     //actions.theme.openNotifications({
     //  content: `${productName} has been added to your cart.`,

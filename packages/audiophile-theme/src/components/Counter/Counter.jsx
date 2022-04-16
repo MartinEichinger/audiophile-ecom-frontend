@@ -24,13 +24,13 @@ const Counter = ({ state, className, count = 0, setCount }) => {
         className + " d-flex flex-row justify-content-around align-items-center"
       }
     >
-      <subtitle onClick={() => setNum("minus")} className="grey">
+      <p className="subtitle grey" onClick={() => setNum("minus")}>
         -
-      </subtitle>
-      <subtitle>{count}</subtitle>
-      <subtitle onClick={() => setNum("plus")} className="grey">
+      </p>
+      <p className="subtitle">{count}</p>
+      <p className="subtitle grey" onClick={() => setNum("plus")}>
         +
-      </subtitle>
+      </p>
     </Count>
   );
 };
@@ -42,7 +42,10 @@ const Count = styled.div`
   height: 48px;
   background-color: ${({ state }) => state.theme.lightGrey};
 
-  subtitle.grey {
+  .subtitle {
+    margin: 0 !important;
+  }
+  .subtitle.grey {
     width: 25px;
     height: 25px;
     cursor: url(${Pointer}), pointer;
@@ -52,7 +55,7 @@ const Count = styled.div`
     text-align: center;
   }
 
-  subtitle.grey:hover {
+  .subtitle.grey:hover {
     color: ${({ state }) => state.theme.brown};
     opacity: 1;
   }
