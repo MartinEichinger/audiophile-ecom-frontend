@@ -3,6 +3,7 @@ import link from "@frontity/html2react/processors/link";
 import { wooCommerceHandler } from "./handlers/woocommerce-handler";
 
 import { addToCart } from "./actions/add-to-cart";
+import { processOrder } from "./actions/process-order";
 
 export default {
   name: "audiophile-theme",
@@ -13,6 +14,24 @@ export default {
     theme: {
       cart: {
         items: [],
+      },
+      checkout: {
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        zipcode: "",
+        city: "",
+        country: "",
+        errors: {
+          name: null,
+          email: null,
+          phone: null,
+          address: null,
+          zipcode: null,
+          city: null,
+          country: null,
+        },
       },
 
       brown: "rgba(216, 125, 74, 1)",
@@ -54,6 +73,7 @@ export default {
         });
       },
       addToCart,
+      processOrder,
     },
   },
   libraries: {

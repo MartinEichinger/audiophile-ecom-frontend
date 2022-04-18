@@ -408,6 +408,12 @@ const globalStyles = css`
     cursor: url(${Pointer}), pointer;
   }
 
+  button:disabled,
+  button[disabled] {
+    background-color: rgba(240, 240, 240, 1) !important;
+    color: rgba(16, 16, 16, 1) !important;
+  }
+
   button.default {
     width: 160px;
     height: 48px;

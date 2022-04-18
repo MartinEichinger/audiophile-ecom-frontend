@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, styled } from "frontity";
 import HomeLinks from "../HomeLinks/HomeLinks";
 import FormTextField from "../FormTextField/FormTextField";
@@ -8,13 +8,54 @@ import Link from "@frontity/components/link";
 
 const Checkout = ({ state, actions, mediaQuery, link }) => {
   const debug = true;
+  let disable;
   let total = 0;
   let weight = 0;
   let shipping = 0;
 
+  // STATE
+  const checkErrors = () => {
+    let errors = false;
+    for (let x in state.theme.checkout.errors) {
+      console.log("checkErrors: ", x, state.theme.checkout.errors[x]);
+      if (state.theme.checkout.errors[x] === "true") errors = true;
+    }
+    console.log("checkErrors: ", errors);
+    return errors;
+  };
+  const setValues = (value, type) => {
+    console.log(type);
+    state.theme.checkout[type] = value;
+  };
+
+  const setErrors = (value, type) => {
+    console.log(type);
+    state.theme.checkout.errors[type] = value;
+  };
+
+  const doCheckout = () => {
+    // start new round of validation check
+    disable = false;
+
+    // loop over order error object, if one error is not set (null) it is set to false
+    for (const [key, err] of Object.entries(state.theme.checkout.errors)) {
+      if (err === null) {
+        state.theme.checkout.errors[key] = "true";
+        disable = true;
+      }
+    }
+
+    // loop over order, if one error is set, the button is disabled
+    //for (let err in state.theme.checkout.errors) {
+    //  if (err === "true") disable = true;
+    //}
+
+    console.log("Disable: ", disable);
+    actions.theme.processOrder();
+  };
+
   // 1. Fetch
   useEffect(() => {
-    //actions.source.fetch(state.router.link);
     if (debug) console.log("Checkout/useEffect: ");
   }, []);
 
@@ -24,7 +65,15 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
   const images = state.source.attachment;
   const items = state.theme.cart.items;
 
-  if (debug) console.log("Checkout/before render: ", data, products);
+  if (debug)
+    console.log(
+      "Checkout/before render: ",
+      data,
+      products,
+      state.theme.checkout.email
+    );
+
+  disable = checkErrors();
 
   return (
     <CheckoutBody state={state}>
@@ -33,15 +82,30 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
           <h3>Checkout</h3>
           <p className="subtitle">Billing details</p>
           <div className="billing d-flex flex-row flex-wrap">
-            <FormTextField_CO_I form_title="Name" placeholder="Alexei Ward" />
+            <FormTextField_CO_I
+              form_title="Name"
+              placeholder="Alexei Ward"
+              value={state.theme.checkout.name}
+              setValue={(value) => setValues(value, "name")}
+              error={state.theme.checkout.errors.name}
+              setError={(value) => setErrors(value, "name")}
+            />
             <FormTextField_CO_I
               type="email"
               form_title="Email Address"
               placeholder="alexei@mail.com"
+              value={state.theme.checkout.email}
+              setValue={(value) => setValues(value, "email")}
+              error={state.theme.checkout.errors.email}
+              setError={(value) => setErrors(value, "email")}
             />
             <FormTextField_CO_I
               form_title="Phone Number"
               placeholder="+1 202-555-0136"
+              value={state.theme.checkout.phone}
+              setValue={(value) => setValues(value, "phone")}
+              error={state.theme.checkout.errors.phone}
+              setError={(value) => setErrors(value, "phone")}
             />
           </div>
           <p className="subtitle">Shipping info</p>
@@ -49,14 +113,36 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
             <FormTextField_CO_II
               form_title="Address"
               placeholder="1137 Williams Avenue"
+              value={state.theme.checkout.address}
+              setValue={(value) => setValues(value, "address")}
+              error={state.theme.checkout.errors.address}
+              setError={(value) => setErrors(value, "address")}
             />
             <FormTextField_CO_I
               type="number"
               form_title="ZIP Code"
               placeholder="10001"
+              value={state.theme.checkout.zipcode}
+              setValue={(value) => setValues(value, "zipcode")}
+              error={state.theme.checkout.errors.zipcode}
+              setError={(value) => setErrors(value, "zipcode")}
             />
-            <FormTextField_CO_I form_title="City" placeholder="New York" />
-            <FormTextField_CO_I form_title="Country" placeholder="Germany" />
+            <FormTextField_CO_I
+              form_title="City"
+              placeholder="New York"
+              value={state.theme.checkout.city}
+              setValue={(value) => setValues(value, "city")}
+              error={state.theme.checkout.errors.city}
+              setError={(value) => setErrors(value, "city")}
+            />
+            <FormTextField_CO_I
+              form_title="Country"
+              placeholder="Germany"
+              value={state.theme.checkout.country}
+              setValue={(value) => setValues(value, "country")}
+              error={state.theme.checkout.errors.country}
+              setError={(value) => setErrors(value, "country")}
+            />
           </div>
           <p className="subtitle">Payment details</p>
           <div className="shipping d-flex flex-row flex-wrap">
@@ -76,7 +162,7 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
           <h6>Summary</h6>
           <div className="modal-body form d-flex flex-column">
             {items.map((item, i) => {
-              var entry = findData(products, item.productId);
+              var entry = findData(products, item.product_id);
               let num = entry.sale_price
                 .replace("€", "")
                 .replace(" ", "")
@@ -149,6 +235,8 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
                   className="default w-100"
                   data-dismiss="modal"
                   data-bs-target="#createPlanModal"
+                  onClick={() => doCheckout()}
+                  disabled={disable ? true : false}
                 >
                   Continue & Pay
                 </button>

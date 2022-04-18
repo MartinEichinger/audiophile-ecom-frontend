@@ -7,6 +7,8 @@ Prototyp:
     form_title = "title of field"
     placeholder = "displayed placeholder text"
     warning_title = "text for warning"
+    value
+    setValue
     maxText = 100
     minText = 1
     maxNum = 10
@@ -23,15 +25,16 @@ const FormTextField = ({
   type = "text",
   form_title = "Form title",
   placeholder = "Enter text",
+  value,
+  setValue,
+  error,
+  setError,
   warning_title = "Wrong format",
   maxText = 100,
   minText = 1,
   maxNum = 10,
   minNum = 1,
 }) => {
-  // States
-  const [error, setError] = useState(0);
-
   // METHOD
   const validate = (type, string) => {
     let result;
@@ -82,7 +85,9 @@ const FormTextField = ({
         id={form_name}
         aria-describedby="emailHelp"
         placeholder={placeholder}
+        onChange={(e) => setValue(e.target.value)}
         onBlur={(e) => validate(type, e.target.value)}
+        value={value}
       />
     </FormGroup>
   );

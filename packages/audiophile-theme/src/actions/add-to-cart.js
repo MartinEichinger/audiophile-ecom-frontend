@@ -1,16 +1,16 @@
 export const addToCart =
   ({ state, actions }) =>
-  (productId, count) => {
+  (product_id, count) => {
     //event.preventDefault();
 
     const productInCart = state.theme.cart.items.findIndex(
-      (product) => product.productId === productId
+      (product) => product.product_id === product_id
     );
 
     //let cantToAdd = state.theme.cantToAddToCart;
 
     if (-1 === productInCart) {
-      state.theme.cart.items.push({ productId, quantity: count });
+      state.theme.cart.items.push({ product_id, quantity: count });
     } else {
       let quantity = state.theme.cart.items[productInCart].quantity;
       state.theme.cart.items[productInCart].quantity = quantity + count;

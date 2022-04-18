@@ -5,7 +5,7 @@ import Counter from "../Counter/Counter";
 import Link from "@frontity/components/link";
 
 const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
-  const debug = false;
+  const debug = true;
 
   const [count, setCount] = useState(1);
 

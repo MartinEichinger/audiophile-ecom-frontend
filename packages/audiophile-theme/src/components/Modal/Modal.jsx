@@ -6,7 +6,7 @@ import ModalEntry from "./ModalEntry";
 import NumberFormat from "react-number-format";
 
 const Modal = ({ actions, state }) => {
-  const debug = false;
+  const debug = true;
 
   // 1. Fetch done with beforeSSR / in Home
   // 2. GET
@@ -38,7 +38,7 @@ const Modal = ({ actions, state }) => {
               </div>
               <div className="modal-body form d-flex flex-column">
                 {items.map((item, i) => {
-                  var entry = findData(products, item.productId);
+                  var entry = findData(products, item.product_id);
                   let num = entry.sale_price
                     .replace("€", "")
                     .replace(" ", "")
