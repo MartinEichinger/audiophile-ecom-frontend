@@ -1,20 +1,23 @@
 export const addToCart =
   ({ state, actions }) =>
-  (product_id, count) => {
+  (product_id, count, entry_price) => {
     //event.preventDefault();
 
     const productInCart = state.theme.cart.items.findIndex(
       (product) => product.product_id === product_id
     );
 
-    //let cantToAdd = state.theme.cantToAddToCart;
-
+    //UPDATE CART
     if (-1 === productInCart) {
       state.theme.cart.items.push({ product_id, quantity: count });
     } else {
       let quantity = state.theme.cart.items[productInCart].quantity;
       state.theme.cart.items[productInCart].quantity = quantity + count;
     }
+
+    // UPDATE TOTAL
+    state.theme.orderTotal += count * entry_price;
+    state.theme.orderQuantity += count;
 
     //const productName = state.source.product[productId].title.rendered;
 

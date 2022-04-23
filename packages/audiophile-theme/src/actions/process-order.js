@@ -7,6 +7,7 @@ export const processOrder = async ({ state, actions }) => {
   console.log("Start process order");
   const fields = state.theme.checkout;
 
+  // collect order data
   state.theme.processingOrder = true;
   let orderData = JSON.stringify({
     payment_method: "woocommerce_payments",
@@ -41,6 +42,7 @@ export const processOrder = async ({ state, actions }) => {
 
   console.log("Order Data", orderData);
 
+  // send order
   const res = await fetch(
     `${state.source.url}/wp-json/wc/v3/orders?consumer_key=${CONSUMER_KEY}&consumer_secret=${CONSUMER_SECRET}`,
     {
@@ -51,16 +53,24 @@ export const processOrder = async ({ state, actions }) => {
       },
     }
   );
+
+  // update feedback information
   const body = await res.json();
+  state.theme.orderFeedback = body;
 
   const orderId = body.id;
   console.log("body", body);
   console.log("id", body.id);
-  console.log("id", body[1]);
 
   state.theme.processingOrder = false;
 
-  state.theme.cart.items = [];
+  actions.theme.emptyCart();
+  console.log("id 2");
+
+  actions.theme.emptyCheckout();
+  console.log("id 3");
   //state.theme.cart.cartTotal = 0;
   //fields.map((field) => (field.value = ""));
+
+  //return body;
 };

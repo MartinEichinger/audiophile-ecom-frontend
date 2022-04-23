@@ -15,31 +15,31 @@ const ModalEntry = ({
   const debug = false;
 
   //const [count, setCount] = useState(item.quantity);
-  const count = item.quantity;
+  const count = item?.quantity;
 
   if (debug) console.log("ModalEntry/before render", item, entry, images);
 
   const updCart = (newCount) => {
     let updCount = newCount - count;
-    actions.theme.addToCart(item.productId, updCount);
+    actions.theme.addToCart(item?.product_id, updCount);
   };
 
   return (
     <ModalEntryBody className={className}>
       <div className="entry d-flex flex-row justify-content-between align-items-center">
         <div className="image d-flex flex-row">
-          <img src={getImg(images[entry.images[0].id])} alt="" />
+          <img src={getImg(images[entry?.images[0].id])} alt="" />
           <div className="d-flex flex-column justify-content-center">
             <p className="bold">
-              {entry.name.replace("Earphones", "").replace("Headphones", "")}
+              {entry?.name.replace("Earphones", "").replace("Headphones", "")}
             </p>
-            <p className="bold">{entry.price}</p>
+            <p className="bold">{entry?.price}</p>
           </div>
         </div>
         {withCount ? (
-          <Counter count={item.quantity} setCount={updCart} />
+          <Counter count={item?.quantity} setCount={updCart} />
         ) : (
-          <p>{item.quantity}x</p>
+          <p>{item?.quantity}x</p>
         )}
       </div>
     </ModalEntryBody>

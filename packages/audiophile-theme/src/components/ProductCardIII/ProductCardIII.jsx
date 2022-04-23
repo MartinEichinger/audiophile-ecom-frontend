@@ -5,7 +5,7 @@ import Counter from "../Counter/Counter";
 import Link from "@frontity/components/link";
 
 const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
-  const debug = true;
+  const debug = false;
 
   const [count, setCount] = useState(1);
 
@@ -36,6 +36,13 @@ const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
           const img_src_mobile = getImg(
             images[getMetaData(entry.meta_data, "img_prod_mobile")]
           );
+
+          const entry_string = entry.price;
+          var entry_price = entry_string
+            .replace(" ", "")
+            .replace("€", "")
+            .replace(",", ".");
+          entry_price = parseFloat(entry_price);
 
           return (
             <ProdCardItemIII
@@ -72,7 +79,9 @@ const ProductCardIII = ({ actions, state, libraries, mediaQuery }) => {
                         className="default"
                         data-bs-toggle="modal"
                         data-bs-target="#createPlanModal"
-                        onClick={() => actions.theme.addToCart(entry.id, count)}
+                        onClick={() =>
+                          actions.theme.addToCart(entry.id, count, entry_price)
+                        }
                       >
                         Add to cart
                       </button>

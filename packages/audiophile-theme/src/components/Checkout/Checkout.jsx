@@ -7,9 +7,9 @@ import NumberFormat from "react-number-format";
 import Link from "@frontity/components/link";
 
 const Checkout = ({ state, actions, mediaQuery, link }) => {
-  const debug = true;
+  const debug = false;
   let disable;
-  let total = 0;
+  let total = state.theme.orderTotal;
   let weight = 0;
   let shipping = 0;
 
@@ -17,23 +17,19 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
   const checkErrors = () => {
     let errors = false;
     for (let x in state.theme.checkout.errors) {
-      console.log("checkErrors: ", x, state.theme.checkout.errors[x]);
       if (state.theme.checkout.errors[x] === "true") errors = true;
     }
-    console.log("checkErrors: ", errors);
     return errors;
   };
   const setValues = (value, type) => {
-    console.log(type);
     state.theme.checkout[type] = value;
   };
 
   const setErrors = (value, type) => {
-    console.log(type);
     state.theme.checkout.errors[type] = value;
   };
 
-  const doCheckout = () => {
+  const doCheckout = async () => {
     // start new round of validation check
     disable = false;
 
@@ -45,13 +41,16 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
       }
     }
 
-    // loop over order, if one error is set, the button is disabled
-    //for (let err in state.theme.checkout.errors) {
-    //  if (err === "true") disable = true;
-    //}
+    if (!disable) {
+      await actions.theme.processOrder();
 
-    console.log("Disable: ", disable);
-    actions.theme.processOrder();
+      var modalCheckout = new bootstrap.Modal(
+        document.getElementById("checkoutModal")
+      );
+
+      console.log("Checkout/el2");
+      modalCheckout.show();
+    }
   };
 
   // 1. Fetch
@@ -163,13 +162,13 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
           <div className="modal-body form d-flex flex-column">
             {items.map((item, i) => {
               var entry = findData(products, item.product_id);
-              let num = entry.sale_price
-                .replace("€", "")
-                .replace(" ", "")
-                .replace(",", ".");
-              total += parseFloat(num) * item.quantity;
+              //let num = entry.sale_price
+              //  .replace("€", "")
+              //  .replace(" ", "")
+              //  .replace(",", ".");
+              //total += parseFloat(num) * item.quantity;
               weight += entry.weight.value * item.quantity;
-              shipping = weight < 1 ? 5 : weight < 5 ? 20 : 50;
+              shipping = weight < 1 ? 10 : weight < 5 ? 10 : 10;
 
               return (
                 <ModalEntry_CO
@@ -233,8 +232,6 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
               <Link link="checkout">
                 <button
                   className="default w-100"
-                  data-dismiss="modal"
-                  data-bs-target="#createPlanModal"
                   onClick={() => doCheckout()}
                   disabled={disable ? true : false}
                 >

@@ -9,7 +9,7 @@ const ProductEntry = ({ state, id, entry }) => {
   return (
     <Background state={state}>
       <div className="body d-flex align-items-center justify-content-center">
-        <h2>{entry.title.rendered}</h2>
+        <h2>{entry?.title.rendered}</h2>
       </div>
     </Background>
   );

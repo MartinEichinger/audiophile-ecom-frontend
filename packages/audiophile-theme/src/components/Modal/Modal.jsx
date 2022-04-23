@@ -70,7 +70,7 @@ const Modal = ({ actions, state }) => {
                   <Link link="checkout">
                     <button
                       className="default"
-                      data-dismiss="modal"
+                      data-bs-dismiss="modal"
                       data-bs-target="#createPlanModal"
                     >
                       Checkout

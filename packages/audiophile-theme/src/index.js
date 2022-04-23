@@ -3,6 +3,8 @@ import link from "@frontity/html2react/processors/link";
 import { wooCommerceHandler } from "./handlers/woocommerce-handler";
 
 import { addToCart } from "./actions/add-to-cart";
+import { emptyCart } from "./actions/empty-cart";
+import { emptyCheckout } from "./actions/empty-checkout";
 import { processOrder } from "./actions/process-order";
 
 export default {
@@ -33,6 +35,9 @@ export default {
           country: null,
         },
       },
+      orderFeedback: {},
+      orderTotal: 0,
+      orderQuantity: 0,
 
       brown: "rgba(216, 125, 74, 1)",
       brown25: "rgba(216, 125, 74, 0.25)",
@@ -73,6 +78,8 @@ export default {
         });
       },
       addToCart,
+      emptyCart,
+      emptyCheckout,
       processOrder,
     },
   },

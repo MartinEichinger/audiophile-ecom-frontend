@@ -7,6 +7,7 @@ import Kart from "./icon-cart.svg";
 import Hamburger from "./icon-hamburger.svg";
 
 import Modal from "../Modal/Modal";
+import ModalCheckout from "../ModalCheckout/ModalCheckout";
 import HomeLinks from "../HomeLinks/HomeLinks";
 
 const Nav = ({ actions, state }) => {
@@ -87,13 +88,15 @@ const Nav = ({ actions, state }) => {
             </li>
           </ul>
           <button
-            className="w-o"
+            className="w-o d-flex flex-row"
             data-bs-toggle="modal"
             data-bs-target="#createPlanModal"
           >
             <img src={Kart} alt="Put into cart" />
+            {state.theme.orderQuantity > 0 && (
+              <div className="num">{state.theme.orderQuantity}</div>
+            )}
           </button>
-          <div></div>
         </div>
         <div
           className={
@@ -110,6 +113,7 @@ const Nav = ({ actions, state }) => {
       </NavBar>
 
       <Modal />
+      <ModalCheckout />
     </>
   );
 };
@@ -248,6 +252,23 @@ const NavBar = styled.div`
       left: 0px;
       width: calc(100vw - 4px);
     }
+  }
+
+  .nav-items button .num {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: 1px solid red;
+    background-color: white;
+    margin-left: -5px;
+    margin-top: -5px;
+    padding: 1px;
+    line-height: 12px;
+    font-size: 12px;
+  }
+
+  .nav-items button.w-o {
+    width: 52px;
   }
 
   .nav {
