@@ -5,6 +5,7 @@ import { wooCommerceHandler } from "./handlers/woocommerce-handler";
 import { addToCart } from "./actions/add-to-cart";
 import { emptyCart } from "./actions/empty-cart";
 import { emptyCheckout } from "./actions/empty-checkout";
+import { emptyOrder } from "./actions/empty-order";
 import { processOrder } from "./actions/process-order";
 
 export default {
@@ -80,6 +81,7 @@ export default {
       addToCart,
       emptyCart,
       emptyCheckout,
+      emptyOrder,
       processOrder,
     },
   },

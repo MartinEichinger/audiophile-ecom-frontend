@@ -9,16 +9,29 @@ export const addToCart =
 
     //UPDATE CART
     if (-1 === productInCart) {
+      // New product
       state.theme.cart.items.push({ product_id, quantity: count });
     } else {
+      // Product already in cart
       let quantity = state.theme.cart.items[productInCart].quantity;
-      state.theme.cart.items[productInCart].quantity = quantity + count;
+      if (quantity + count === 0) {
+        state.theme.cart.items.splice(productInCart, 1);
+      } else {
+        state.theme.cart.items[productInCart].quantity = quantity + count;
+      }
     }
 
     // UPDATE TOTAL
-    state.theme.orderTotal += count * entry_price;
+    var value = count * entry_price;
+    state.theme.orderTotal += value;
     state.theme.orderQuantity += count;
 
+    console.log(
+      "Cart update: ",
+      state.theme.cart,
+      state.theme.orderTotal,
+      state.theme.orderQuantity
+    );
     //const productName = state.source.product[productId].title.rendered;
 
     //actions.theme.openNotifications({

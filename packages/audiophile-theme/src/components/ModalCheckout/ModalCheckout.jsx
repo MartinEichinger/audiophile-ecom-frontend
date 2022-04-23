@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { connect, styled } from "frontity";
 
 import Link from "@frontity/components/link";
@@ -27,6 +28,13 @@ const ModalCheckout = ({ actions, state }) => {
 
   if (Object.values(items).length > 0)
     var entry = findData(products, items.line_items[0].product_id);
+
+  if (typeof window !== "undefined") {
+    var thisModalEl = document.getElementById("checkoutModal");
+    thisModalEl.addEventListener("hidden.bs.modal", function (event) {
+      actions.theme.emptyOrder();
+    });
+  }
 
   return (
     <>

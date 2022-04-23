@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect, styled, keyframes } from "frontity";
-
+import { stringToNum } from "../../helpers/stringToNum";
 import Counter from "../Counter/Counter";
 
 const ModalEntry = ({
@@ -21,7 +21,11 @@ const ModalEntry = ({
 
   const updCart = (newCount) => {
     let updCount = newCount - count;
-    actions.theme.addToCart(item?.product_id, updCount);
+    actions.theme.addToCart(
+      item?.product_id,
+      updCount,
+      stringToNum(entry.sale_price)
+    );
   };
 
   return (

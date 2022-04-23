@@ -4,6 +4,7 @@ import { connect, styled } from "frontity";
 import Link from "@frontity/components/link";
 import ModalEntry from "./ModalEntry";
 import NumberFormat from "react-number-format";
+import { stringToNum } from "../../helpers/stringToNum";
 
 const Modal = ({ actions, state }) => {
   const debug = true;
@@ -34,16 +35,20 @@ const Modal = ({ actions, state }) => {
             <div className="modal-content">
               <div className="modal-header d-flex flex-row">
                 <h6>Cart</h6>
-                <button className="w-o">Remove all</button>
+                <button
+                  className="w-o"
+                  onClick={() => {
+                    actions.theme.emptyCart();
+                    actions.theme.emptyOrder();
+                  }}
+                >
+                  Remove all
+                </button>
               </div>
               <div className="modal-body form d-flex flex-column">
                 {items.map((item, i) => {
                   var entry = findData(products, item.product_id);
-                  let num = entry.sale_price
-                    .replace("€", "")
-                    .replace(" ", "")
-                    .replace(",", ".");
-                  total += parseFloat(num) * item.quantity;
+                  total += stringToNum(entry.sale_price) * item.quantity;
 
                   return (
                     <ModalEntry
