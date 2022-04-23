@@ -76,7 +76,11 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
 
   return (
     <CheckoutBody state={state}>
-      <div className="body-co d-flex flex-column flex-sm-row">
+      <div className="back">
+        <a onClick={() => history.back()}>Go Back</a>
+      </div>
+
+      <div className="body-co d-flex flex-column flex-lg-row">
         <CkCol1 state={state}>
           <h3>Checkout</h3>
           <p className="subtitle">Billing details</p>
@@ -279,10 +283,18 @@ const FormTextField_CO_I = styled(FormTextField)`
   width: 40%;
   margin-right: 16px;
   margin-bottom: 24px;
+
+  @media only screen and (max-width: 991px) {
+    width: 46%;
+  }
 `;
 
 const FormTextField_CO_II = styled(FormTextField_CO_I)`
   width: calc(80% + 16px);
+
+  @media only screen and (max-width: 991px) {
+    width: calc(92% + 16px);
+  }
 `;
 
 const CheckoutBody = styled.div`
@@ -291,9 +303,25 @@ const CheckoutBody = styled.div`
   padding-top: 95px;
   padding-bottom: 144px;
 
+  .back {
+    padding-top: 80px;
+    max-width: 1110px;
+    margin: 0 auto;
+    opacity: 0.5;
+
+    @media only screen and (max-width: 991px) {
+      padding-top: 48px;
+      margin-left: 39px;
+    }
+  }
+
   .body-co {
     max-width: 1110px;
-    margin: 144px auto 0px;
+    margin: 38px auto 0px;
+
+    @media only screen and (max-width: 991px) {
+      margin-top: 24px;
+    }
   }
 `;
 
@@ -302,6 +330,11 @@ const CkCol2 = styled.div`
   background-color: white;
   border-radius: 8px;
   width: 33%;
+
+  @media only screen and (max-width: 991px) {
+    margin: 16px 39px;
+    width: calc(100% - 78px);
+  }
 
   @media only screen and (max-width: 575px) {
     width: 100%;
@@ -318,6 +351,11 @@ const CkCol1 = styled.div`
   margin-right: 30px;
   background-color: white;
   border-radius: 8px;
+
+  @media only screen and (max-width: 991px) {
+    margin: 16px 39px;
+    width: calc(100% - 78px);
+  }
 
   @media only screen and (max-width: 575px) {
     width: 100%;
