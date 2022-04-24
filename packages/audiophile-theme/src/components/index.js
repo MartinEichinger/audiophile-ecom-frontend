@@ -477,7 +477,7 @@ const globalStyles = css`
     letter-spacing: 1px;
     text-transform: uppercase;
     color: white;
-    padding: 15px 28px;
+    padding: 15px 20px;
     cursor: url(${Pointer}), pointer;
 
     a {
