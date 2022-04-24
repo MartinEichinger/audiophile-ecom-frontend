@@ -299,6 +299,10 @@ const FormTextField_CO_II = styled(FormTextField_CO_I)`
   @media only screen and (max-width: 991px) {
     width: calc(92% + 16px);
   }
+
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
 `;
 
 const CheckoutBody = styled.div`
