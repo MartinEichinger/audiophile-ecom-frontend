@@ -84,7 +84,7 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
         <CkCol1 state={state}>
           <h3>Checkout</h3>
           <p className="subtitle">Billing details</p>
-          <div className="billing d-flex flex-row flex-wrap">
+          <div className="billing d-flex flex-column flex-sm-row flex-wrap">
             <FormTextField_CO_I
               form_title="Name"
               placeholder="Alexei Ward"
@@ -112,7 +112,7 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
             />
           </div>
           <p className="subtitle">Shipping info</p>
-          <div className="shipping d-flex flex-row flex-wrap">
+          <div className="shipping d-flex flex-column flex-sm-row flex-wrap">
             <FormTextField_CO_II
               form_title="Address"
               placeholder="1137 Williams Avenue"
@@ -148,7 +148,7 @@ const Checkout = ({ state, actions, mediaQuery, link }) => {
             />
           </div>
           <p className="subtitle">Payment details</p>
-          <div className="shipping d-flex flex-row flex-wrap">
+          <div className="shipping d-flex flex-column flex-sm-row flex-wrap">
             <FormTextField_CO_I
               type="number"
               form_title="e-Money Number"
@@ -287,6 +287,10 @@ const FormTextField_CO_I = styled(FormTextField)`
   @media only screen and (max-width: 991px) {
     width: 46%;
   }
+
+  @media only screen and (max-width: 575px) {
+    width: 100%;
+  }
 `;
 
 const FormTextField_CO_II = styled(FormTextField_CO_I)`
@@ -302,6 +306,10 @@ const CheckoutBody = styled.div`
   width: 100vw;
   padding-top: 95px;
   padding-bottom: 144px;
+
+  @media only screen and (max-width: 991px) {
+    padding-bottom: 100px;
+  }
 
   .back {
     padding-top: 80px;
@@ -337,7 +345,8 @@ const CkCol2 = styled.div`
   }
 
   @media only screen and (max-width: 575px) {
-    width: 100%;
+    margin: 16px 24px;
+    width: calc(100% - 48px);
   }
 
   .modal-body {
@@ -358,7 +367,8 @@ const CkCol1 = styled.div`
   }
 
   @media only screen and (max-width: 575px) {
-    width: 100%;
+    margin: 16px 24px;
+    width: calc(100% - 48px);
   }
 
   h3,
