@@ -138,6 +138,10 @@ const ProdCardItemIII = styled.div`
     margin-bottom: 120px;
   }
 
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 88px;
+  }
+
   .back {
     width: 1110px;
     margin: 0 auto 56px;
@@ -204,7 +208,7 @@ const ProdCardItemIII = styled.div`
 
     @media only screen and (max-width: 575px) {
       width: calc(100vw - 48px);
-      height: 100%;
+      height: calc(100vw - 48px);
       padding-right: 0px;
       margin-bottom: 24px;
     }
@@ -250,8 +254,9 @@ const ProdCardItemIII = styled.div`
     }
   }
 
-  .crd .col_2 .overline {
+  .crd .col_2 p.overline {
     margin-bottom: 16px;
+    opacity: 1;
     color: ${({ state }) => state.theme.brown};
   }
 

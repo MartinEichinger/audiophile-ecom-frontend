@@ -84,6 +84,10 @@ const ProdCardItemText = styled.div`
     margin-bottom: 120px;
   }
 
+  @media only screen and (max-width: 575px) {
+    margin-bottom: 88px;
+  }
+
   .crd {
     border-radius: 8px;
     width: 1110px;
@@ -117,7 +121,7 @@ const ProdCardItemText = styled.div`
       height: 100%;
       margin-left: 0px;
       margin-right: 0px;
-      margin-bottom: 52px;
+      margin-bottom: 120px;
     }
 
     @media only screen and (max-width: 767px) {
@@ -128,12 +132,16 @@ const ProdCardItemText = styled.div`
       width: calc(100vw - 48px);
       height: 100%;
       margin-right: 0px;
-      margin-bottom: 24px;
+      margin-bottom: 88px;
     }
   }
 
   .crd .col_1 h3 {
     margin-bottom: 32px;
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 24px;
+    }
   }
 
   .crd .col_1 p {

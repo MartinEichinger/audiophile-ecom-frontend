@@ -42,20 +42,21 @@ const Count = styled.div`
   height: 48px;
   background-color: ${({ state }) => state.theme.lightGrey};
 
-  .subtitle {
+  p.subtitle {
+    opacity: 1 !important;
     margin: 0 !important;
   }
-  .subtitle.grey {
+  p.subtitle.grey {
     width: 25px;
     height: 25px;
     cursor: url(${Pointer}), pointer;
     color: ${({ state }) => state.theme.black};
-    opacity: 0.25;
+    opacity: 0.25 !important;
     font-weight: 800;
     text-align: center;
   }
 
-  .subtitle.grey:hover {
+  p.subtitle.grey:hover {
     color: ${({ state }) => state.theme.brown};
     opacity: 1;
   }

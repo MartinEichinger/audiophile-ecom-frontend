@@ -339,6 +339,10 @@ const globalStyles = css`
     line-height: 36px;
     letter-spacing: 1.14px;
     text-transform: uppercase;
+
+    @media only screen and (max-width: 575px) {
+      font-size: 24px;
+    }
   }
 
   h4 {

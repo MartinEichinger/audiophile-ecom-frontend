@@ -41,5 +41,9 @@ export default connect(ProductDetail);
 const HomeLinksI = styled(HomeLinks)`
   .body {
     padding-top: 220px;
+
+    @media only screen and (max-width: 575px) {
+      padding-top: 120px;
+    }
   }
 `;

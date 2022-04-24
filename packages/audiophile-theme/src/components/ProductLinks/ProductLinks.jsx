@@ -92,7 +92,7 @@ const CardI = styled(Card)`
 
     @media only screen and (max-width: 575px) {
       height: 120px;
-      margin-bottom: 250px;
+      margin-bottom: calc(127px + 56px);
     }
   }
 
@@ -108,6 +108,7 @@ const CardI = styled(Card)`
     @media only screen and (max-width: 575px) {
       height: 110px;
       min-height: auto;
+      margin-bottom: 36px;
     }
   }
 
@@ -125,12 +126,20 @@ const ProdLinks = styled.div`
     @media only screen and (max-width: 1439px) {
       margin-bottom: calc(10.11905vw + 22px);
     }
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 0px;
+    }
   }
 
   .prodlinks h3 {
     width: 100%;
     text-align: center;
     margin-bottom: 64px;
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 40px;
+    }
   }
 
   .prodlinks .body {

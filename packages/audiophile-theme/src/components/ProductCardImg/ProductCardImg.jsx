@@ -92,6 +92,10 @@ const ProdCardItemImg = styled.div`
     margin-bottom: 120px;
   }
 
+  @media only screen and (max-width: 991px) {
+    margin-bottom: calc(120px - 32px);
+  }
+
   .crd {
     border-radius: 8px;
     width: 1110px;
@@ -125,7 +129,7 @@ const ProdCardItemImg = styled.div`
       width: calc(100vw - 48px);
       height: 100%;
       margin-right: 0px;
-      margin-bottom: 24px;
+      //margin-bottom: 24px;
     }
   }
 
@@ -137,6 +141,10 @@ const ProdCardItemImg = styled.div`
     @media only screen and (max-width: 991px) {
       margin-bottom: 20px;
     }
+  }
+
+  .crd .col_1 img:last-of-type {
+    margin-bottom: 0px;
   }
 
   .crd .col_2 {
@@ -158,6 +166,6 @@ const ProdCardItemImg = styled.div`
   .crd .col_2 img {
     width: 100%;
     border-radius: 8px;
-    margin-bottom: 32px;
+    margin-bottom: 0px;
   }
 `;
