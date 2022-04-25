@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { connect, styled } from "frontity";
 import Card from "../Card/Card";
+import { useMediaQuery } from "react-responsive";
 
-const ProductLinks = ({ state, actions, className, mediaQuery }) => {
+const ProductLinks = ({ state, actions, className }) => {
   const debug = false;
 
   // 1. Fetch done with beforeSSR / in Home
@@ -14,6 +15,16 @@ const ProductLinks = ({ state, actions, className, mediaQuery }) => {
   //var len = products.length;
   const prodListIDs = [...Array(products.length)].map((u, i) => i);
 
+  // 3. MEDIA QUERY
+  const mediaQuery = {
+    isXXL: useMediaQuery({ query: "(min-width: 1440px)" }),
+    isXL: useMediaQuery({ query: "(min-width: 1280px)" }),
+    isLg: useMediaQuery({ query: "(min-width: 992px)" }),
+    isMd: useMediaQuery({ query: "(min-width: 768px)" }),
+    isSm: useMediaQuery({ query: "(min-width: 576px)" }),
+    isXS: useMediaQuery({ query: "(max-width: 575px)" }),
+  };
+
   if (debug)
     console.log(
       "ProductLinks / before render",
@@ -22,15 +33,31 @@ const ProductLinks = ({ state, actions, className, mediaQuery }) => {
       products.length
     );
 
-  const randomCards = () => {
+  const randomCards = (mediaQuery) => {
     var rows = [];
+    var selectedProds = [];
+    var j, x;
 
     for (let i = 0; i < 3; i++) {
-      var j = Math.floor(Math.random() * prodListIDs.length);
+      do {
+        j = Math.floor(Math.random() * prodListIDs.length);
+        x = selectedProds.find((item) => item === j);
+      } while (j === x);
 
-      const img_src = getImg(
-        images[getMetaData(products[j].meta_data, "img_mobile")]
-      );
+      selectedProds.push(j);
+
+      let size; // = "img_mobile";
+      if (mediaQuery?.isLg === true) {
+        size = "img_desktop";
+      } else if (mediaQuery?.isSm === true) {
+        size = "img_tablet";
+      } else if (mediaQuery?.isXS === true) {
+        size = "img_mobile";
+      } else {
+        size = "img_mobile";
+      }
+
+      const img_src = getImg(images[getMetaData(products[j].meta_data, size)]);
 
       rows.push(
         <CardI
@@ -58,7 +85,7 @@ const ProductLinks = ({ state, actions, className, mediaQuery }) => {
       <div className="prodlinks">
         <h3>You may also like</h3>
         <div className="body d-flex flex-column flex-sm-row">
-          {randomCards()}
+          {randomCards(mediaQuery)}
         </div>
       </div>
     </ProdLinks>
@@ -101,14 +128,20 @@ const CardI = styled(Card)`
     padding-top: 10px;
     height: 300px;
     margin-bottom: 75px;
-    //min-height: 300px;
+    min-height: auto;
     width: 100%;
     object-fit: contain;
 
+    @media only screen and (max-width: 991px) {
+      min-height: 300px;
+      object-fit: cover;
+    }
+
     @media only screen and (max-width: 575px) {
       height: 110px;
-      min-height: auto;
+      min-height: 118px;
       margin-bottom: 36px;
+      object-fit: contain;
     }
   }
 

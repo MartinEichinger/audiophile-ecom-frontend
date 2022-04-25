@@ -29,7 +29,7 @@ const ProductDetail = ({ state, actions, mediaQuery, link }) => {
       <ProductCardIII mediaQuery={mediaQuery} />
       <ProductCardText mediaQuery={mediaQuery} />
       <ProductCardImg mediaQuery={mediaQuery} />
-      <ProductLinks mediaQuery={mediaQuery} />
+      <ProductLinks />
       <HomeLinksI />
       <HomeAbout entry={entry} mediaQuery={mediaQuery} />
     </>

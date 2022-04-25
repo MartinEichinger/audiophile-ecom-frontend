@@ -24,15 +24,17 @@ const ProductCardImg = ({ state, mediaQuery }) => {
               mediaQuery={mediaQuery}
               key={i}
             >
-              <div className="crd d-flex flex-column flex-sm-row justify-content-center align-items-start">
-                <div className="col_1">
+              <div className="crd d-flex flex-column flex-sm-row justify-content-center align-items-stretch">
+                <div className="col_1 d-flex flex-column justify-content-between">
                   <img
+                    className="d-flex flex-fill"
                     src={getImg(
                       images[getMetaData(entry.meta_data, "img_small_i")]
                     )}
                     alt="Product Image"
                   />
                   <img
+                    className="d-flex flex-fill"
                     src={getImg(
                       images[getMetaData(entry.meta_data, "img_small_ii")]
                     )}
@@ -92,7 +94,7 @@ const ProdCardItemImg = styled.div`
     margin-bottom: 120px;
   }
 
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 575px) {
     margin-bottom: calc(120px - 32px);
   }
 
@@ -145,6 +147,10 @@ const ProdCardItemImg = styled.div`
 
   .crd .col_1 img:last-of-type {
     margin-bottom: 0px;
+
+    @media only screen and (max-width: 575px) {
+      margin-bottom: 20px;
+    }
   }
 
   .crd .col_2 {
