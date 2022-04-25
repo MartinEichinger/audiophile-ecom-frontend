@@ -29,11 +29,19 @@ Users should be able to:
 - Fill in all fields in the checkout
 - Receive form validations if fields are missed or incorrect during checkout
 - See correct checkout totals depending on the products in the cart
-  - Shipping always adds $50 to the order
+  - Shipping always adds 10€ to the order
   - VAT is calculated as 20% of the product total, excluding shipping
 - See an order confirmation modal after checking out with an order summary
-- **Additional**:
-- Keep track of what's in the cart, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
+
+**Additional**:
+
+- Make it a Fullstack application (Headless CMS + React)
+
+Admin should be able to:
+
+- Define complete website content via WordPress
+- Define new products, costs and manage amount of stock in WordPress/WooCommerce
+- Handle orders in WooCommerce
 
 ### Screenshot
 
@@ -56,15 +64,17 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [Frontity](https://frontity.org/) - React / WordPress framework
 - [Styled Components](https://styled-components.com/) - For styles
-- [Wordpress](https://wordpress.org/) - Headless CMS
+- [WordPress](https://wordpress.org/) - Headless CMS
+- [WooCommerce](https://woocommerce.com/) - eCommerce Plugin in WordPress
 
 ### What I learned
 
 For this project I used React as frontend and WordPress as headless CMS for the first time. Together with that I also introduced myself to styled components.
+For the eCommerce context I used WooCommerce with a basic implementation of the WooCommerce API in my React project.
 
 ### Continued development
 
-...
+Let's see what's coming next...
 
 ### Useful resources
 
@@ -75,23 +85,3 @@ For this project I used React as frontend and WordPress as headless CMS for the 
 
 - Website - [EdMadd profile page](https://www.profilepage.edmadd.eu)
 - Frontend Mentor - [@MartinEichinger](https://www.frontendmentor.io/profile/MartinEichinger)
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-```
