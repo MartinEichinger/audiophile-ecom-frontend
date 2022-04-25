@@ -14,7 +14,6 @@ This is a solution to the [Audiophile e-commerce website challenge on Frontend M
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
